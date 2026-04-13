@@ -1593,7 +1593,7 @@ export default function ContactUsRealEstate() {
     style={{ display: "block", width: "100%", height: "100%" }}
   >
     <img
-      src="src/images/image.png"
+      src="/images/image.png"
       alt="Office Location Map"
       style={{
         width: "100%",

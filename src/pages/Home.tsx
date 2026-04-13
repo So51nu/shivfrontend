@@ -1746,7 +1746,7 @@ export default function HomePage() {
             {/* RIGHT IMAGE */}
             <div className="about-image">
               <img
-                src="src/images/back1.jpg"
+                src= "/images/back1.jpg"
                 alt="Real Estate Construction"
               />
             </div>
@@ -1808,7 +1808,7 @@ export default function HomePage() {
             {/* RIGHT IMAGE */}
             <div className="services-image">
               <img
-                src="/src/images/back4.jpg"
+                src= "/images/back3.jpg"
                 alt="Real Estate Services"
               />
             </div>
