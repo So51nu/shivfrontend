@@ -809,7 +809,6 @@ import {
   MessageSquare,
   Home as HomeIcon,
   Sparkles,
-  Mail,
   User
 } from "lucide-react";
 

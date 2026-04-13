@@ -1162,7 +1162,7 @@ export default function AboutPage() {
   }, [allProjects]);
 
   const goProjects = () => nav("/projects");
-  const goProjectsWithHighlight = (p: Project) => {
+  const goProjectsWithHighlight = (_p: Project) => {
     nav("/projects");
   };
 

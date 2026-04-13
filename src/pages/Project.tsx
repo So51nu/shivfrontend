@@ -922,7 +922,7 @@
 
 'use client';
 
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Download, X, Phone, MessageSquare, ArrowRight, Menu, Building2, FileText, Sparkles, Home as HomeIcon, User } from "lucide-react";
