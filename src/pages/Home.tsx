@@ -1367,12 +1367,12 @@ const THEME = {
 };
 
 const HERO_IMAGES = [
-  "src/images/back1.jpg",
-  "src/images/back2.jpg",
-  "src/images/back3.jpg",
-  "src/images/back4.jpg",
-  "src/images/back5.jpg",
-  "src/images/back6.jpg",
+  "/images/back1.jpg",
+  "/images/back2.jpg",
+  "/images/back3.jpg",
+  "/images/back4.jpg",
+  "/images/back5.jpg",
+  "/images/back6.jpg",
 ];
 
 type Project = {

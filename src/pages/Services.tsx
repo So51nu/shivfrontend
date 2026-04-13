@@ -818,16 +818,14 @@ const THEME = {
   soft: "#F6F7FB",
   brand: "#B35900",
 };
-
 const HERO_IMAGES = [
-  "src/images/back1.jpg",
-  "src/images/back2.jpg",
-  "src/images/back3.jpg",
-  "src/images/back4.jpg",
-  "src/images/back5.jpg",
-  "src/images/back6.jpg",
+  "/images/back1.jpg",
+  "/images/back2.jpg",
+  "/images/back3.jpg",
+  "/images/back4.jpg",
+  "/images/back5.jpg",
+  "/images/back6.jpg",
 ];
-
 const COMPANY = {
   name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
   cin: "U45200MH1999PTC122379",

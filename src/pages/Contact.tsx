@@ -1105,14 +1105,13 @@ const THEME = {
   brand: "#B35900",
   dark: "#111111",
 };
-
 const heroImages = [
-  "src/images/back1.jpg",
-  "src/images/back2.jpg",
-  "src/images/back3.jpg",
-  "src/images/back4.jpg",
-  "src/images/back5.jpg",
-  "src/images/back6.jpg",
+  "/images/back1.jpg",
+  "/images/back2.jpg",
+  "/images/back3.jpg",
+  "/images/back4.jpg",
+  "/images/back5.jpg",
+  "/images/back6.jpg",
 ];
 
 const COMPANY = {

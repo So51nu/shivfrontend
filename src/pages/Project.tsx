@@ -962,16 +962,14 @@ type Meta = {
   min_price: number;
   max_price: number;
 };
-
 const HERO_IMAGES = [
-  "src/images/back1.jpg",
-  "src/images/back2.jpg",
-  "src/images/back3.jpg",
-  "src/images/back4.jpg",
-  "src/images/back5.jpg",
-  "src/images/back6.jpg",
+  "/images/back1.jpg",
+  "/images/back2.jpg",
+  "/images/back3.jpg",
+  "/images/back4.jpg",
+  "/images/back5.jpg",
+  "/images/back6.jpg",
 ];
-
 function parseAnyPriceToNumber(label: string): number {
   const s = (label || "").toLowerCase();
   const digitMatch = s.match(/[\d,.]+/);
