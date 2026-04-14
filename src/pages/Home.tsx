@@ -1622,7 +1622,7 @@ export default function HomePage() {
 
             {/* ✅ Company Name Visible */}
             <div className="company-name">
-              SHIV SHAKTI REAL ESTATE PRIVATE LIMITED
+              SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED
             </div>
 
             <h1>Premium Residential & Commercial Projects</h1>
