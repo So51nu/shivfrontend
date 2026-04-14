@@ -1937,7 +1937,7 @@ export default function HomePage() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <div className="f-brand">SHIV SHAKTI REAL ESTATE PRIVATE LIMITED</div>
+            <div className="f-brand">SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted">CIN: U45200MH1999PTC122379 • ROC Mumbai</div>
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block,
@@ -1974,7 +1974,7 @@ export default function HomePage() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>

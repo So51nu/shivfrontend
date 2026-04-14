@@ -1115,7 +1115,7 @@ const heroImages = [
 ];
 
 const COMPANY = {
-  name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
+  name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
   cin: "U45200MH1999PTC122379",
   roc: "ROC Mumbai",
   email: "secretarial@systematixgroup.in",
@@ -1667,7 +1667,7 @@ export default function ContactUsRealEstate() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>

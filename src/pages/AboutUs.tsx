@@ -2135,7 +2135,7 @@ const FALLBACK_PROJECT_IMG =
   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1400";
 
 const COMPANY = {
-  name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
+  name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
   email: "secretarial@systematixgroup.in",
   registeredAddress:
     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
@@ -2387,7 +2387,7 @@ export default function AboutPage() {
                 <span className="mini-badge">WHO WE ARE</span>
                 <h2 className="section-title big-title">About Us</h2>
                 <p className="para">
-                  Shiv Shakti Real Estate Private Limited is a professionally managed real estate company
+                  Shiv Shakti Real Estate Advisory Private Limited is a professionally managed real estate company
                   focused on delivering thoughtfully planned residential and commercial developments.
                   We believe that every property is more than just a structure — it is a space where
                   families build their future and businesses create their identity.
@@ -2590,7 +2590,7 @@ export default function AboutPage() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>
