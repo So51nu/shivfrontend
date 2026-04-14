@@ -410,7 +410,7 @@ function Header({
             </div>
 
             <div className="brand-text">
-              <div className="brand-title">SHIVSHAKTI REAL ESTATE</div>
+              <div className="brand-title">SHIVSHAKTI REAL ESTATE ADVISORY </div>
               <div className="brand-sub">PVT LTD</div>
             </div>
           </Link>
