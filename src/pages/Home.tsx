@@ -1365,7 +1365,7 @@ const THEME = {
   ink: "#0B1220",
   dark: "#111111",
   soft: "#F6F7FB",
-  brand: "#B35900",
+  brand: "#4A1D0D",
 };
 
 const HERO_IMAGES = [
@@ -2013,7 +2013,7 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         top: 0; left: 0; right: 0;
         height: 80px;
         z-index: 3000;
-        background: linear-gradient(135deg, #7A3D00, #904900, #A85500);
+        background:#180704;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
