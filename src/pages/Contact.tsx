@@ -2369,7 +2369,7 @@ const THEME = {
   line: "rgba(15, 23, 42, 0.10)",
   surface: "#FFFFFF",
   soft: "#F6F7FB",
-  brand: "#B35900",
+  brand: "#4A1D0D",
   dark: "#111111",
 };
 const heroImages = [
@@ -2382,7 +2382,7 @@ const heroImages = [
 ];
 
 const COMPANY = {
-  name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
+  name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
   cin: "U45200MH1999PTC122379",
   roc: "ROC Mumbai",
   email: "secretarial@systematixgroup.in",
@@ -2916,7 +2916,7 @@ export default function ContactUsRealEstate() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ShivShakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>
@@ -2959,7 +2959,7 @@ function GlobalFixStyles() {
             top: 0; left: 0; right: 0;
             height: 80px;
             z-index: 3000;
-            background: rgba(10,10,10,0.85);
+            background:#180704;
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255,255,255,0.08);
           }
@@ -3574,7 +3574,7 @@ function GlobalFixStyles() {
 
       
       /* SAME HOME HEADER OVERRIDE */
-      .topbar{ position:fixed; top:0; left:0; right:0; height:80px; z-index:3000; background:rgba(10,10,10,0.85); backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.08); }
+      .topbar{ position:fixed; top:0; left:0; right:0; height:80px; z-index:3000; background:#180704; backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.08); }
       .topbar-inner{ height:80px; width:min(1200px,94vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; }
       .brand{ display:flex; align-items:center; gap:14px; text-decoration:none; color:white; min-width:240px; }
       .brand-icon{ width:80px; height:80px; border-radius:88px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:transparent; flex-shrink:0; }
@@ -3586,7 +3586,7 @@ function GlobalFixStyles() {
       .nav-link{ color:rgba(255,255,255,.88); text-decoration:none; font-weight:900; font-size:14px; letter-spacing:1px; white-space:nowrap; }
       .nav-link:hover,.nav-link.active{ color:white; }
       .right-actions{ display:flex; align-items:center; gap:12px; min-width:180px; justify-content:flex-end; }
-      .cta{ background:#B35900; color:white; text-decoration:none; font-weight:1000; border-radius:12px; padding:14px 20px; letter-spacing:.8px; font-size:14px; box-shadow:0 12px 26px rgba(179,89,0,.25); white-space:nowrap; border:0; }
+      .cta{ background:#4A1D0D; color:white; text-decoration:none; font-weight:1000; border-radius:12px; padding:14px 20px; letter-spacing:.8px; font-size:14px; box-shadow:0 12px 26px rgba(179,89,0,.25); white-space:nowrap; border:0; }
       .hamburger{ display:none; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.10); color:white; width:46px; height:46px; border-radius:12px; cursor:pointer; align-items:center; justify-content:center; padding:0; }
       @media (max-width:980px){ .nav{display:none!important;} .hamburger{display:flex!important;} .cta{display:none!important;} }
       @media (max-width:480px){ .brand{min-width:200px;} .brand-title{font-size:16px;} .brand-sub{font-size:10px;} }

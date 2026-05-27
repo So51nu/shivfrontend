@@ -2271,7 +2271,7 @@ const THEME = {
   ink: "#0B1220",
   dark: "#1a1a1a",
   soft: "#F6F7FB",
-  brand: "#B35900",
+  brand: "#4A1D0D",
 };
 
 type Project = {
@@ -2999,7 +2999,7 @@ export default function ProjectsPage() {
       <footer className="footer">
         <div className="container footer-grid">
           <div>
-            <div className="f-brand">SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
+            <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted">CIN: U45200MH1999PTC122379 • ROC Mumbai</div>
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block,
@@ -3036,7 +3036,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ShivShakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>
@@ -3064,7 +3064,7 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         right: 0;
         height: 80px;
         z-index: 3000;
-        background: rgba(10,10,10,0.85);
+        background:#180704;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }

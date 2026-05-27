@@ -39,10 +39,10 @@ function authHeadersOnlyAuth() {
 const THEME = {
   bg: "#f6f6f6",
   card: "#ffffff",
-  ink: "#111827",
+  ink: "#4A1D0D",
   sub: "#6B7280",
   line: "#eaeaea",
-  brand: "#B35900",
+  brand: "#4A1D0D",
 };
 
 function splitComma(s: string) {

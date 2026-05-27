@@ -1312,14 +1312,14 @@ import API_BASE from "./Api";
 // THEME
 // ───────────────────────────────────────────────────────────────────────────────
 const THEME = {
-  ink: "#0B1220",
+  ink: "#4A1D0D",
   dark: "#111111",
   soft: "#F6F7FB",
-  brand: "#B35900",
+  brand: "#4A1D0D",
 };
 
 const COMPANY = {
-  name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
+  name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
   cin: "U45200MH1999PTC122379",
   roc: "ROC Mumbai",
   email: "secretarial@systematixgroup.in",
@@ -1632,7 +1632,7 @@ export default function Login() {
         </div>
 
         <div className="container f-bottom">
-          <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} ShivShakti Real Estate Advisory Private Limited. All rights reserved.</p>
           <div className="f-mini">
             <Link to="/privacy">Privacy</Link>
             <span>•</span>
@@ -1668,7 +1668,7 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         top: 0; left: 0; right: 0;
         height: 80px;
         z-index: 3000;
-        background: rgba(10,10,10,0.85);
+        background:#180704;
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
@@ -1786,7 +1786,7 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         max-height: 100vh;
         overflow-y: auto;
         width: min(380px, 86vw);
-        background: #0e0e0e;
+        background:#180704;
         z-index: 2900;
         transform: translateX(110%);
         transition: transform 0.25s;
