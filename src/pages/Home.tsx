@@ -1330,6 +1330,8 @@
 //   );
 // }
 
+
+
 'use client';
 
 import React, { useEffect, useState } from "react";
@@ -1410,40 +1412,19 @@ function Header({
       <header className="topbar">
         <div className="topbar-inner">
           <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-            <div className="brand-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M4 20V6.5C4 5.67 4.67 5 5.5 5H13V20"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M13 9H18.5C19.33 9 20 9.67 20 10.5V20"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M8 9.5H9.8M8 13H9.8M8 16.5H9.8"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M16 13H17.8M16 16.5H17.8"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </div>
+  <div className="brand-icon" aria-hidden="true">
+    <img
+      src="/images/shivlogo.jpeg"
+      alt="Shivshakti Real Estate Advisory Logo"
+      className="brand-logo"
+    />
+  </div>
 
-            <div className="brand-text">
-              <div className="brand-title">SHIVSHAKTI REAL ESTATE ADVISORY</div>
-              <div className="brand-sub">PVT LTD</div>
-            </div>
-          </Link>
+  <div className="brand-text">
+    <div className="brand-title">SHIVSHAKTI REAL ESTATE ADVISORY</div>
+    <div className="brand-sub">PVT LTD</div>
+  </div>
+</Link>
 
           {/* Desktop nav */}
           <nav className="nav center">
@@ -2050,12 +2031,24 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         text-decoration:none; color:white;
         min-width: 240px;
       }
-      .brand-icon{
-        width: 48px; height: 48px; border-radius: 12px;
-        background: ${brand};
-        display:flex; align-items:center; justify-content:center;
-        box-shadow: 0 10px 26px rgba(179,89,0,0.25);
-      }
+     .brand-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 88px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
       .brand-text{ line-height: 1.1; }
       .brand-title{ font-weight: 1000; letter-spacing: 0.8px; font-size: 18px; }
       .brand-sub{ font-weight: 900; font-size: 12px; letter-spacing: 2px; opacity: 0.85; }
