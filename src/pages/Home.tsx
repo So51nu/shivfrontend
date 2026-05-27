@@ -2013,7 +2013,7 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         top: 0; left: 0; right: 0;
         height: 80px;
         z-index: 3000;
-        background: rgba(10,10,10,0.85);
+        background: linear-gradient(135deg, #7A3D00, #904900, #A85500);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
