@@ -1,3312 +1,27 @@
-// // // 'use client';
-
-// // // import React, { useEffect, useMemo, useState } from "react";
-// // // import { Link, useLocation, useNavigate } from "react-router-dom";
-// // // import { motion } from "framer-motion";
-// // // import {
-// // //   Building2,
-// // //   ShieldCheck,
-// // //   MapPin,
-// // //   Mail,
-// // //   CalendarDays,
-// // //   IdCard,
-// // //   ArrowRight,
-// // //   ExternalLink,
-// // //   Menu,
-// // //   X,
-// // // } from "lucide-react";
-// // // import API_BASE from "./Api";
-
-// // // const THEME = {
-// // //   ink: "#0B1220",
-// // //   dark: "#111111",
-// // //   soft: "#F6F7FB",
-// // //   brand: "#B35900",
-// // // };
-
-// // // const HERO_IMAGES = [
-// // //   "src/images/back1.jpg",
-// // //   "src/images/back2.jpg",
-// // //   "src/images/back3.jpg",
-// // //   "src/images/back4.jpg",
-// // //   "src/images/back5.jpg",
-// // //   "src/images/back6.jpg",
-// // // ];
-
-// // // const FALLBACK_PROJECT_IMG =
-// // //   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1400";
-
-// // // const COMPANY = {
-// // //   name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
-// // //   cin: "U45200MH1999PTC122379",
-// // //   status: "Active",
-// // //   roc: "ROC Mumbai",
-// // //   companyType: "Private (Non-government) • Company limited by shares",
-// // //   incorporationDate: "26 Dec 1999",
-// // //   nic: "4520 — Building of complete constructions or parts thereof; civil engineering",
-// // //   authorizedCapital: "₹ 70,00,000",
-// // //   paidUpCapital: "₹ 1,00,000",
-// // //   email: "secretarial@systematixgroup.in",
-// // //   registeredAddress:
-// // //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// // //   directors: ["CHANDRA PRAKASH KHANDELWAL", "ANJU KHANDELWAL", "RAHUL KHANDELWAL"],
-// // //   agmLastHeld: "22 Dec 2023",
-// // //   balanceSheetLastFiled: "31 Mar 2023",
-// // // };
-
-// // // type Project = {
-// // //   id: number;
-// // //   title: string;
-// // //   slug: string;
-// // //   category: "residential" | "commercial" | string;
-// // //   location: string;
-// // //   configuration: string;
-// // //   price_label: string;
-// // //   short_description?: string;
-// // //   description?: string;
-// // //   cover_image_url?: string;
-// // //   cover_image?: string;
-// // //   cover_image_absolute?: string;
-// // // };
-
-// // // function safeAbsUrl(u?: string) {
-// // //   if (!u) return "";
-// // //   if (u.startsWith("http://") || u.startsWith("https://")) return u;
-// // //   if (u.startsWith("/")) return `${API_BASE}${u}`;
-// // //   return `${API_BASE}/${u}`;
-// // // }
-
-// // // function getProjectImage(p: Project) {
-// // //   const candidates = [p.cover_image_url, p.cover_image_absolute, p.cover_image].filter(Boolean) as string[];
-// // //   const url = candidates.length ? safeAbsUrl(candidates[0]) : "";
-// // //   return url || FALLBACK_PROJECT_IMG;
-// // // }
-
-// // // /** ✅ Header updated: center nav + mobile menu only on mobile */
-// // // function Header({
-// // //   menuOpen,
-// // //   setMenuOpen,
-// // // }: {
-// // //   menuOpen: boolean;
-// // //   setMenuOpen: (v: boolean) => void;
-// // // }) {
-// // //   const loc = useLocation();
-// // //   const path = loc.pathname || "";
-
-// // //   const isActive = (p: string) => {
-// // //     if (p === "/") return path === "/";
-// // //     return path.startsWith(p);
-// // //   };
-
-// // //   // ✅ lock scroll when drawer open
-// // //   useEffect(() => {
-// // //     document.body.style.overflow = menuOpen ? "hidden" : "";
-// // //     return () => {
-// // //       document.body.style.overflow = "";
-// // //     };
-// // //   }, [menuOpen]);
-
-// // //   return (
-// // //     <>
-// // //       <header className="topbar">
-// // //         <div className="topbar-inner">
-// // //           <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-// // //             <div className="brand-icon" aria-hidden="true">
-// // //               <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-// // //                 <path d="M4 20V6.5C4 5.67 4.67 5 5.5 5H13V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// // //                 <path d="M13 9H18.5C19.33 9 20 9.67 20 10.5V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// // //                 <path d="M8 9.5H9.8M8 13H9.8M8 16.5H9.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// // //                 <path d="M16 13H17.8M16 16.5H17.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// // //               </svg>
-// // //             </div>
-
-// // //             <div className="brand-text">
-// // //               <div className="brand-title">SHIVSHAKTI REAL ESTATE</div>
-// // //               <div className="brand-sub">PVT LTD</div>
-// // //             </div>
-// // //           </Link>
-
-// // //           {/* ✅ Desktop Nav (centered) */}
-// // //           <nav className="nav nav-center">
-// // //             <Link className={isActive("/") ? "nav-link active" : "nav-link"} to="/" onClick={() => setMenuOpen(false)}>HOME</Link>
-// // //             <Link className={isActive("/projects") ? "nav-link active" : "nav-link"} to="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</Link>
-// // //             <Link className={isActive("/about") ? "nav-link active" : "nav-link"} to="/about" onClick={() => setMenuOpen(false)}>ABOUT</Link>
-// // //             <Link className={isActive("/services") ? "nav-link active" : "nav-link"} to="/services" onClick={() => setMenuOpen(false)}>SERVICES</Link>
-// // //             <Link className={isActive("/contact") ? "nav-link active" : "nav-link"} to="/contact" onClick={() => setMenuOpen(false)}>CONTACT</Link>
-// // //           </nav>
-
-// // //           {/* Right CTA + Mobile Hamburger */}
-// // //           <div className="right-actions">
-// // //             <Link className="cta" to="/contact" onClick={() => setMenuOpen(false)}>GET QUOTE</Link>
-
-// // //             {/* ✅ mobile hamburger: ONLY visible in mobile via CSS */}
-// // //             <button
-// // //               className="hamburger"
-// // //               onClick={() => setMenuOpen(!menuOpen)}
-// // //               aria-label="Menu"
-// // //               aria-expanded={menuOpen}
-// // //             >
-// // //               {menuOpen ? <X size={20} /> : <Menu size={20} />}
-// // //             </button>
-// // //           </div>
-// // //         </div>
-// // //       </header>
-
-// // //       {/* Mobile Drawer */}
-// // //       <div className={menuOpen ? "drawer-overlay show" : "drawer-overlay"} onClick={() => setMenuOpen(false)} />
-// // //       <aside className={menuOpen ? "drawer show" : "drawer"} onClick={(e) => e.stopPropagation()}>
-// // //         <div className="drawer-head">
-// // //           <div className="drawer-title">Menu</div>
-// // //           <button className="drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close">
-// // //             <X size={18} />
-// // //           </button>
-// // //         </div>
-
-// // //         <div className="drawer-links">
-// // //           <Link className={isActive("/") ? "dlink active" : "dlink"} to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-// // //           <Link className={isActive("/projects") ? "dlink active" : "dlink"} to="/projects" onClick={() => setMenuOpen(false)}>Projects</Link>
-// // //           <Link className={isActive("/about") ? "dlink active" : "dlink"} to="/about" onClick={() => setMenuOpen(false)}>About</Link>
-// // //           <Link className={isActive("/services") ? "dlink active" : "dlink"} to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-// // //           <Link className={isActive("/contact") ? "dlink active" : "dlink"} to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
-
-// // //           <Link className="dcta" to="/contact" onClick={() => setMenuOpen(false)}>
-// // //             Get Quote
-// // //           </Link>
-// // //         </div>
-
-// // //         <div className="drawer-foot">
-// // //           <div className="df-muted">Email</div>
-// // //           <a className="df-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-// // //           <div className="df-muted" style={{ marginTop: 10 }}>Registered Address</div>
-// // //           <div className="df-text">{COMPANY.registeredAddress}</div>
-// // //         </div>
-// // //       </aside>
-// // //     </>
-// // //   );
-// // // }
-
-// // // export default function AboutPage() {
-// // //   const nav = useNavigate();
-
-// // //   const [menuOpen, setMenuOpen] = useState(false);
-// // //   const [heroIndex, setHeroIndex] = useState(0);
-
-// // //   const [allProjects, setAllProjects] = useState<Project[]>([]);
-// // //   const [pLoading, setPLoading] = useState(false);
-
-// // //   // hero autoplay
-// // //   useEffect(() => {
-// // //     const t = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 3500);
-// // //     return () => clearInterval(t);
-// // //   }, []);
-
-// // //   // ✅ close drawer on mount (best effort)
-// // //   useEffect(() => {
-// // //     setMenuOpen(false);
-// // //   }, []);
-
-// // //   const loadProjects = async () => {
-// // //     setPLoading(true);
-// // //     try {
-// // //       const res = await fetch(`${API_BASE}/api/projects/`);
-// // //       const data = await res.json().catch(() => ({} as any));
-// // //       if (!res.ok || data?.ok === false) throw new Error(data?.error || "Failed");
-
-// // //       const items: Project[] = Array.isArray(data.items) ? data.items : [];
-// // //       setAllProjects(items);
-// // //     } catch {
-// // //       setAllProjects([]);
-// // //     } finally {
-// // //       setPLoading(false);
-// // //     }
-// // //   };
-
-// // //   useEffect(() => {
-// // //     loadProjects();
-// // //     // eslint-disable-next-line react-hooks/exhaustive-deps
-// // //   }, []);
-
-// // //   const latestTop3 = useMemo(() => {
-// // //     const sorted = [...allProjects].sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-// // //     return sorted.slice(0, 3);
-// // //   }, [allProjects]);
-
-// // //   const goProjects = () => nav("/projects");
-// // //   const goProjectsWithHighlight = (p: Project) => {
-// // //     nav("/projects");
-// // //   };
-
-// // //   return (
-// // //     <div style={{ width: "100vw", minHeight: "100vh", background: THEME.soft, overflowX: "hidden" }}>
-// // //       <GlobalStyles brand={THEME.brand} ink={THEME.ink} dark={THEME.dark} />
-
-// // //       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-// // //       {/* ✅ HERO */}
-// // //       <section className="about-hero">
-// // //         <div className="hero-bg">
-// // //           <img src={HERO_IMAGES[heroIndex]} alt="about hero" />
-// // //           <div className="hero-overlay" />
-// // //         </div>
-
-// // //         <div className="container hero-content">
-// // //           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-// // //             <span className="badge">ABOUT THE COMPANY</span>
-// // //             <h1>{COMPANY.name}</h1>
-// // //             <p>
-// // //               A trusted real estate and construction company registered in Mumbai — focused on delivering
-// // //               quality developments with transparent processes.
-// // //             </p>
-
-// // //             <div className="hero-cta">
-// // //               <Link className="cta-primary" to="/projects">
-// // //                 View Projects <ArrowRight size={18} />
-// // //               </Link>
-// // //               <Link className="cta-ghost" to="/contact">
-// // //                 Contact Us <ArrowRight size={18} />
-// // //               </Link>
-// // //             </div>
-
-// // //             <div className="dots">
-// // //               {HERO_IMAGES.map((_, i) => (
-// // //                 <button
-// // //                   key={i}
-// // //                   className={i === heroIndex ? "dot active" : "dot"}
-// // //                   onClick={() => setHeroIndex(i)}
-// // //                   aria-label={`hero-${i}`}
-// // //                 />
-// // //               ))}
-// // //             </div>
-// // //           </motion.div>
-// // //         </div>
-// // //       </section>
-
-// // //       {/* ✅ COMPANY HIGHLIGHTS */}
-// // //       <section className="section">
-// // //         <div className="container">
-// // //           <div className="grid-2">
-// // //             <motion.div
-// // //               className="card"
-// // //               initial={{ opacity: 0, y: 14 }}
-// // //               whileInView={{ opacity: 1, y: 0 }}
-// // //               viewport={{ once: true }}
-// // //               transition={{ duration: 0.5 }}
-// // //             >
-// // //               <h2 className="section-title">Company Overview</h2>
-
-// // //               <div className="info-list">
-// // //                 <InfoRow icon={<IdCard size={18} />} label="CIN" value={COMPANY.cin} />
-// // //                 <InfoRow icon={<ShieldCheck size={18} />} label="Status" value={COMPANY.status} />
-// // //                 <InfoRow icon={<Building2 size={18} />} label="ROC" value={COMPANY.roc} />
-// // //                 <InfoRow icon={<CalendarDays size={18} />} label="Incorporation" value={COMPANY.incorporationDate} />
-// // //                 <InfoRow icon={<Building2 size={18} />} label="Type" value={COMPANY.companyType} />
-// // //                 <InfoRow icon={<Building2 size={18} />} label="NIC" value={COMPANY.nic} />
-// // //               </div>
-// // //             </motion.div>
-
-// // //             <motion.div
-// // //               className="card"
-// // //               initial={{ opacity: 0, y: 14 }}
-// // //               whileInView={{ opacity: 1, y: 0 }}
-// // //               viewport={{ once: true }}
-// // //               transition={{ duration: 0.5, delay: 0.05 }}
-// // //             >
-// // //               <h2 className="section-title">Compliance Snapshot</h2>
-
-// // //               <div className="info-list">
-// // //                 <InfoRow icon={<CalendarDays size={18} />} label="Last AGM Held" value={COMPANY.agmLastHeld} />
-// // //                 <InfoRow icon={<CalendarDays size={18} />} label="Balance Sheet Filed" value={COMPANY.balanceSheetLastFiled} />
-// // //                 <InfoRow icon={<Building2 size={18} />} label="Authorised Capital" value={COMPANY.authorizedCapital} />
-// // //                 <InfoRow icon={<Building2 size={18} />} label="Paid-up Capital" value={COMPANY.paidUpCapital} />
-// // //                 <InfoRow icon={<Mail size={18} />} label="Email" value={COMPANY.email} />
-// // //                 <InfoRow icon={<MapPin size={18} />} label="Registered Address" value={COMPANY.registeredAddress} />
-// // //               </div>
-// // //             </motion.div>
-// // //           </div>
-// // //         </div>
-// // //       </section>
-
-// // //       {/* ✅ TOP 3 LATEST (MIX) */}
-// // //       <section className="section soft">
-// // //         <div className="container">
-// // //           <div className="section-head row-between">
-// // //             <div>
-// // //               <h2 style={{ margin: 0, color: THEME.ink }}>Featured Projects</h2>
-// // //               <p style={{ marginTop: 8 }}>Our Top Latest Projects.</p>
-// // //             </div>
-
-// // //             <button className="viewall-btn" onClick={goProjects}>
-// // //               View All Projects <ExternalLink size={16} />
-// // //             </button>
-// // //           </div>
-
-// // //           {pLoading ? (
-// // //             <div className="empty">Loading projects...</div>
-// // //           ) : latestTop3.length === 0 ? (
-// // //             <div className="empty">No projects found yet.</div>
-// // //           ) : (
-// // //             <div className="projects-grid">
-// // //               {latestTop3.map((p) => (
-// // //                 <motion.div
-// // //                   key={p.id}
-// // //                   className="project-card"
-// // //                   whileHover={{ y: -8 }}
-// // //                   onClick={() => goProjectsWithHighlight(p)}
-// // //                 >
-// // //                   <div className="pimg">
-// // //                     <img
-// // //                       src={getProjectImage(p)}
-// // //                       alt={p.title}
-// // //                       loading="lazy"
-// // //                       onError={(e) => {
-// // //                         const img = e.currentTarget as HTMLImageElement;
-// // //                         if (img.src !== FALLBACK_PROJECT_IMG) img.src = FALLBACK_PROJECT_IMG;
-// // //                       }}
-// // //                     />
-// // //                     <div className="ptags">
-// // //                       <span className="tag">{(p.location || "LOCATION").toUpperCase()}</span>
-// // //                       <span className="tag2">{(p.category || "TYPE").toUpperCase()}</span>
-// // //                     </div>
-// // //                   </div>
-
-// // //                   <div className="pbody">
-// // //                     <div className="ptitle">{p.title}</div>
-// // //                     <div className="pdesc">
-// // //                       {(p.short_description || p.description || "").trim()
-// // //                         ? (p.short_description || p.description || "").slice(0, 110) + "..."
-// // //                         : "—"}
-// // //                     </div>
-
-// // //                     <div className="pmeta">
-// // //                       <div className="mi">
-// // //                         <span>CONFIG</span>
-// // //                         <strong>{p.configuration || "—"}</strong>
-// // //                       </div>
-// // //                       <div className="mi">
-// // //                         <span>STARTING</span>
-// // //                         <strong className="pprice">{p.price_label || "—"}</strong>
-// // //                       </div>
-// // //                     </div>
-
-// // //                     <button
-// // //                       className="details-btn"
-// // //                       onClick={(e) => {
-// // //                         e.stopPropagation();
-// // //                         goProjectsWithHighlight(p);
-// // //                       }}
-// // //                     >
-// // //                       View Details <ArrowRight size={16} />
-// // //                     </button>
-// // //                   </div>
-// // //                 </motion.div>
-// // //               ))}
-// // //             </div>
-// // //           )}
-// // //         </div>
-// // //       </section>
-
-// // //       {/* ✅ WHY US */}
-// // //       <section className="section">
-// // //         <div className="container">
-// // //           <div className="grid-2">
-// // //             <div className="card">
-// // //               <h2 className="section-title">Why Choose Us</h2>
-// // //               <ul className="bullets">
-// // //                 <li>Transparent customer communication and project updates</li>
-// // //                 <li>Strong focus on construction quality and finishing</li>
-// // //                 <li>Professional documentation and compliance discipline</li>
-// // //                 <li>Customer-first approach for site visits and query handling</li>
-// // //               </ul>
-
-// // //               <div className="cta-row">
-// // //                 <Link className="cta-primary" to="/contact">
-// // //                   Talk to Our Team <ArrowRight size={18} />
-// // //                 </Link>
-// // //                 <Link className="cta-ghost" to="/projects">
-// // //                   Explore Projects <ArrowRight size={18} />
-// // //                 </Link>
-// // //               </div>
-// // //             </div>
-
-// // //             <div className="card">
-// // //               <h2 className="section-title">Our Mission</h2>
-// // //               <p className="para">
-// // //                 Deliver well-planned and well-built developments with an emphasis on trust, transparency,
-// // //                 and customer satisfaction — while following responsible building practices.
-// // //               </p>
-
-// // //               <h2 className="section-title" style={{ marginTop: 18 }}>Our Vision</h2>
-// // //               <p className="para">
-// // //                 Build a strong real estate brand known for consistent quality, timely execution and
-// // //                 customer confidence across residential and commercial segments.
-// // //               </p>
-// // //             </div>
-// // //           </div>
-// // //         </div>
-// // //       </section>
-
-// // //       {/* ✅ SAME FOOTER AS HOME */}
-// // //       <footer className="footer">
-// // //         <div className="container footer-grid">
-// // //           <div>
-// // //             <div className="f-brand">{COMPANY.name}</div>
-// // //             <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
-// // //             <div className="f-muted" style={{ marginTop: 10 }}>
-// // //               Registered Office: {COMPANY.registeredAddress}
-// // //             </div>
-// // //           </div>
-
-// // //           <div>
-// // //             <div className="f-title">Quick Links</div>
-// // //             <div className="f-links">
-// // //               <Link to="/">Home</Link>
-// // //               <Link to="/projects">Projects</Link>
-// // //               <Link to="/about">About</Link>
-// // //               <Link to="/services">Services</Link>
-// // //               <Link to="/contact">Contact</Link>
-// // //               <Link to="/login">Admin Login</Link>
-// // //             </div>
-// // //           </div>
-
-// // //           <div>
-// // //             <div className="f-title">Contact</div>
-// // //             <div className="f-links">
-// // //               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-// // //               <a href="tel:+918956032764">+91 89560 32764</a>
-// // //               <a
-// // //                 href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
-// // //                 target="_blank"
-// // //                 rel="noreferrer"
-// // //               >
-// // //                 WhatsApp Chat
-// // //               </a>
-// // //             </div>
-// // //           </div>
-// // //         </div>
-
-// // //         <div className="container f-bottom">
-// // //           <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Private Limited. All rights reserved.</p>
-// // //           <div className="f-mini">
-// // //             <Link to="/privacy">Privacy</Link>
-// // //             <span>•</span>
-// // //             <Link to="/terms">Terms</Link>
-// // //           </div>
-// // //         </div>
-// // //       </footer>
-// // //     </div>
-// // //   );
-// // // }
-
-// // // function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-// // //   return (
-// // //     <div className="info-row">
-// // //       <div className="info-ic">{icon}</div>
-// // //       <div className="info-text">
-// // //         <div className="info-label">{label}</div>
-// // //         <div className="info-value">{value}</div>
-// // //       </div>
-// // //     </div>
-// // //   );
-// // // }
-
-// // // function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
-// // //   return (
-// // //     <style
-// // //       dangerouslySetInnerHTML={{
-// // //         __html: `
-// // //       html, body { width:100%; min-height:100%; margin:0; padding:0; overflow-x:hidden; }
-// // //       * { box-sizing:border-box; }
-// // //       .container { width: min(1200px, 94vw); margin: 0 auto; }
-// // //       .row-between{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-
-// // //       /* ✅ HEADER */
-// // //       .topbar{
-// // //         position: fixed;
-// // //         top: 0; left: 0; right: 0;
-// // //         height: 76px;
-// // //         z-index: 3000;
-// // //         background: rgba(10,10,10,0.75);
-// // //         backdrop-filter: blur(10px);
-// // //         border-bottom: 1px solid rgba(255,255,255,0.08);
-// // //       }
-// // //       .topbar-inner{
-// // //         height: 76px;
-// // //         width: min(1200px, 94vw);
-// // //         margin: 0 auto;
-// // //         display:flex;
-// // //         align-items:center;
-// // //         justify-content:space-between;
-// // //         gap: 14px;
-// // //       }
-// // //       .brand{
-// // //         display:flex; align-items:center; gap: 12px;
-// // //         text-decoration:none; color:white;
-// // //         min-width: auto;
-// // //       }
-// // //       .brand-icon{
-// // //         width: 44px; height: 44px; border-radius: 12px;
-// // //         background: ${brand};
-// // //         display:flex; align-items:center; justify-content:center;
-// // //         box-shadow: 0 10px 26px rgba(179,89,0,0.25);
-// // //       }
-// // //       .brand-text{ line-height: 1.05; }
-// // //       .brand-title{ font-weight: 1000; letter-spacing: 0.8px; font-size: 16px; }
-// // //       .brand-sub{ font-weight: 900; font-size: 11px; letter-spacing: 2px; opacity: 0.85; }
-
-// // //       /* ✅ center nav */
-// // //       .nav{
-// // //         display:flex;
-// // //         align-items:center;
-// // //         gap: 22px;
-// // //         flex: 1;
-// // //       }
-// // //       .nav-center{ justify-content:center; }
-// // //       .nav-link{
-// // //         color: rgba(255,255,255,0.88);
-// // //         text-decoration:none;
-// // //         font-weight: 900;
-// // //         font-size: 13px;
-// // //         letter-spacing: 1px;
-// // //         white-space: nowrap;
-// // //       }
-// // //       .nav-link:hover{ color: white; }
-// // //       .nav-link.active{ color: white; }
-
-// // //       .right-actions{
-// // //         display:flex;
-// // //         align-items:center;
-// // //         gap: 10px;
-// // //         min-width: 160px;
-// // //         justify-content:flex-end;
-// // //       }
-// // //       .cta{
-// // //         background: ${brand};
-// // //         color: white;
-// // //         text-decoration:none;
-// // //         font-weight: 1000;
-// // //         border-radius: 12px;
-// // //         padding: 12px 18px;
-// // //         letter-spacing: 0.8px;
-// // //         font-size: 13px;
-// // //         box-shadow: 0 12px 26px rgba(179,89,0,0.25);
-// // //         white-space: nowrap;
-// // //       }
-
-// // //       /* ✅ mobile hamburger: default hidden (desktop) */
-// // //       .hamburger{
-// // //         display:none;
-// // //         border: 1px solid rgba(255,255,255,0.18);
-// // //         background: rgba(255,255,255,0.10);
-// // //         color:white;
-// // //         width: 42px; height: 42px;
-// // //         border-radius: 12px;
-// // //         cursor:pointer;
-// // //         align-items:center;
-// // //         justify-content:center;
-// // //         padding: 0;
-// // //       }
-
-// // //       /* ✅ drawer */
-// // //       .drawer-overlay{
-// // //         position: fixed;
-// // //         inset:0;
-// // //         background: rgba(0,0,0,0.5);
-// // //         z-index: 2800;
-// // //         opacity:0;
-// // //         pointer-events:none;
-// // //         transition: 0.25s;
-// // //       }
-// // //       .drawer-overlay.show{
-// // //         opacity:1;
-// // //         pointer-events:auto;
-// // //       }
-// // //       .drawer{
-// // //         position: fixed;
-// // //         top: 0; right: 0;
-// // //         height: 100vh;
-// // //         width: min(360px, 86vw);
-// // //         background: #0e0e0e;
-// // //         z-index: 2900;
-// // //         transform: translateX(110%);
-// // //         transition: transform 0.25s;
-// // //         border-left: 1px solid rgba(255,255,255,0.08);
-// // //         padding: 16px;
-// // //         display:flex;
-// // //         flex-direction:column;
-// // //         gap: 14px;
-// // //       }
-// // //       .drawer.show{ transform: translateX(0); }
-// // //       .drawer-head{ display:flex; align-items:center; justify-content:space-between; }
-// // //       .drawer-title{ color:white; font-weight: 1000; letter-spacing:0.7px; }
-// // //       .drawer-close{
-// // //         border: 1px solid rgba(255,255,255,0.18);
-// // //         background: rgba(255,255,255,0.10);
-// // //         color:white;
-// // //         width: 38px; height: 38px;
-// // //         border-radius: 12px;
-// // //         cursor:pointer;
-// // //         display:flex; align-items:center; justify-content:center;
-// // //       }
-// // //       .drawer-links{ display:flex; flex-direction:column; gap: 10px; margin-top: 4px; }
-// // //       .dlink{
-// // //         color: rgba(255,255,255,0.90);
-// // //         text-decoration:none;
-// // //         padding: 12px 12px;
-// // //         border-radius: 12px;
-// // //         background: rgba(255,255,255,0.06);
-// // //         border: 1px solid rgba(255,255,255,0.08);
-// // //         font-weight: 900;
-// // //       }
-// // //       .dlink.active{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.16); }
-// // //       .dcta{
-// // //         margin-top: 6px;
-// // //         background: ${brand};
-// // //         color:white;
-// // //         text-decoration:none;
-// // //         padding: 12px 12px;
-// // //         border-radius: 12px;
-// // //         font-weight: 1000;
-// // //         text-align:center;
-// // //       }
-// // //       .drawer-foot{
-// // //         margin-top:auto;
-// // //         border-top: 1px solid rgba(255,255,255,0.10);
-// // //         padding-top: 12px;
-// // //       }
-// // //       .df-muted{ color: rgba(255,255,255,0.55); font-weight: 900; font-size: 11px; letter-spacing:0.8px; text-transform:uppercase; }
-// // //       .df-link{ color: white; text-decoration:none; font-weight: 900; }
-// // //       .df-text{ color: rgba(255,255,255,0.75); font-weight: 800; line-height: 1.6; font-size: 13px; margin-top: 6px; }
-
-// // //       /* ✅ HERO */
-// // //       .about-hero{
-// // //         position: relative;
-// // //         min-height: 520px;
-// // //         display:flex;
-// // //         align-items:center;
-// // //         justify-content:center;
-// // //         color: white;
-// // //         overflow:hidden;
-// // //         padding-top: 76px;
-// // //       }
-// // //       .hero-bg{ position:absolute; inset:0; }
-// // //       .hero-bg img{ width:100%; height:100%; object-fit:cover; transform: scale(1.05); }
-// // //       .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.72)); }
-// // //       .hero-content{ position:relative; z-index:2; text-align:center; padding: 0 12px; }
-
-// // //       .badge { background: ${brand}; padding: 6px 16px; border-radius: 999px; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing:1px; display:inline-block; }
-// // //       .about-hero h1 { font-size: clamp(26px, 4vw, 48px); font-weight: 1000; margin: 18px 0; }
-// // //       .about-hero p { color: rgba(255,255,255,0.9); max-width: 820px; margin: 0 auto; line-height: 1.7; }
-
-// // //       .hero-cta{ display:flex; gap: 12px; justify-content:center; flex-wrap:wrap; margin-top: 18px; }
-// // //       .cta-primary{
-// // //         background: ${brand};
-// // //         color: white;
-// // //         text-decoration:none;
-// // //         padding: 12px 16px;
-// // //         border-radius: 14px;
-// // //         font-weight: 1000;
-// // //         display:flex; align-items:center; gap: 10px;
-// // //         box-shadow: 0 14px 30px rgba(179,89,0,0.25);
-// // //       }
-// // //       .cta-ghost{
-// // //         background: rgba(255,255,255,0.12);
-// // //         border: 1px solid rgba(255,255,255,0.35);
-// // //         color: white;
-// // //         text-decoration:none;
-// // //         padding: 12px 16px;
-// // //         border-radius: 14px;
-// // //         font-weight: 1000;
-// // //         display:flex; align-items:center; gap: 10px;
-// // //       }
-
-// // //       .dots{ display:flex; gap:10px; justify-content:center; margin-top: 18px; }
-// // //       .dot{ width: 44px; height: 12px; border-radius: 999px; border:1px solid rgba(255,255,255,0.6); background: rgba(255,255,255,0.16); cursor:pointer; }
-// // //       .dot.active{ background: rgba(255,255,255,0.95); border-color: rgba(255,255,255,0.95); }
-
-// // //       /* ✅ SECTIONS */
-// // //       .section{ padding: 56px 0; }
-// // //       .section.soft{ background: ${THEME.soft}; }
-// // //       .section-head{ margin-bottom: 18px; }
-// // //       .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-// // //       .card{
-// // //         background: white;
-// // //         border: 1px solid #eee;
-// // //         border-radius: 16px;
-// // //         padding: 18px;
-// // //         box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-// // //       }
-// // //       .section-title{
-// // //         font-size: 18px;
-// // //         font-weight: 1100;
-// // //         color: ${ink};
-// // //         margin: 0 0 12px 0;
-// // //       }
-// // //       .info-list{ display:flex; flex-direction:column; gap: 12px; }
-// // //       .info-row{ display:flex; gap: 12px; align-items:flex-start; }
-// // //       .info-ic{
-// // //         width: 40px; height: 40px;
-// // //         border-radius: 12px;
-// // //         background: #fff7ed;
-// // //         border: 1px solid #ffedd5;
-// // //         display:flex; align-items:center; justify-content:center;
-// // //         color: ${brand};
-// // //         flex: 0 0 auto;
-// // //       }
-// // //       .info-label{ font-size: 11px; font-weight: 1000; color:#667; text-transform:uppercase; letter-spacing:0.8px; }
-// // //       .info-value{ font-size: 13px; font-weight: 800; color:#1f2937; line-height: 1.55; margin-top: 2px; }
-
-// // //       .viewall-btn{
-// // //         border: 1px solid #eee;
-// // //         background: white;
-// // //         border-radius: 12px;
-// // //         padding: 11px 14px;
-// // //         font-weight: 1000;
-// // //         cursor: pointer;
-// // //         display:flex;
-// // //         align-items:center;
-// // //         gap: 10px;
-// // //       }
-
-// // //       .projects-grid{
-// // //         display:grid;
-// // //         grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-// // //         gap: 16px;
-// // //         margin-top: 14px;
-// // //       }
-// // //       .project-card{
-// // //         background: white;
-// // //         border: 1px solid #eee;
-// // //         border-radius: 16px;
-// // //         overflow:hidden;
-// // //         box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-// // //         cursor: pointer;
-// // //       }
-// // //       .pimg{
-// // //         position: relative;
-// // //         width: 100%;
-// // //         aspect-ratio: 16 / 10;
-// // //         background: #0b0b0b;
-// // //         overflow:hidden;
-// // //       }
-// // //       .pimg img{
-// // //         width: 100%;
-// // //         height: 100%;
-// // //         object-fit: cover;
-// // //         display:block;
-// // //         transform: scale(1.01);
-// // //         transition: 0.5s;
-// // //       }
-// // //       .project-card:hover .pimg img{ transform: scale(1.06); }
-
-// // //       .ptags{
-// // //         position:absolute;
-// // //         top: 12px; left: 12px; right: 12px;
-// // //         display:flex; justify-content:space-between; gap: 10px;
-// // //       }
-// // //       .tag{
-// // //         background: rgba(255,255,255,0.92);
-// // //         padding: 6px 10px;
-// // //         border-radius:999px;
-// // //         font-weight:1000;
-// // //         font-size:11px;
-// // //       }
-// // //       .tag2{
-// // //         background: ${brand};
-// // //         color:white;
-// // //         padding: 6px 10px;
-// // //         border-radius:999px;
-// // //         font-weight:1000;
-// // //         font-size:11px;
-// // //       }
-// // //       .pbody{ padding: 16px; }
-// // //       .ptitle{ font-weight: 1100; color: ${ink}; font-size: 16px; }
-// // //       .pdesc{ color:#667; font-weight: 750; font-size: 13px; line-height: 1.65; margin-top: 8px; min-height: 44px; }
-
-// // //       .pmeta{ display:flex; gap: 12px; border-top:1px solid #eee; padding-top: 12px; margin-top: 12px; }
-// // //       .mi{ flex:1; }
-// // //       .mi span{ display:block; font-size: 10px; font-weight: 1000; color:#9aa; letter-spacing:0.7px; }
-// // //       .mi strong{ font-size: 13px; color:#222; }
-// // //       .pprice{ color: ${brand}; }
-
-// // //       .details-btn{
-// // //         width:100%;
-// // //         margin-top: 12px;
-// // //         border: none;
-// // //         background: ${ink};
-// // //         color: white;
-// // //         border-radius: 12px;
-// // //         padding: 12px;
-// // //         font-weight: 1000;
-// // //         cursor:pointer;
-// // //         display:flex;
-// // //         align-items:center;
-// // //         justify-content:center;
-// // //         gap: 10px;
-// // //       }
-
-// // //       .bullets{ padding-left: 18px; margin: 0; color:#445; line-height: 1.9; font-weight: 800; }
-// // //       .para{ color:#556; line-height: 1.85; font-weight: 750; margin: 0; }
-// // //       .cta-row{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 16px; }
-
-// // //       .empty{
-// // //         background:white;
-// // //         border:1px solid #eee;
-// // //         border-radius:16px;
-// // //         padding: 20px;
-// // //         text-align:center;
-// // //         color:#555;
-// // //         font-weight: 900;
-// // //         margin-top: 14px;
-// // //       }
-
-// // //       /* ✅ footer same as home */
-// // //       .footer{
-// // //         background:${dark};
-// // //         color:#c9c9c9;
-// // //         padding: 44px 0 22px;
-// // //         margin-top: 10px;
-// // //       }
-// // //       .footer-grid{
-// // //         display:grid;
-// // //         grid-template-columns: 1.4fr 0.8fr 0.8fr;
-// // //         gap: 16px;
-// // //         padding-bottom: 18px;
-// // //         border-bottom: 1px solid rgba(255,255,255,0.10);
-// // //       }
-// // //       .f-brand{ color:white; font-weight: 1100; font-size: 16px; letter-spacing: 0.7px; }
-// // //       .f-title{ color:white; font-weight: 1000; letter-spacing: 0.8px; font-size: 12px; text-transform:uppercase; }
-// // //       .f-muted{ color: rgba(255,255,255,0.7); font-weight: 780; line-height: 1.65; }
-// // //       .f-links{ display:flex; flex-direction:column; gap: 8px; margin-top: 10px; }
-// // //       .f-links a{ color:#ddd; text-decoration:none; font-weight: 850; }
-// // //       .f-links a:hover{ color:white; }
-
-// // //       .f-bottom{
-// // //         margin-top: 16px;
-// // //         display:flex;
-// // //         align-items:center;
-// // //         justify-content:space-between;
-// // //         gap: 12px;
-// // //         flex-wrap:wrap;
-// // //         color: rgba(255,255,255,0.7);
-// // //         font-weight: 800;
-// // //         font-size: 13px;
-// // //       }
-// // //       .f-mini{ display:flex; gap: 10px; align-items:center; }
-// // //       .f-mini a{ color:#ddd; text-decoration:none; font-weight: 850; }
-
-// // //      @media (max-width: 980px){
-// // //   .nav{ display:none; }        /* desktop nav hide */
-// // //   .hamburger{ display:flex;  flex-shrink: 0;} /* mobile menu show */
-// // //   .grid-2{ grid-template-columns: 1fr; }
-// // //   .about-hero{ min-height: 440px; }
-// // //   .footer-grid{ grid-template-columns: 1fr; }
-// // //   .cta{ display:none; }
-// // // }
-
-// // //     `,
-// // //       }}
-// // //     />
-// // //   );
-// // // }
-
-// // 'use client';
-
-// // import React, { useEffect, useMemo, useState } from "react";
-// // import { Link, useLocation, useNavigate } from "react-router-dom";
-// // import { motion } from "framer-motion";
-// // import {
-// //   Building2,
-// //   ShieldCheck,
-// //   MapPin,
-// //   Mail,
-// //   CalendarDays,
-// //   IdCard,
-// //   ArrowRight,
-// //   ExternalLink,
-// //   Menu,
-// //   X,
-// //   Home as HomeIcon,
-// //   FileText,
-// //   Sparkles,
-// //   Phone,
-// //   User
-// // } from "lucide-react";
-// // import API_BASE from "./Api";
-
-// // const THEME = {
-// //   ink: "#0B1220",
-// //   dark: "#111111",
-// //   soft: "#F6F7FB",
-// //   brand: "#B35900",
-// // };
-// // const HERO_IMAGES = [
-// //   "/images/back1.jpg",
-// //   "/images/back2.jpg",
-// //   "/images/back3.jpg",
-// //   "/images/back4.jpg",
-// //   "/images/back5.jpg",
-// //   "/images/back6.jpg",
-// // ];
-
-// // const FALLBACK_PROJECT_IMG =
-// //   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1400";
-
-// // const COMPANY = {
-// //   name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
-// //   cin: "U45200MH1999PTC122379",
-// //   status: "Active",
-// //   roc: "ROC Mumbai",
-// //   companyType: "Private (Non-government) • Company limited by shares",
-// //   incorporationDate: "26 Dec 1999",
-// //   nic: "4520 — Building of complete constructions or parts thereof; civil engineering",
-// //   authorizedCapital: "₹ 70,00,000",
-// //   paidUpCapital: "₹ 1,00,000",
-// //   email: "secretarial@systematixgroup.in",
-// //   registeredAddress:
-// //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// //   directors: ["CHANDRA PRAKASH KHANDELWAL", "ANJU KHANDELWAL", "RAHUL KHANDELWAL"],
-// //   agmLastHeld: "22 Dec 2023",
-// //   balanceSheetLastFiled: "31 Mar 2023",
-// // };
-
-// // type Project = {
-// //   id: number;
-// //   title: string;
-// //   slug: string;
-// //   category: "residential" | "commercial" | string;
-// //   location: string;
-// //   configuration: string;
-// //   price_label: string;
-// //   short_description?: string;
-// //   description?: string;
-// //   cover_image_url?: string;
-// //   cover_image?: string;
-// //   cover_image_absolute?: string;
-// // };
-
-// // function safeAbsUrl(u?: string) {
-// //   if (!u) return "";
-// //   if (u.startsWith("http://") || u.startsWith("https://")) return u;
-// //   if (u.startsWith("/")) return `${API_BASE}${u}`;
-// //   return `${API_BASE}/${u}`;
-// // }
-
-// // function getProjectImage(p: Project) {
-// //   const candidates = [p.cover_image_url, p.cover_image_absolute, p.cover_image].filter(Boolean) as string[];
-// //   const url = candidates.length ? safeAbsUrl(candidates[0]) : "";
-// //   return url || FALLBACK_PROJECT_IMG;
-// // }
-
-// // /** ✅ Header updated: center nav + mobile menu only on mobile */
-// // function Header({
-// //   menuOpen,
-// //   setMenuOpen,
-// // }: {
-// //   menuOpen: boolean;
-// //   setMenuOpen: (v: boolean) => void;
-// // }) {
-// //   const loc = useLocation();
-// //   const path = loc.pathname || "";
-
-// //   const isActive = (p: string) => {
-// //     if (p === "/") return path === "/";
-// //     return path.startsWith(p);
-// //   };
-
-// //   // ✅ lock scroll when drawer open
-// //   useEffect(() => {
-// //     document.body.style.overflow = menuOpen ? "hidden" : "";
-// //     return () => {
-// //       document.body.style.overflow = "";
-// //     };
-// //   }, [menuOpen]);
-
-// //   return (
-// //     <>
-// //       <header className="topbar">
-// //         <div className="topbar-inner">
-// //           <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-// //             <div className="brand-icon" aria-hidden="true">
-// //               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-// //                 <path d="M4 20V6.5C4 5.67 4.67 5 5.5 5H13V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// //                 <path d="M13 9H18.5C19.33 9 20 9.67 20 10.5V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// //                 <path d="M8 9.5H9.8M8 13H9.8M8 16.5H9.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// //                 <path d="M16 13H17.8M16 16.5H17.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-// //               </svg>
-// //             </div>
-
-// //             <div className="brand-text">
-// //               <div className="brand-title">SHIVSHAKTI REAL ESTATE</div>
-// //               <div className="brand-sub">PVT LTD</div>
-// //             </div>
-// //           </Link>
-
-// //           {/* ✅ Desktop Nav (centered) */}
-// //           <nav className="nav nav-center">
-// //             <Link className={isActive("/") ? "nav-link active" : "nav-link"} to="/" onClick={() => setMenuOpen(false)}>HOME</Link>
-// //             <Link className={isActive("/projects") ? "nav-link active" : "nav-link"} to="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</Link>
-// //             <Link className={isActive("/about") ? "nav-link active" : "nav-link"} to="/about" onClick={() => setMenuOpen(false)}>ABOUT</Link>
-// //             <Link className={isActive("/services") ? "nav-link active" : "nav-link"} to="/services" onClick={() => setMenuOpen(false)}>SERVICES</Link>
-// //             <Link className={isActive("/contact") ? "nav-link active" : "nav-link"} to="/contact" onClick={() => setMenuOpen(false)}>CONTACT</Link>
-// //             <Link className={isActive("/login") ? "nav-link active" : "nav-link"} to="/login" onClick={() => setMenuOpen(false)}>ADMIN LOGIN</Link>
-// //           </nav>
-
-// //           {/* Right CTA + Mobile Hamburger */}
-// //           <div className="right-actions">
-// //             <Link className="cta" to="/contact" onClick={() => setMenuOpen(false)}>GET QUOTE</Link>
-
-// //             {/* ✅ mobile hamburger: ONLY visible in mobile via CSS */}
-// //             <button
-// //               className="hamburger"
-// //               onClick={() => setMenuOpen(!menuOpen)}
-// //               aria-label="Menu"
-// //               aria-expanded={menuOpen}
-// //             >
-// //               {menuOpen ? <X size={24} /> : <Menu size={24} />}
-// //             </button>
-// //           </div>
-// //         </div>
-// //       </header>
-
-// //       {/* Mobile Drawer */}
-// //       <div className={menuOpen ? "drawer-overlay show" : "drawer-overlay"} onClick={() => setMenuOpen(false)} />
-// //       <aside className={menuOpen ? "drawer show" : "drawer"} onClick={(e) => e.stopPropagation()}>
-// //         <div className="drawer-head">
-// //           <div className="drawer-title">Menu</div>
-// //           <button className="drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close">
-// //             <X size={20} />
-// //           </button>
-// //         </div>
-
-// //         <div className="drawer-links">
-// //           <Link className={isActive("/") ? "dlink active" : "dlink"} to="/" onClick={() => setMenuOpen(false)}>
-// //             <HomeIcon size={20} /> Home
-// //           </Link>
-// //           <Link className={isActive("/projects") ? "dlink active" : "dlink"} to="/projects" onClick={() => setMenuOpen(false)}>
-// //             <Building2 size={20} /> Projects
-// //           </Link>
-// //           <Link className={isActive("/about") ? "dlink active" : "dlink"} to="/about" onClick={() => setMenuOpen(false)}>
-// //             <FileText size={20} /> About
-// //           </Link>
-// //           <Link className={isActive("/services") ? "dlink active" : "dlink"} to="/services" onClick={() => setMenuOpen(false)}>
-// //             <Sparkles size={20} /> Services
-// //           </Link>
-// //           <Link className={isActive("/contact") ? "dlink active" : "dlink"} to="/contact" onClick={() => setMenuOpen(false)}>
-// //             <Phone size={20} /> Contact
-// //           </Link>
-// //           <Link className={isActive("/login") ? "dlink active" : "dlink"} to="/login" onClick={() => setMenuOpen(false)}>
-// //             <User size={20} /> Admin Login
-// //           </Link>
-
-// //           <Link className="dcta" to="/contact" onClick={() => setMenuOpen(false)}>
-// //             Get Quote
-// //           </Link>
-// //         </div>
-
-// //         <div className="drawer-foot">
-// //           <div className="df-muted">Email</div>
-// //           <a className="df-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-// //           <div className="df-muted" style={{ marginTop: 10 }}>Registered Address</div>
-// //           <div className="df-text">{COMPANY.registeredAddress}</div>
-// //         </div>
-// //       </aside>
-// //     </>
-// //   );
-// // }
-
-// // export default function AboutPage() {
-// //   const nav = useNavigate();
-
-// //   const [menuOpen, setMenuOpen] = useState(false);
-// //   const [heroIndex, setHeroIndex] = useState(0);
-
-// //   const [allProjects, setAllProjects] = useState<Project[]>([]);
-// //   const [pLoading, setPLoading] = useState(false);
-
-// //   // hero autoplay
-// //   useEffect(() => {
-// //     const t = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 3500);
-// //     return () => clearInterval(t);
-// //   }, []);
-
-// //   // ✅ close drawer on mount (best effort)
-// //   useEffect(() => {
-// //     setMenuOpen(false);
-// //   }, []);
-
-// //   const loadProjects = async () => {
-// //     setPLoading(true);
-// //     try {
-// //       const res = await fetch(`${API_BASE}/api/projects/`);
-// //       const data = await res.json().catch(() => ({} as any));
-// //       if (!res.ok || data?.ok === false) throw new Error(data?.error || "Failed");
-
-// //       const items: Project[] = Array.isArray(data.items) ? data.items : [];
-// //       setAllProjects(items);
-// //     } catch {
-// //       setAllProjects([]);
-// //     } finally {
-// //       setPLoading(false);
-// //     }
-// //   };
-
-// //   useEffect(() => {
-// //     loadProjects();
-// //     // eslint-disable-next-line react-hooks/exhaustive-deps
-// //   }, []);
-
-// //   const latestTop3 = useMemo(() => {
-// //     const sorted = [...allProjects].sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-// //     return sorted.slice(0, 3);
-// //   }, [allProjects]);
-
-// //   const goProjects = () => nav("/projects");
-// //   const goProjectsWithHighlight = (_p: Project) => {
-// //     nav("/projects");
-// //   };
-
-// //   return (
-// //     <div style={{ width: "100vw", minHeight: "100vh", background: THEME.soft, overflowX: "hidden" }}>
-// //       <GlobalStyles brand={THEME.brand} ink={THEME.ink} dark={THEME.dark} />
-
-// //       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-// //       {/* ✅ HERO */}
-// //       <section className="about-hero">
-// //         <div className="hero-bg">
-// //           <img src={HERO_IMAGES[heroIndex]} alt="about hero" />
-// //           <div className="hero-overlay" />
-// //         </div>
-
-// //         <div className="container hero-content">
-// //           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-// //             <span className="badge">ABOUT THE COMPANY</span>
-// //             <h1>{COMPANY.name}</h1>
-// //             <p>
-// //               A trusted real estate and construction company registered in Mumbai — focused on delivering
-// //               quality developments with transparent processes.
-// //             </p>
-
-// //             <div className="hero-cta">
-// //               <Link className="cta-primary" to="/projects">
-// //                 View Projects <ArrowRight size={20} />
-// //               </Link>
-// //               <Link className="cta-ghost" to="/contact">
-// //                 Contact Us <ArrowRight size={20} />
-// //               </Link>
-// //             </div>
-
-// //             <div className="dots">
-// //               {HERO_IMAGES.map((_, i) => (
-// //                 <button
-// //                   key={i}
-// //                   className={i === heroIndex ? "dot active" : "dot"}
-// //                   onClick={() => setHeroIndex(i)}
-// //                   aria-label={`hero-${i}`}
-// //                 />
-// //               ))}
-// //             </div>
-// //           </motion.div>
-// //         </div>
-// //       </section>
-
-// //       {/* ✅ COMPANY HIGHLIGHTS */}
-// //       <section className="section">
-// //         <div className="container">
-// //           <div className="grid-2">
-// //             <motion.div
-// //               className="card"
-// //               initial={{ opacity: 0, y: 14 }}
-// //               whileInView={{ opacity: 1, y: 0 }}
-// //               viewport={{ once: true }}
-// //               transition={{ duration: 0.5 }}
-// //             >
-// //               <h2 className="section-title">Company Overview</h2>
-
-// //               <div className="info-list">
-// //                 <InfoRow icon={<IdCard size={20} />} label="CIN" value={COMPANY.cin} />
-// //                 <InfoRow icon={<ShieldCheck size={20} />} label="Status" value={COMPANY.status} />
-// //                 <InfoRow icon={<Building2 size={20} />} label="ROC" value={COMPANY.roc} />
-// //                 <InfoRow icon={<CalendarDays size={20} />} label="Incorporation" value={COMPANY.incorporationDate} />
-// //                 <InfoRow icon={<Building2 size={20} />} label="Type" value={COMPANY.companyType} />
-// //                 <InfoRow icon={<Building2 size={20} />} label="NIC" value={COMPANY.nic} />
-// //               </div>
-// //             </motion.div>
-
-// //             <motion.div
-// //               className="card"
-// //               initial={{ opacity: 0, y: 14 }}
-// //               whileInView={{ opacity: 1, y: 0 }}
-// //               viewport={{ once: true }}
-// //               transition={{ duration: 0.5, delay: 0.05 }}
-// //             >
-// //               <h2 className="section-title">Compliance Snapshot</h2>
-
-// //               <div className="info-list">
-// //                 <InfoRow icon={<CalendarDays size={20} />} label="Last AGM Held" value={COMPANY.agmLastHeld} />
-// //                 <InfoRow icon={<CalendarDays size={20} />} label="Balance Sheet Filed" value={COMPANY.balanceSheetLastFiled} />
-// //                 <InfoRow icon={<Building2 size={20} />} label="Authorised Capital" value={COMPANY.authorizedCapital} />
-// //                 <InfoRow icon={<Building2 size={20} />} label="Paid-up Capital" value={COMPANY.paidUpCapital} />
-// //                 <InfoRow icon={<Mail size={20} />} label="Email" value={COMPANY.email} />
-// //                 <InfoRow icon={<MapPin size={20} />} label="Registered Address" value={COMPANY.registeredAddress} />
-// //               </div>
-// //             </motion.div>
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       {/* ✅ TOP 3 LATEST (MIX) */}
-// //       <section className="section soft">
-// //         <div className="container">
-// //           <div className="section-head row-between">
-// //             <div>
-// //               <h2 style={{ margin: 0, color: THEME.ink, fontSize: "32px", fontWeight: "1100" }}>Featured Projects</h2>
-// //               <p style={{ marginTop: "12px", fontSize: "18px", color: "#555" }}>Our Top Latest Projects.</p>
-// //             </div>
-
-// //             <button className="viewall-btn" onClick={goProjects}>
-// //               View All Projects <ExternalLink size={18} />
-// //             </button>
-// //           </div>
-
-// //           {pLoading ? (
-// //             <div className="empty">Loading projects...</div>
-// //           ) : latestTop3.length === 0 ? (
-// //             <div className="empty">No projects found yet.</div>
-// //           ) : (
-// //             <div className="projects-grid">
-// //               {latestTop3.map((p) => (
-// //                 <motion.div
-// //                   key={p.id}
-// //                   className="project-card"
-// //                   whileHover={{ y: -8 }}
-// //                   onClick={() => goProjectsWithHighlight(p)}
-// //                 >
-// //                   <div className="pimg">
-// //                     <img
-// //                       src={getProjectImage(p)}
-// //                       alt={p.title}
-// //                       loading="lazy"
-// //                       onError={(e) => {
-// //                         const img = e.currentTarget as HTMLImageElement;
-// //                         if (img.src !== FALLBACK_PROJECT_IMG) img.src = FALLBACK_PROJECT_IMG;
-// //                       }}
-// //                     />
-// //                     <div className="ptags">
-// //                       <span className="tag">{(p.location || "LOCATION").toUpperCase()}</span>
-// //                       <span className="tag2">{(p.category || "TYPE").toUpperCase()}</span>
-// //                     </div>
-// //                   </div>
-
-// //                   <div className="pbody">
-// //                     <div className="ptitle">{p.title}</div>
-// //                     <div className="pdesc">
-// //                       {(p.short_description || p.description || "").trim()
-// //                         ? (p.short_description || p.description || "").slice(0, 110) + "..."
-// //                         : "—"}
-// //                     </div>
-
-// //                     <div className="pmeta">
-// //                       <div className="mi">
-// //                         <span>CONFIG</span>
-// //                         <strong>{p.configuration || "—"}</strong>
-// //                       </div>
-// //                       <div className="mi">
-// //                         <span>STARTING</span>
-// //                         <strong className="pprice">{p.price_label || "—"}</strong>
-// //                       </div>
-// //                     </div>
-
-// //                     <button
-// //                       className="details-btn"
-// //                       onClick={(e) => {
-// //                         e.stopPropagation();
-// //                         goProjectsWithHighlight(p);
-// //                       }}
-// //                     >
-// //                       View Details <ArrowRight size={18} />
-// //                     </button>
-// //                   </div>
-// //                 </motion.div>
-// //               ))}
-// //             </div>
-// //           )}
-// //         </div>
-// //       </section>
-
-// //       {/* ✅ WHY US */}
-// //       <section className="section">
-// //         <div className="container">
-// //           <div className="grid-2">
-// //             <div className="card">
-// //               <h2 className="section-title">Why Choose Us</h2>
-// //               <ul className="bullets">
-// //                 <li>Transparent customer communication and project updates</li>
-// //                 <li>Strong focus on construction quality and finishing</li>
-// //                 <li>Professional documentation and compliance discipline</li>
-// //                 <li>Customer-first approach for site visits and query handling</li>
-// //               </ul>
-
-// //               <div className="cta-row">
-// //                 <Link className="cta-primary" to="/contact">
-// //                   Talk to Our Team <ArrowRight size={20} />
-// //                 </Link>
-// //                 <Link className="cta-ghost" to="/projects">
-// //                   Explore Projects <ArrowRight size={20} />
-// //                 </Link>
-// //               </div>
-// //             </div>
-
-// //             <div className="card">
-// //               <h2 className="section-title">Our Mission</h2>
-// //               <p className="para">
-// //                 Deliver well-planned and well-built developments with an emphasis on trust, transparency,
-// //                 and customer satisfaction — while following responsible building practices.
-// //               </p>
-
-// //               <h2 className="section-title" style={{ marginTop: "24px" }}>Our Vision</h2>
-// //               <p className="para">
-// //                 Build a strong real estate brand known for consistent quality, timely execution and
-// //                 customer confidence across residential and commercial segments.
-// //               </p>
-// //             </div>
-// //           </div>
-// //         </div>
-// //       </section>
-
-// //       {/* ✅ SAME FOOTER AS HOME */}
-// //       <footer className="footer">
-// //         <div className="container footer-grid">
-// //           <div>
-// //             <div className="f-brand">{COMPANY.name}</div>
-// //             <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
-// //             <div className="f-muted" style={{ marginTop: 10 }}>
-// //               Registered Office: {COMPANY.registeredAddress}
-// //             </div>
-// //           </div>
-
-// //           <div>
-// //             <div className="f-title">Quick Links</div>
-// //             <div className="f-links">
-// //               <Link to="/">Home</Link>
-// //               <Link to="/projects">Projects</Link>
-// //               <Link to="/about">About</Link>
-// //               <Link to="/services">Services</Link>
-// //               <Link to="/contact">Contact</Link>
-// //               <Link to="/login">Admin Login</Link>
-// //             </div>
-// //           </div>
-
-// //           <div>
-// //             <div className="f-title">Contact</div>
-// //             <div className="f-links">
-// //               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-// //               <a href="tel:+918956032764">+91 89560 32764</a>
-// //               <a
-// //                 href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
-// //                 target="_blank"
-// //                 rel="noreferrer"
-// //               >
-// //                 WhatsApp Chat
-// //               </a>
-// //             </div>
-// //           </div>
-// //         </div>
-
-// //         <div className="container f-bottom">
-// //           <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Private Limited. All rights reserved.</p>
-// //           <div className="f-mini">
-// //             <Link to="/privacy">Privacy</Link>
-// //             <span>•</span>
-// //             <Link to="/terms">Terms</Link>
-// //           </div>
-// //         </div>
-// //       </footer>
-// //     </div>
-// //   );
-// // }
-
-// // function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-// //   return (
-// //     <div className="info-row">
-// //       <div className="info-ic">{icon}</div>
-// //       <div className="info-text">
-// //         <div className="info-label">{label}</div>
-// //         <div className="info-value">{value}</div>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
-// //   return (
-// //     <style
-// //       dangerouslySetInnerHTML={{
-// //         __html: `
-// //       html, body { 
-// //         width:100%; 
-// //         min-height:100%; 
-// //         margin:0; 
-// //         padding:0; 
-// //         overflow-x:hidden; 
-// //         font-size: 16px;
-// //         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-// //       }
-// //       * { box-sizing:border-box; }
-// //       .container { width: min(1200px, 94vw); margin: 0 auto; }
-// //       .row-between{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-
-// //       /* ✅ HEADER */
-// //       .topbar{
-// //         position: fixed;
-// //         top: 0; left: 0; right: 0;
-// //         height: 80px;
-// //         z-index: 3000;
-// //         background: rgba(10,10,10,0.85);
-// //         backdrop-filter: blur(10px);
-// //         border-bottom: 1px solid rgba(255,255,255,0.08);
-// //       }
-// //       .topbar-inner{
-// //         height: 80px;
-// //         width: min(1200px, 94vw);
-// //         margin: 0 auto;
-// //         display:flex;
-// //         align-items:center;
-// //         justify-content:space-between;
-// //         gap: 20px;
-// //       }
-// //       .brand{
-// //         display:flex; align-items:center; gap: 14px;
-// //         text-decoration:none; color:white;
-// //         min-width: 240px;
-// //       }
-// //       .brand-icon{
-// //         width: 48px; height: 48px; border-radius: 12px;
-// //         background: ${brand};
-// //         display:flex; align-items:center; justify-content:center;
-// //         box-shadow: 0 10px 26px rgba(179,89,0,0.25);
-// //       }
-// //       .brand-text{ line-height: 1.1; }
-// //       .brand-title{ 
-// //         font-weight: 1000; 
-// //         letter-spacing: 0.8px; 
-// //         font-size: 18px; 
-// //       }
-// //       .brand-sub{ 
-// //         font-weight: 900; 
-// //         font-size: 12px; 
-// //         letter-spacing: 2px; 
-// //         opacity: 0.85; 
-// //       }
-
-// //       /* ✅ center nav */
-// //       .nav{
-// //         display:flex;
-// //         align-items:center;
-// //         gap: 24px;
-// //         flex: 1;
-// //       }
-// //       .nav-center{ justify-content:center; }
-// //       .nav-link{
-// //         color: rgba(255,255,255,0.88);
-// //         text-decoration:none;
-// //         font-weight: 900;
-// //         font-size: 14px;
-// //         letter-spacing: 1px;
-// //         white-space: nowrap;
-// //       }
-// //       .nav-link:hover{ color: white; }
-// //       .nav-link.active{ color: white; }
-
-// //       .right-actions{
-// //         display:flex;
-// //         align-items:center;
-// //         gap: 12px;
-// //         min-width: 180px;
-// //         justify-content:flex-end;
-// //       }
-// //       .cta{
-// //         background: ${brand};
-// //         color: white;
-// //         text-decoration:none;
-// //         font-weight: 1000;
-// //         border-radius: 12px;
-// //         padding: 14px 20px;
-// //         letter-spacing: 0.8px;
-// //         font-size: 14px;
-// //         box-shadow: 0 12px 26px rgba(179,89,0,0.25);
-// //         white-space: nowrap;
-// //       }
-
-// //       /* ✅ mobile hamburger: default hidden (desktop) */
-// //       .hamburger{
-// //         display:none;
-// //         border: 1px solid rgba(255,255,255,0.18);
-// //         background: rgba(255,255,255,0.10);
-// //         color:white;
-// //         width: 46px; height: 46px;
-// //         border-radius: 12px;
-// //         cursor:pointer;
-// //         align-items:center;
-// //         justify-content:center;
-// //         padding: 0;
-// //       }
-
-// //       /* ✅ drawer */
-// //       .drawer-overlay{
-// //         position: fixed;
-// //         inset:0;
-// //         background: rgba(0,0,0,0.5);
-// //         z-index: 2800;
-// //         opacity:0;
-// //         pointer-events:none;
-// //         transition: 0.25s;
-// //       }
-// //       .drawer-overlay.show{
-// //         opacity:1;
-// //         pointer-events:auto;
-// //       }
-// //       .drawer{
-// //         position: fixed;
-// //         top: 0; right: 0;
-// //         height: 100vh;
-// //         width: min(380px, 86vw);
-// //         background: #0e0e0e;
-// //         z-index: 2900;
-// //         transform: translateX(110%);
-// //         transition: transform 0.25s;
-// //         border-left: 1px solid rgba(255,255,255,0.08);
-// //         padding: 20px;
-// //         display:flex;
-// //         flex-direction:column;
-// //         gap: 16px;
-// //       }
-// //       .drawer.show{ transform: translateX(0); }
-// //       .drawer-head{ display:flex; align-items:center; justify-content:space-between; }
-// //       .drawer-title{ 
-// //         color:white; 
-// //         font-weight: 1000; 
-// //         letter-spacing:0.7px; 
-// //         font-size: 18px; 
-// //       }
-// //       .drawer-close{
-// //         border: 1px solid rgba(255,255,255,0.18);
-// //         background: rgba(255,255,255,0.10);
-// //         color:white;
-// //         width: 42px; height: 42px;
-// //         border-radius: 12px;
-// //         cursor:pointer;
-// //         display:flex; align-items:center; justify-content:center;
-// //       }
-// //       .drawer-links{ 
-// //         display:flex; 
-// //         flex-direction:column; 
-// //         gap: 12px; 
-// //         margin-top: 8px; 
-// //       }
-// //       .dlink{
-// //         color: rgba(255,255,255,0.90);
-// //         text-decoration:none;
-// //         padding: 14px 16px;
-// //         border-radius: 12px;
-// //         background: rgba(255,255,255,0.06);
-// //         border: 1px solid rgba(255,255,255,0.08);
-// //         font-weight: 900;
-// //         font-size: 15px;
-// //         display: flex;
-// //         align-items: center;
-// //         gap: 12px;
-// //       }
-// //       .dlink.active{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.16); }
-// //       .dcta{
-// //         margin-top: 10px;
-// //         background: ${brand};
-// //         color:white;
-// //         text-decoration:none;
-// //         padding: 14px 16px;
-// //         border-radius: 12px;
-// //         font-weight: 1000;
-// //         text-align:center;
-// //         font-size: 15px;
-// //       }
-// //       .drawer-foot{
-// //         margin-top:auto;
-// //         border-top: 1px solid rgba(255,255,255,0.10);
-// //         padding-top: 16px;
-// //       }
-// //       .df-muted{ 
-// //         color: rgba(255,255,255,0.55); 
-// //         font-weight: 900; 
-// //         font-size: 12px; 
-// //         letter-spacing:0.8px; 
-// //         text-transform:uppercase; 
-// //       }
-// //       .df-link{ 
-// //         color: white; 
-// //         text-decoration:none; 
-// //         font-weight: 900; 
-// //         font-size: 15px;
-// //       }
-// //       .df-text{ 
-// //         color: rgba(255,255,255,0.75); 
-// //         font-weight: 800; 
-// //         line-height: 1.6; 
-// //         font-size: 14px; 
-// //         margin-top: 6px; 
-// //       }
-
-// //       /* ✅ HERO */
-// //       .about-hero{
-// //         position: relative;
-// //         min-height: 700px;
-// //         display:flex;
-// //         align-items:center;
-// //         justify-content:center;
-// //         color: white;
-// //         overflow:hidden;
-// //         padding-top: 80px;
-// //       }
-// //       .hero-bg{ position:absolute; inset:0; }
-// //       .hero-bg img{ width:100%; height:100%; object-fit:cover; transform: scale(1.05); }
-// //       .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.72)); }
-// //       .hero-content{ position:relative; z-index:2; text-align:center; padding: 0 16px; }
-
-// //       .badge { 
-// //         background: ${brand}; 
-// //         padding: 8px 20px; 
-// //         border-radius: 999px; 
-// //         font-size: 13px; 
-// //         font-weight: 900; 
-// //         text-transform: uppercase; 
-// //         letter-spacing:1px; 
-// //         display:inline-block; 
-// //       }
-// //       .about-hero h1 { 
-// //         font-size: clamp(40px, 5vw, 68px); 
-// //         font-weight: 1200; 
-// //         margin: 24px 0; 
-// //         line-height: 1.2;
-// //       }
-// //       .about-hero p { 
-// //         color: rgba(255,255,255,0.9); 
-// //         max-width: 820px; 
-// //         margin: 0 auto; 
-// //         line-height: 1.7; 
-// //         font-size: 18px;
-// //       }
-
-// //       .hero-cta{ 
-// //         display:flex; 
-// //         gap: 16px; 
-// //         justify-content:center; 
-// //         flex-wrap:wrap; 
-// //         margin-top: 24px; 
-// //       }
-// //       .cta-primary{
-// //         background: ${brand};
-// //         color: white;
-// //         text-decoration:none;
-// //         padding: 16px 24px;
-// //         border-radius: 14px;
-// //         font-weight: 1000;
-// //         display:flex; 
-// //         align-items:center; 
-// //         gap: 12px;
-// //         font-size: 16px;
-// //         box-shadow: 0 14px 30px rgba(179,89,0,0.25);
-// //       }
-// //       .cta-ghost{
-// //         background: rgba(179,89,0,0.25);
-// //         border: 1px solid rgba(255, 255, 255, 0.94);
-// //         color: white;
-// //         text-decoration:none;
-// //         padding: 16px 24px;
-// //         border-radius: 14px;
-// //         font-weight: 1000;
-// //         display:flex; 
-// //         align-items:center; 
-// //         gap: 12px;
-// //         font-size: 16px;
-// //       }
-
-// //       .dots{ 
-// //         display:flex; 
-// //         gap:12px; 
-// //         justify-content:center; 
-// //         margin-top: 24px; 
-// //       }
-// //       .dot{ 
-// //         width: 50px; 
-// //         height: 14px; 
-// //         border-radius: 999px; 
-// //         border:1px solid rgba(255,255,255,0.6); 
-// //         background: rgba(255,255,255,0.16); 
-// //         cursor:pointer; 
-// //       }
-// //       .dot.active{ 
-// //         background: rgba(255,255,255,0.95); 
-// //         border-color: rgba(255,255,255,0.95); 
-// //       }
-
-// //       /* ✅ SECTIONS */
-// //       .section{ padding: 72px 0; }
-// //       .section.soft{ background: ${THEME.soft}; }
-// //       .section-head{ margin-bottom: 24px; }
-// //       .grid-2{ 
-// //         display:grid; 
-// //         grid-template-columns: 1fr 1fr; 
-// //         gap: 24px; 
-// //       }
-// //       .card{
-// //         background: white;
-// //         border: 1px solid #eee;
-// //         border-radius: 18px;
-// //         padding: 24px;
-// //         box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-// //       }
-// //       .section-title{
-// //         font-size: 24px;
-// //         font-weight: 1100;
-// //         color: ${ink};
-// //         margin: 0 0 16px 0;
-// //       }
-// //       .info-list{ 
-// //         display:flex; 
-// //         flex-direction:column; 
-// //         gap: 16px; 
-// //       }
-// //       .info-row{ 
-// //         display:flex; 
-// //         gap: 14px; 
-// //         align-items:flex-start; 
-// //       }
-// //       .info-ic{
-// //         width: 48px; 
-// //         height: 48px;
-// //         border-radius: 14px;
-// //         background: #fff7ed;
-// //         border: 1px solid #ffedd5;
-// //         display:flex; 
-// //         align-items:center; 
-// //         justify-content:center;
-// //         color: ${brand};
-// //         flex: 0 0 auto;
-// //       }
-// //       .info-label{ 
-// //         font-size: 12px; 
-// //         font-weight: 1000; 
-// //         color:#667; 
-// //         text-transform:uppercase; 
-// //         letter-spacing:0.8px; 
-// //         margin-bottom: 4px;
-// //       }
-// //       .info-value{ 
-// //         font-size: 15px; 
-// //         font-weight: 800; 
-// //         color:#1f2937; 
-// //         line-height: 1.55; 
-// //       }
-
-// //       .viewall-btn{
-// //         border: 1px solid #eee;
-// //         background: white;
-// //         border-radius: 14px;
-// //         padding: 14px 18px;
-// //         font-weight: 1000;
-// //         cursor: pointer;
-// //         display:flex;
-// //         align-items:center;
-// //         gap: 10px;
-// //         font-size: 15px;
-// //       }
-
-// //       .projects-grid{
-// //         display:grid;
-// //         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-// //         gap: 24px;
-// //         margin-top: 24px;
-// //       }
-// //       .project-card{
-// //         background: white;
-// //         border: 1px solid #eee;
-// //         border-radius: 18px;
-// //         overflow:hidden;
-// //         box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-// //         cursor: pointer;
-// //       }
-// //       .pimg{
-// //         position: relative;
-// //         width: 100%;
-// //         aspect-ratio: 16 / 10;
-// //         background: #0b0b0b;
-// //         overflow:hidden;
-// //       }
-// //       .pimg img{
-// //         width: 100%;
-// //         height: 100%;
-// //         object-fit: cover;
-// //         display:block;
-// //         transform: scale(1.01);
-// //         transition: 0.5s;
-// //       }
-// //       .project-card:hover .pimg img{ transform: scale(1.06); }
-
-// //       .ptags{
-// //         position:absolute;
-// //         top: 16px; left: 16px; right: 16px;
-// //         display:flex; justify-content:space-between; gap: 12px;
-// //       }
-// //       .tag{
-// //         background: rgba(255,255,255,0.92);
-// //         padding: 8px 14px;
-// //         border-radius:999px;
-// //         font-weight:1000;
-// //         font-size:12px;
-// //       }
-// //       .tag2{
-// //         background: ${brand};
-// //         color:white;
-// //         padding: 8px 14px;
-// //         border-radius:999px;
-// //         font-weight:1000;
-// //         font-size:12px;
-// //       }
-// //       .pbody{ 
-// //         padding: 20px; 
-// //       }
-// //       .ptitle{ 
-// //         font-weight: 1100; 
-// //         color: ${ink}; 
-// //         font-size: 20px; 
-// //         line-height: 1.3;
-// //         margin-bottom: 8px;
-// //       }
-// //       .pdesc{ 
-// //         color:#667; 
-// //         font-weight: 750; 
-// //         font-size: 15px; 
-// //         line-height: 1.6; 
-// //         min-height: 50px; 
-// //       }
-
-// //       .pmeta{ 
-// //         display:flex; 
-// //         gap: 16px; 
-// //         border-top:1px solid #eee; 
-// //         padding-top: 16px; 
-// //         margin-top: 16px; 
-// //       }
-// //       .mi{ 
-// //         flex:1; 
-// //       }
-// //       .mi span{ 
-// //         display:block; 
-// //         font-size: 11px; 
-// //         font-weight: 1000; 
-// //         color:#9aa; 
-// //         letter-spacing:0.7px; 
-// //         margin-bottom: 4px;
-// //       }
-// //       .mi strong{ 
-// //         font-size: 15px; 
-// //         color:#222; 
-// //       }
-// //       .pprice{ 
-// //         color: ${brand}; 
-// //         font-size: 16px;
-// //       }
-
-// //       .details-btn{
-// //         width:100%;
-// //         margin-top: 16px;
-// //         border: none;
-// //         background: ${ink};
-// //         color: white;
-// //         border-radius: 14px;
-// //         padding: 14px;
-// //         font-weight: 1000;
-// //         cursor:pointer;
-// //         display:flex;
-// //         align-items:center;
-// //         justify-content:center;
-// //         gap: 12px;
-// //         font-size: 15px;
-// //       }
-
-// //       .bullets{ 
-// //         padding-left: 20px; 
-// //         margin: 0 0 20px 0; 
-// //         color:#445; 
-// //         line-height: 1.8; 
-// //         font-weight: 800; 
-// //         font-size: 15px;
-// //       }
-// //       .bullets li {
-// //         margin-bottom: 8px;
-// //       }
-// //       .para{ 
-// //         color:#556; 
-// //         line-height: 1.8; 
-// //         font-weight: 750; 
-// //         margin: 0 0 20px 0; 
-// //         font-size: 16px;
-// //       }
-// //       .cta-row{ 
-// //         display:flex; 
-// //         gap: 16px; 
-// //         flex-wrap:wrap; 
-// //         margin-top: 24px; 
-// //       }
-
-// //       .empty{
-// //         background:white;
-// //         border:1px solid #eee;
-// //         border-radius:18px;
-// //         padding: 40px;
-// //         text-align:center;
-// //         color:#555;
-// //         font-weight: 900;
-// //         font-size: 16px;
-// //         margin-top: 20px;
-// //       }
-
-// //       /* ✅ footer same as home */
-// //       .footer{
-// //         background:${dark};
-// //         color:#c9c9c9;
-// //         padding: 60px 0 30px;
-// //         margin-top: 20px;
-// //       }
-// //       .footer-grid{
-// //         display:grid;
-// //         grid-template-columns: 1.4fr 0.8fr 0.8fr;
-// //         gap: 24px;
-// //         padding-bottom: 30px;
-// //         border-bottom: 1px solid rgba(255,255,255,0.10);
-// //       }
-// //       .f-brand{ 
-// //         color:white; 
-// //         font-weight: 1100; 
-// //         font-size: 20px; 
-// //         letter-spacing: 0.8px; 
-// //         margin-bottom: 12px;
-// //       }
-// //       .f-title{ 
-// //         color:white; 
-// //         font-weight: 1000; 
-// //         letter-spacing: 0.8px; 
-// //         font-size: 14px; 
-// //         text-transform:uppercase; 
-// //         margin-bottom: 12px;
-// //       }
-// //       .f-muted{ 
-// //         color: rgba(255,255,255,0.7); 
-// //         font-weight: 780; 
-// //         line-height: 1.6; 
-// //         font-size: 15px; 
-// //       }
-// //       .f-links{ 
-// //         display:flex; 
-// //         flex-direction:column; 
-// //         gap: 10px; 
-// //         margin-top: 10px; 
-// //       }
-// //       .f-links a{ 
-// //         color:#ddd; 
-// //         text-decoration:none; 
-// //         font-weight: 850; 
-// //         font-size: 15px; 
-// //       }
-// //       .f-links a:hover{ color:white; }
-
-// //       .f-bottom{
-// //         margin-top: 24px;
-// //         display:flex;
-// //         align-items:center;
-// //         justify-content:space-between;
-// //         gap: 16px;
-// //         flex-wrap:wrap;
-// //         color: rgba(255,255,255,0.7);
-// //         font-weight: 800;
-// //         font-size: 14px;
-// //       }
-// //       .f-mini{ 
-// //         display:flex; 
-// //         gap: 12px; 
-// //         align-items:center; 
-// //       }
-// //       .f-mini a{ 
-// //         color:#ddd; 
-// //         text-decoration:none; 
-// //         font-weight: 850; 
-// //         font-size: 14px; 
-// //       }
-
-// //       /* ✅ RESPONSIVE */
-// //       @media (max-width: 1100px){
-// //         .grid-2{ 
-// //           grid-template-columns: 1fr; 
-// //         }
-// //         .projects-grid{ 
-// //           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-// //         }
-// //       }
-
-// //       @media (max-width: 980px){
-// //         .nav{ display:none; }        /* desktop nav hide */
-// //         .hamburger{ display:flex; } /* mobile menu show */
-// //         .about-hero{ min-height: 500px; }
-// //         .footer-grid{ grid-template-columns: 1fr; gap: 30px; }
-// //         .cta{ display:none; }
-// //       }
-
-// //       @media (max-width: 768px){
-// //         .section{ padding: 60px 0; }
-// //         .about-hero h1{ font-size: 36px; }
-// //         .about-hero p{ font-size: 17px; }
-// //         .section-title{ font-size: 22px; }
-// //         .projects-grid{ grid-template-columns: 1fr; }
-// //         .hero-cta{ flex-direction: column; align-items: center; }
-// //         .cta-primary, .cta-ghost{ width: 100%; justify-content: center; }
-// //         .cta-row{ flex-direction: column; }
-// //         .pbody{ padding: 18px; }
-// //         .ptitle{ font-size: 18px; }
-// //         .pdesc{ font-size: 14px; }
-// //         .details-btn{ padding: 12px; }
-// //       }
-
-// //       @media (max-width: 480px){
-// //         .brand{ min-width: 200px; }
-// //         .brand-title{ font-size: 16px; }
-// //         .brand-sub{ font-size: 10px; }
-// //         .about-hero h1{ font-size: 32px; }
-// //         .about-hero p{ font-size: 16px; }
-// //         .f-bottom{ flex-direction: column; text-align: center; gap: 12px; }
-// //         .card{ padding: 20px; }
-// //         .info-ic{ width: 42px; height: 42px; }
-// //         .info-label{ font-size: 11px; }
-// //         .info-value{ font-size: 14px; }
-// //       }
-// //     `,
-// //       }}
-// //     />
-// //   );
-// // }
-
-
-// 'use client';
-
-// import { useEffect, useMemo, useState } from "react";
-// import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { motion } from "framer-motion";
-// import {
-//   Building2,
-//   MapPin,
-//   Mail,
-//   ArrowRight,
-//   ExternalLink,
-//   Menu,
-//   X,
-//   Home as HomeIcon,
-//   FileText,
-//   Sparkles,
-//   Phone,
-//   User
-// } from "lucide-react";
-// import API_BASE from "./Api";
-
-// const THEME = {
-//   ink: "#0B1220",
-//   dark: "#111111",
-//   soft: "#F6F7FB",
-//   brand: "#B35900",
-// };
-
-// const HERO_IMAGES = [
-//   "/images/back1.jpg",
-//   "/images/back2.jpg",
-//   "/images/back3.jpg",
-//   "/images/back4.jpg",
-//   "/images/back5.jpg",
-//   "/images/back6.jpg",
-// ];
-
-// const FALLBACK_PROJECT_IMG =
-//   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1400";
-
-// const COMPANY = {
-//   name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-//   email: "secretarial@systematixgroup.in",
-//   registeredAddress:
-//     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// };
-
-// type Project = {
-//   id: number;
-//   title: string;
-//   slug: string;
-//   category: "residential" | "commercial" | string;
-//   location: string;
-//   configuration: string;
-//   price_label: string;
-//   short_description?: string;
-//   description?: string;
-//   cover_image_url?: string;
-//   cover_image?: string;
-//   cover_image_absolute?: string;
-// };
-
-// function safeAbsUrl(u?: string) {
-//   if (!u) return "";
-//   if (u.startsWith("http://") || u.startsWith("https://")) return u;
-//   if (u.startsWith("/")) return `${API_BASE}${u}`;
-//   return `${API_BASE}/${u}`;
-// }
-
-// function getProjectImage(p: Project) {
-//   const candidates = [p.cover_image_url, p.cover_image_absolute, p.cover_image].filter(Boolean) as string[];
-//   const url = candidates.length ? safeAbsUrl(candidates[0]) : "";
-//   return url || FALLBACK_PROJECT_IMG;
-// }
-
-// function Header({
-//   menuOpen,
-//   setMenuOpen,
-// }: {
-//   menuOpen: boolean;
-//   setMenuOpen: (v: boolean) => void;
-// }) {
-//   const loc = useLocation();
-//   const path = loc.pathname || "";
-
-//   const isActive = (p: string) => {
-//     if (p === "/") return path === "/";
-//     return path.startsWith(p);
-//   };
-
-//   useEffect(() => {
-//     document.body.style.overflow = menuOpen ? "hidden" : "";
-//     return () => {
-//       document.body.style.overflow = "";
-//     };
-//   }, [menuOpen]);
-
-//   return (
-//     <>
-//       <header className="topbar">
-//         <div className="topbar-inner">
-//           <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-//             <div className="brand-icon" aria-hidden="true">
-//               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-//                 <path d="M4 20V6.5C4 5.67 4.67 5 5.5 5H13V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-//                 <path d="M13 9H18.5C19.33 9 20 9.67 20 10.5V20" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-//                 <path d="M8 9.5H9.8M8 13H9.8M8 16.5H9.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-//                 <path d="M16 13H17.8M16 16.5H17.8" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-//               </svg>
-//             </div>
-
-//             <div className="brand-text">
-//               <div className="brand-title">SHIVSHAKTI REAL ESTATE ADVISORY</div>
-//               <div className="brand-sub">PVT LTD</div>
-//             </div>
-//           </Link>
-
-//           <nav className="nav nav-center">
-//             <Link className={isActive("/") ? "nav-link active" : "nav-link"} to="/" onClick={() => setMenuOpen(false)}>HOME</Link>
-//             <Link className={isActive("/projects") ? "nav-link active" : "nav-link"} to="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</Link>
-//             <Link className={isActive("/about") ? "nav-link active" : "nav-link"} to="/about" onClick={() => setMenuOpen(false)}>ABOUT</Link>
-//             <Link className={isActive("/services") ? "nav-link active" : "nav-link"} to="/services" onClick={() => setMenuOpen(false)}>SERVICES</Link>
-//             <Link className={isActive("/contact") ? "nav-link active" : "nav-link"} to="/contact" onClick={() => setMenuOpen(false)}>CONTACT</Link>
-//             <Link className={isActive("/login") ? "nav-link active" : "nav-link"} to="/login" onClick={() => setMenuOpen(false)}>ADMIN LOGIN</Link>
-//           </nav>
-
-//           <div className="right-actions">
-//             <Link className="cta" to="/contact" onClick={() => setMenuOpen(false)}>GET QUOTE</Link>
-
-//             <button
-//               className="hamburger"
-//               onClick={() => setMenuOpen(!menuOpen)}
-//               aria-label="Menu"
-//               aria-expanded={menuOpen}
-//             >
-//               {menuOpen ? <X size={24} /> : <Menu size={24} />}
-//             </button>
-//           </div>
-//         </div>
-//       </header>
-
-//       <div className={menuOpen ? "drawer-overlay show" : "drawer-overlay"} onClick={() => setMenuOpen(false)} />
-//       <aside className={menuOpen ? "drawer show" : "drawer"} onClick={(e) => e.stopPropagation()}>
-//         <div className="drawer-head">
-//           <div className="drawer-title">Menu</div>
-//           <button className="drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close">
-//             <X size={20} />
-//           </button>
-//         </div>
-
-//         <div className="drawer-links">
-//           <Link className={isActive("/") ? "dlink active" : "dlink"} to="/" onClick={() => setMenuOpen(false)}>
-//             <HomeIcon size={20} /> Home
-//           </Link>
-//           <Link className={isActive("/projects") ? "dlink active" : "dlink"} to="/projects" onClick={() => setMenuOpen(false)}>
-//             <Building2 size={20} /> Projects
-//           </Link>
-//           <Link className={isActive("/about") ? "dlink active" : "dlink"} to="/about" onClick={() => setMenuOpen(false)}>
-//             <FileText size={20} /> About
-//           </Link>
-//           <Link className={isActive("/services") ? "dlink active" : "dlink"} to="/services" onClick={() => setMenuOpen(false)}>
-//             <Sparkles size={20} /> Services
-//           </Link>
-//           <Link className={isActive("/contact") ? "dlink active" : "dlink"} to="/contact" onClick={() => setMenuOpen(false)}>
-//             <Phone size={20} /> Contact
-//           </Link>
-//           <Link className={isActive("/login") ? "dlink active" : "dlink"} to="/login" onClick={() => setMenuOpen(false)}>
-//             <User size={20} /> Admin Login
-//           </Link>
-
-//           <Link className="dcta" to="/contact" onClick={() => setMenuOpen(false)}>
-//             Get Quote
-//           </Link>
-//         </div>
-
-//         <div className="drawer-foot">
-//           <div className="df-muted">Email</div>
-//           <a className="df-link" href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-//           <div className="df-muted" style={{ marginTop: 10 }}>Registered Address</div>
-//           <div className="df-text">{COMPANY.registeredAddress}</div>
-//         </div>
-//       </aside>
-//     </>
-//   );
-// }
-
-// export default function AboutPage() {
-//   const nav = useNavigate();
-
-//   const [menuOpen, setMenuOpen] = useState(false);
-//   const [heroIndex, setHeroIndex] = useState(0);
-
-//   const [allProjects, setAllProjects] = useState<Project[]>([]);
-//   const [pLoading, setPLoading] = useState(false);
-
-//   useEffect(() => {
-//     const t = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 3500);
-//     return () => clearInterval(t);
-//   }, []);
-
-//   useEffect(() => {
-//     setMenuOpen(false);
-//   }, []);
-
-//   const loadProjects = async () => {
-//     setPLoading(true);
-//     try {
-//       const res = await fetch(`${API_BASE}/api/projects/`);
-//       const data = await res.json().catch(() => ({} as any));
-//       if (!res.ok || data?.ok === false) throw new Error(data?.error || "Failed");
-
-//       const items: Project[] = Array.isArray(data.items) ? data.items : [];
-//       setAllProjects(items);
-//     } catch {
-//       setAllProjects([]);
-//     } finally {
-//       setPLoading(false);
-//     }
-//   };
-
-//   useEffect(() => {
-//     loadProjects();
-//   }, []);
-
-//   const latestTop3 = useMemo(() => {
-//     const sorted = [...allProjects].sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-//     return sorted.slice(0, 3);
-//   }, [allProjects]);
-
-//   const goProjects = () => nav("/projects");
-//   const goProjectsWithHighlight = (_p: Project) => {
-//     nav("/projects");
-//   };
-
-//   return (
-//     <div style={{ width: "100vw", minHeight: "100vh", background: THEME.soft, overflowX: "hidden" }}>
-//       <GlobalStyles brand={THEME.brand} ink={THEME.ink} dark={THEME.dark} />
-
-//       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-//       <section className="about-hero">
-//         <div className="hero-bg">
-//           <img src={HERO_IMAGES[heroIndex]} alt="about hero" />
-//           <div className="hero-overlay" />
-//         </div>
-
-//         <div className="container hero-content">
-//           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-//             <span className="badge">ABOUT THE COMPANY</span>
-//             <h1>{COMPANY.name}</h1>
-//             <p>
-//               A trusted real estate company committed to delivering quality spaces, modern developments,
-//               and a transparent experience for every customer.
-//             </p>
-
-//             <div className="hero-cta">
-//               <Link className="cta-primary" to="/projects">
-//                 View Projects <ArrowRight size={20} />
-//               </Link>
-//               <Link className="cta-ghost" to="/contact">
-//                 Contact Us <ArrowRight size={20} />
-//               </Link>
-//             </div>
-
-//             <div className="dots">
-//               {HERO_IMAGES.map((_, i) => (
-//                 <button
-//                   key={i}
-//                   className={i === heroIndex ? "dot active" : "dot"}
-//                   onClick={() => setHeroIndex(i)}
-//                   aria-label={`hero-${i}`}
-//                 />
-//               ))}
-//             </div>
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       {/* ABOUT US SECTION */}
-//       <section className="section">
-//         <div className="container">
-//           <motion.div
-//             className="card about-card"
-//             initial={{ opacity: 0, y: 14 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             viewport={{ once: true }}
-//             transition={{ duration: 0.5 }}
-//           >
-//             <div className="about-grid">
-//               <div>
-//                 <span className="mini-badge">WHO WE ARE</span>
-//                 <h2 className="section-title big-title">About Us</h2>
-//                 <p className="para">
-//                   Shiv Shakti Real Estate Advisory Private Limited is a professionally managed real estate company
-//                   focused on delivering thoughtfully planned residential and commercial developments.
-//                   We believe that every property is more than just a structure — it is a space where
-//                   families build their future and businesses create their identity.
-//                 </p>
-//                 <p className="para">
-//                   With a strong emphasis on quality construction, customer trust, and modern design,
-//                   we aim to create projects that offer long-term value and a premium lifestyle experience.
-//                   Our approach is rooted in transparency, timely communication, and a deep understanding
-//                   of customer needs.
-//                 </p>
-//                 <p className="para" style={{ marginBottom: 0 }}>
-//                   From project planning to final delivery, we are committed to maintaining high standards
-//                   across every stage. Our goal is to build spaces that reflect comfort, convenience,
-//                   and confidence for every buyer and investor.
-//                 </p>
-//               </div>
-
-//               <div className="about-side-box">
-//                 <div className="about-point">
-//                   <div className="about-icon"><Building2 size={22} /></div>
-//                   <div>
-//                     <h4>Quality Developments</h4>
-//                     <p>Focused on creating dependable residential and commercial spaces.</p>
-//                   </div>
-//                 </div>
-
-//                 <div className="about-point">
-//                   <div className="about-icon"><MapPin size={22} /></div>
-//                   <div>
-//                     <h4>Prime Locations</h4>
-//                     <p>Projects planned in well-connected areas with long-term growth potential.</p>
-//                   </div>
-//                 </div>
-
-//                 <div className="about-point">
-//                   <div className="about-icon"><Mail size={22} /></div>
-//                   <div>
-//                     <h4>Trusted Support</h4>
-//                     <p>Professional assistance with clear communication and customer-first service.</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       <section className="section soft">
-//         <div className="container">
-//           <div className="section-head row-between">
-//             <div>
-//               <h2 style={{ margin: 0, color: THEME.ink, fontSize: "32px", fontWeight: "1100" }}>Featured Projects</h2>
-//               <p style={{ marginTop: "12px", fontSize: "18px", color: "#555" }}>Our Top Latest Projects.</p>
-//             </div>
-
-//             <button className="viewall-btn" onClick={goProjects}>
-//               View All Projects <ExternalLink size={18} />
-//             </button>
-//           </div>
-
-//           {pLoading ? (
-//             <div className="empty">Loading projects...</div>
-//           ) : latestTop3.length === 0 ? (
-//             <div className="empty">No projects found yet.</div>
-//           ) : (
-//             <div className="projects-grid">
-//               {latestTop3.map((p) => (
-//                 <motion.div
-//                   key={p.id}
-//                   className="project-card"
-//                   whileHover={{ y: -8 }}
-//                   onClick={() => goProjectsWithHighlight(p)}
-//                 >
-//                   <div className="pimg">
-//                     <img
-//                       src={getProjectImage(p)}
-//                       alt={p.title}
-//                       loading="lazy"
-//                       onError={(e) => {
-//                         const img = e.currentTarget as HTMLImageElement;
-//                         if (img.src !== FALLBACK_PROJECT_IMG) img.src = FALLBACK_PROJECT_IMG;
-//                       }}
-//                     />
-//                     <div className="ptags">
-//                       <span className="tag">{(p.location || "LOCATION").toUpperCase()}</span>
-//                       <span className="tag2">{(p.category || "TYPE").toUpperCase()}</span>
-//                     </div>
-//                   </div>
-
-//                   <div className="pbody">
-//                     <div className="ptitle">{p.title}</div>
-//                     <div className="pdesc">
-//                       {(p.short_description || p.description || "").trim()
-//                         ? (p.short_description || p.description || "").slice(0, 110) + "..."
-//                         : "—"}
-//                     </div>
-
-//                     <div className="pmeta">
-//                       <div className="mi">
-//                         <span>CONFIG</span>
-//                         <strong>{p.configuration || "—"}</strong>
-//                       </div>
-//                       <div className="mi">
-//                         <span>STARTING</span>
-//                         <strong className="pprice">{p.price_label || "—"}</strong>
-//                       </div>
-//                     </div>
-
-//                     <button
-//                       className="details-btn"
-//                       onClick={(e) => {
-//                         e.stopPropagation();
-//                         goProjectsWithHighlight(p);
-//                       }}
-//                     >
-//                       View Details <ArrowRight size={18} />
-//                     </button>
-//                   </div>
-//                 </motion.div>
-//               ))}
-//             </div>
-//           )}
-//         </div>
-//       </section>
-
-//       <section className="section">
-//         <div className="container">
-//           <div className="grid-2">
-//             <div className="card">
-//               <h2 className="section-title">Why Choose Us</h2>
-//               <ul className="bullets">
-//                 <li>Transparent customer communication and project updates</li>
-//                 <li>Strong focus on construction quality and finishing</li>
-//                 <li>Professional documentation and compliance discipline</li>
-//                 <li>Customer-first approach for site visits and query handling</li>
-//               </ul>
-
-//               <div className="cta-row">
-//                 <Link className="cta-primary" to="/contact">
-//                   Talk to Our Team <ArrowRight size={20} />
-//                 </Link>
-//                 <Link className="cta-ghost" to="/projects">
-//                   Explore Projects <ArrowRight size={20} />
-//                 </Link>
-//               </div>
-//             </div>
-
-//             <div className="card">
-//               <h2 className="section-title">Our Mission</h2>
-//               <p className="para">
-//                 Deliver well-planned and well-built developments with an emphasis on trust, transparency,
-//                 and customer satisfaction — while following responsible building practices.
-//               </p>
-
-//               <h2 className="section-title" style={{ marginTop: "24px" }}>Our Vision</h2>
-//               <p className="para">
-//                 Build a strong real estate brand known for consistent quality, timely execution and
-//                 customer confidence across residential and commercial segments.
-//               </p>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       <footer className="footer">
-//         <div className="container footer-grid">
-//           <div>
-//             <div className="f-brand">{COMPANY.name}</div>
-//             <div className="f-muted" style={{ marginTop: 10 }}>
-//               Registered Office: {COMPANY.registeredAddress}
-//             </div>
-//           </div>
-
-//           <div>
-//             <div className="f-title">Quick Links</div>
-//             <div className="f-links">
-//               <Link to="/">Home</Link>
-//               <Link to="/projects">Projects</Link>
-//               <Link to="/about">About</Link>
-//               <Link to="/services">Services</Link>
-//               <Link to="/contact">Contact</Link>
-//               <Link to="/login">Admin Login</Link>
-//             </div>
-//           </div>
-
-//           <div>
-//             <div className="f-title">Contact</div>
-//             <div className="f-links">
-//               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-//               <a href="tel:+918956032764">+91 89560 32764</a>
-//               <a
-//                 href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
-//                 target="_blank"
-//                 rel="noreferrer"
-//               >
-//                 WhatsApp Chat
-//               </a>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="container f-bottom">
-//           <p>© {new Date().getFullYear()} Shiv Shakti Real Estate Advisory Private Limited. All rights reserved.</p>
-//           <div className="f-mini">
-//             <Link to="/privacy">Privacy</Link>
-//             <span>•</span>
-//             <Link to="/terms">Terms</Link>
-//           </div>
-//         </div>
-//       </footer>
-//     </div>
-//   );
-// }
-
-// function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
-//   return (
-//     <style
-//       dangerouslySetInnerHTML={{
-//         __html: `
-//       html, body { 
-//         width:100%; 
-//         min-height:100%; 
-//         margin:0; 
-//         padding:0; 
-//         overflow-x:hidden; 
-//         font-size: 16px;
-//         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-//       }
-//       * { box-sizing:border-box; }
-//       .container { width: min(1200px, 94vw); margin: 0 auto; }
-//       .row-between{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-
-//       .topbar{
-//         position: fixed;
-//         top: 0; left: 0; right: 0;
-//         height: 80px;
-//         z-index: 3000;
-//         background: rgba(10,10,10,0.85);
-//         backdrop-filter: blur(10px);
-//         border-bottom: 1px solid rgba(255,255,255,0.08);
-//       }
-//       .topbar-inner{
-//         height: 80px;
-//         width: min(1200px, 94vw);
-//         margin: 0 auto;
-//         display:flex;
-//         align-items:center;
-//         justify-content:space-between;
-//         gap: 20px;
-//       }
-//       .brand{
-//         display:flex; align-items:center; gap: 14px;
-//         text-decoration:none; color:white;
-//         min-width: 240px;
-//       }
-//       .brand-icon{
-//         width: 48px; height: 48px; border-radius: 12px;
-//         background: ${brand};
-//         display:flex; align-items:center; justify-content:center;
-//         box-shadow: 0 10px 26px rgba(179,89,0,0.25);
-//       }
-//       .brand-text{ line-height: 1.1; }
-//       .brand-title{ 
-//         font-weight: 1000; 
-//         letter-spacing: 0.8px; 
-//         font-size: 18px; 
-//       }
-//       .brand-sub{ 
-//         font-weight: 900; 
-//         font-size: 12px; 
-//         letter-spacing: 2px; 
-//         opacity: 0.85; 
-//       }
-
-//       .nav{
-//         display:flex;
-//         align-items:center;
-//         gap: 24px;
-//         flex: 1;
-//       }
-//       .nav-center{ justify-content:center; }
-//       .nav-link{
-//         color: rgba(255,255,255,0.88);
-//         text-decoration:none;
-//         font-weight: 900;
-//         font-size: 14px;
-//         letter-spacing: 1px;
-//         white-space: nowrap;
-//       }
-//       .nav-link:hover{ color: white; }
-//       .nav-link.active{ color: white; }
-
-//       .right-actions{
-//         display:flex;
-//         align-items:center;
-//         gap: 12px;
-//         min-width: 180px;
-//         justify-content:flex-end;
-//       }
-//       .cta{
-//         background: ${brand};
-//         color: white;
-//         text-decoration:none;
-//         font-weight: 1000;
-//         border-radius: 12px;
-//         padding: 14px 20px;
-//         letter-spacing: 0.8px;
-//         font-size: 14px;
-//         box-shadow: 0 12px 26px rgba(179,89,0,0.25);
-//         white-space: nowrap;
-//       }
-
-//       .hamburger{
-//         display:none;
-//         border: 1px solid rgba(255,255,255,0.18);
-//         background: rgba(255,255,255,0.10);
-//         color:white;
-//         width: 46px; height: 46px;
-//         border-radius: 12px;
-//         cursor:pointer;
-//         align-items:center;
-//         justify-content:center;
-//         padding: 0;
-//       }
-
-//       .drawer-overlay{
-//         position: fixed;
-//         inset:0;
-//         background: rgba(0,0,0,0.5);
-//         z-index: 2800;
-//         opacity:0;
-//         pointer-events:none;
-//         transition: 0.25s;
-//       }
-//       .drawer-overlay.show{
-//         opacity:1;
-//         pointer-events:auto;
-//       }
-//       .drawer{
-//         position: fixed;
-//         top: 0; right: 0;
-//         height: 100vh;
-//         width: min(380px, 86vw);
-//         background: #0e0e0e;
-//         z-index: 2900;
-//         transform: translateX(110%);
-//         transition: transform 0.25s;
-//         border-left: 1px solid rgba(255,255,255,0.08);
-//         padding: 20px;
-//         display:flex;
-//         flex-direction:column;
-//         gap: 16px;
-//       }
-//       .drawer.show{ transform: translateX(0); }
-//       .drawer-head{ display:flex; align-items:center; justify-content:space-between; }
-//       .drawer-title{ 
-//         color:white; 
-//         font-weight: 1000; 
-//         letter-spacing:0.7px; 
-//         font-size: 18px; 
-//       }
-//       .drawer-close{
-//         border: 1px solid rgba(255,255,255,0.18);
-//         background: rgba(255,255,255,0.10);
-//         color:white;
-//         width: 42px; height: 42px;
-//         border-radius: 12px;
-//         cursor:pointer;
-//         display:flex; align-items:center; justify-content:center;
-//       }
-//       .drawer-links{ 
-//         display:flex; 
-//         flex-direction:column; 
-//         gap: 12px; 
-//         margin-top: 8px; 
-//       }
-//       .dlink{
-//         color: rgba(255,255,255,0.90);
-//         text-decoration:none;
-//         padding: 14px 16px;
-//         border-radius: 12px;
-//         background: rgba(255,255,255,0.06);
-//         border: 1px solid rgba(255,255,255,0.08);
-//         font-weight: 900;
-//         font-size: 15px;
-//         display: flex;
-//         align-items: center;
-//         gap: 12px;
-//       }
-//       .dlink.active{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.16); }
-//       .dcta{
-//         margin-top: 10px;
-//         background: ${brand};
-//         color:white;
-//         text-decoration:none;
-//         padding: 14px 16px;
-//         border-radius: 12px;
-//         font-weight: 1000;
-//         text-align:center;
-//         font-size: 15px;
-//       }
-//       .drawer-foot{
-//         margin-top:auto;
-//         border-top: 1px solid rgba(255,255,255,0.10);
-//         padding-top: 16px;
-//       }
-//       .df-muted{ 
-//         color: rgba(255,255,255,0.55); 
-//         font-weight: 900; 
-//         font-size: 12px; 
-//         letter-spacing:0.8px; 
-//         text-transform:uppercase; 
-//       }
-//       .df-link{ 
-//         color: white; 
-//         text-decoration:none; 
-//         font-weight: 900; 
-//         font-size: 15px;
-//       }
-//       .df-text{ 
-//         color: rgba(255,255,255,0.75); 
-//         font-weight: 800; 
-//         line-height: 1.6; 
-//         font-size: 14px; 
-//         margin-top: 6px; 
-//       }
-
-//       .about-hero{
-//         position: relative;
-//         min-height: 700px;
-//         display:flex;
-//         align-items:center;
-//         justify-content:center;
-//         color: white;
-//         overflow:hidden;
-//         padding-top: 80px;
-//       }
-//       .hero-bg{ position:absolute; inset:0; }
-//       .hero-bg img{ width:100%; height:100%; object-fit:cover; transform: scale(1.05); }
-//       .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.72)); }
-//       .hero-content{ position:relative; z-index:2; text-align:center; padding: 0 16px; }
-
-//       .badge { 
-//         background: ${brand}; 
-//         padding: 8px 20px; 
-//         border-radius: 999px; 
-//         font-size: 13px; 
-//         font-weight: 900; 
-//         text-transform: uppercase; 
-//         letter-spacing:1px; 
-//         display:inline-block; 
-//       }
-//       .about-hero h1 { 
-//         font-size: clamp(40px, 5vw, 68px); 
-//         font-weight: 1200; 
-//         margin: 24px 0; 
-//         line-height: 1.2;
-//       }
-//       .about-hero p { 
-//         color: rgba(255,255,255,0.9); 
-//         max-width: 820px; 
-//         margin: 0 auto; 
-//         line-height: 1.7; 
-//         font-size: 18px;
-//       }
-
-//       .hero-cta{ 
-//         display:flex; 
-//         gap: 16px; 
-//         justify-content:center; 
-//         flex-wrap:wrap; 
-//         margin-top: 24px; 
-//       }
-//       .cta-primary{
-//         background: ${brand};
-//         color: white;
-//         text-decoration:none;
-//         padding: 16px 24px;
-//         border-radius: 14px;
-//         font-weight: 1000;
-//         display:flex; 
-//         align-items:center; 
-//         gap: 12px;
-//         font-size: 16px;
-//         box-shadow: 0 14px 30px rgba(179,89,0,0.25);
-//       }
-//       .cta-ghost{
-//         background: rgba(179,89,0,0.25);
-//         border: 1px solid rgba(255, 255, 255, 0.94);
-//         color: white;
-//         text-decoration:none;
-//         padding: 16px 24px;
-//         border-radius: 14px;
-//         font-weight: 1000;
-//         display:flex; 
-//         align-items:center; 
-//         gap: 12px;
-//         font-size: 16px;
-//       }
-
-//       .dots{ 
-//         display:flex; 
-//         gap:12px; 
-//         justify-content:center; 
-//         margin-top: 24px; 
-//       }
-//       .dot{ 
-//         width: 50px; 
-//         height: 14px; 
-//         border-radius: 999px; 
-//         border:1px solid rgba(255,255,255,0.6); 
-//         background: rgba(255,255,255,0.16); 
-//         cursor:pointer; 
-//       }
-//       .dot.active{ 
-//         background: rgba(255,255,255,0.95); 
-//         border-color: rgba(255,255,255,0.95); 
-//       }
-
-//       .section{ padding: 72px 0; }
-//       .section.soft{ background: ${THEME.soft}; }
-//       .section-head{ margin-bottom: 24px; }
-//       .grid-2{ 
-//         display:grid; 
-//         grid-template-columns: 1fr 1fr; 
-//         gap: 24px; 
-//       }
-//       .card{
-//         background: white;
-//         border: 1px solid #eee;
-//         border-radius: 18px;
-//         padding: 24px;
-//         box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-//       }
-//       .section-title{
-//         font-size: 24px;
-//         font-weight: 1100;
-//         color: ${ink};
-//         margin: 0 0 16px 0;
-//       }
-//       .big-title{
-//         font-size: 34px;
-//         margin-bottom: 18px;
-//       }
-//       .mini-badge{
-//         display:inline-block;
-//         background:#fff7ed;
-//         color:${brand};
-//         border:1px solid #ffedd5;
-//         padding:8px 16px;
-//         border-radius:999px;
-//         font-weight:1000;
-//         font-size:12px;
-//         letter-spacing:1px;
-//         margin-bottom:16px;
-//       }
-//       .about-card{
-//         padding: 34px;
-//       }
-//       .about-grid{
-//         display:grid;
-//         grid-template-columns: 1.3fr 0.7fr;
-//         gap: 28px;
-//         align-items: stretch;
-//       }
-//       .about-side-box{
-//         background: #fcfcfc;
-//         border: 1px solid #eee;
-//         border-radius: 18px;
-//         padding: 22px;
-//         display:flex;
-//         flex-direction:column;
-//         gap: 16px;
-//       }
-//       .about-point{
-//         display:flex;
-//         gap: 14px;
-//         align-items:flex-start;
-//         padding: 14px 0;
-//         border-bottom: 1px solid #f1f1f1;
-//       }
-//       .about-point:last-child{
-//         border-bottom: none;
-//         padding-bottom: 0;
-//       }
-//       .about-icon{
-//         width: 48px;
-//         height: 48px;
-//         border-radius: 14px;
-//         background: #fff7ed;
-//         border: 1px solid #ffedd5;
-//         display:flex;
-//         align-items:center;
-//         justify-content:center;
-//         color:${brand};
-//         flex: 0 0 auto;
-//       }
-//       .about-point h4{
-//         margin: 0 0 6px 0;
-//         color:${ink};
-//         font-size: 17px;
-//         font-weight: 1000;
-//       }
-//       .about-point p{
-//         margin: 0;
-//         color:#667;
-//         line-height: 1.7;
-//         font-weight: 750;
-//         font-size: 14px;
-//       }
-
-//       .viewall-btn{
-//         border: 1px solid #eee;
-//         background: white;
-//         border-radius: 14px;
-//         padding: 14px 18px;
-//         font-weight: 1000;
-//         cursor: pointer;
-//         display:flex;
-//         align-items:center;
-//         gap: 10px;
-//         font-size: 15px;
-//       }
-
-//       .projects-grid{
-//         display:grid;
-//         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-//         gap: 24px;
-//         margin-top: 24px;
-//       }
-//       .project-card{
-//         background: white;
-//         border: 1px solid #eee;
-//         border-radius: 18px;
-//         overflow:hidden;
-//         box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-//         cursor: pointer;
-//       }
-//       .pimg{
-//         position: relative;
-//         width: 100%;
-//         aspect-ratio: 16 / 10;
-//         background: #0b0b0b;
-//         overflow:hidden;
-//       }
-//       .pimg img{
-//         width: 100%;
-//         height: 100%;
-//         object-fit: cover;
-//         display:block;
-//         transform: scale(1.01);
-//         transition: 0.5s;
-//       }
-//       .project-card:hover .pimg img{ transform: scale(1.06); }
-
-//       .ptags{
-//         position:absolute;
-//         top: 16px; left: 16px; right: 16px;
-//         display:flex; justify-content:space-between; gap: 12px;
-//       }
-//       .tag{
-//         background: rgba(255,255,255,0.92);
-//         padding: 8px 14px;
-//         border-radius:999px;
-//         font-weight:1000;
-//         font-size:12px;
-//       }
-//       .tag2{
-//         background: ${brand};
-//         color:white;
-//         padding: 8px 14px;
-//         border-radius:999px;
-//         font-weight:1000;
-//         font-size:12px;
-//       }
-//       .pbody{ 
-//         padding: 20px; 
-//       }
-//       .ptitle{ 
-//         font-weight: 1100; 
-//         color: ${ink}; 
-//         font-size: 20px; 
-//         line-height: 1.3;
-//         margin-bottom: 8px;
-//       }
-//       .pdesc{ 
-//         color:#667; 
-//         font-weight: 750; 
-//         font-size: 15px; 
-//         line-height: 1.6; 
-//         min-height: 50px; 
-//       }
-
-//       .pmeta{ 
-//         display:flex; 
-//         gap: 16px; 
-//         border-top:1px solid #eee; 
-//         padding-top: 16px; 
-//         margin-top: 16px; 
-//       }
-//       .mi{ 
-//         flex:1; 
-//       }
-//       .mi span{ 
-//         display:block; 
-//         font-size: 11px; 
-//         font-weight: 1000; 
-//         color:#9aa; 
-//         letter-spacing:0.7px; 
-//         margin-bottom: 4px;
-//       }
-//       .mi strong{ 
-//         font-size: 15px; 
-//         color:#222; 
-//       }
-//       .pprice{ 
-//         color: ${brand}; 
-//         font-size: 16px;
-//       }
-
-//       .details-btn{
-//         width:100%;
-//         margin-top: 16px;
-//         border: none;
-//         background: ${ink};
-//         color: white;
-//         border-radius: 14px;
-//         padding: 14px;
-//         font-weight: 1000;
-//         cursor:pointer;
-//         display:flex;
-//         align-items:center;
-//         justify-content:center;
-//         gap: 12px;
-//         font-size: 15px;
-//       }
-
-//       .bullets{ 
-//         padding-left: 20px; 
-//         margin: 0 0 20px 0; 
-//         color:#445; 
-//         line-height: 1.8; 
-//         font-weight: 800; 
-//         font-size: 15px;
-//       }
-//       .bullets li {
-//         margin-bottom: 8px;
-//       }
-//       .para{ 
-//         color:#556; 
-//         line-height: 1.8; 
-//         font-weight: 750; 
-//         margin: 0 0 20px 0; 
-//         font-size: 16px;
-//       }
-//       .cta-row{ 
-//         display:flex; 
-//         gap: 16px; 
-//         flex-wrap:wrap; 
-//         margin-top: 24px; 
-//       }
-
-//       .empty{
-//         background:white;
-//         border:1px solid #eee;
-//         border-radius:18px;
-//         padding: 40px;
-//         text-align:center;
-//         color:#555;
-//         font-weight: 900;
-//         font-size: 16px;
-//         margin-top: 20px;
-//       }
-
-//       .footer{
-//         background:${dark};
-//         color:#c9c9c9;
-//         padding: 60px 0 30px;
-//         margin-top: 20px;
-//       }
-//       .footer-grid{
-//         display:grid;
-//         grid-template-columns: 1.4fr 0.8fr 0.8fr;
-//         gap: 24px;
-//         padding-bottom: 30px;
-//         border-bottom: 1px solid rgba(255,255,255,0.10);
-//       }
-//       .f-brand{ 
-//         color:white; 
-//         font-weight: 1100; 
-//         font-size: 20px; 
-//         letter-spacing: 0.8px; 
-//         margin-bottom: 12px;
-//       }
-//       .f-title{ 
-//         color:white; 
-//         font-weight: 1000; 
-//         letter-spacing: 0.8px; 
-//         font-size: 14px; 
-//         text-transform:uppercase; 
-//         margin-bottom: 12px;
-//       }
-//       .f-muted{ 
-//         color: rgba(255,255,255,0.7); 
-//         font-weight: 780; 
-//         line-height: 1.6; 
-//         font-size: 15px; 
-//       }
-//       .f-links{ 
-//         display:flex; 
-//         flex-direction:column; 
-//         gap: 10px; 
-//         margin-top: 10px; 
-//       }
-//       .f-links a{ 
-//         color:#ddd; 
-//         text-decoration:none; 
-//         font-weight: 850; 
-//         font-size: 15px; 
-//       }
-//       .f-links a:hover{ color:white; }
-
-//       .f-bottom{
-//         margin-top: 24px;
-//         display:flex;
-//         align-items:center;
-//         justify-content:space-between;
-//         gap: 16px;
-//         flex-wrap:wrap;
-//         color: rgba(255,255,255,0.7);
-//         font-weight: 800;
-//         font-size: 14px;
-//       }
-//       .f-mini{ 
-//         display:flex; 
-//         gap: 12px; 
-//         align-items:center; 
-//       }
-//       .f-mini a{ 
-//         color:#ddd; 
-//         text-decoration:none; 
-//         font-weight: 850; 
-//         font-size: 14px; 
-//       }
-
-//       @media (max-width: 1100px){
-//         .grid-2{ 
-//           grid-template-columns: 1fr; 
-//         }
-//         .about-grid{
-//           grid-template-columns: 1fr;
-//         }
-//         .projects-grid{ 
-//           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-//         }
-//       }
-
-//       @media (max-width: 980px){
-//         .nav{ display:none; }
-//         .hamburger{ display:flex; }
-//         .about-hero{ min-height: 500px; }
-//         .footer-grid{ grid-template-columns: 1fr; gap: 30px; }
-//         .cta{ display:none; }
-//       }
-
-//       @media (max-width: 768px){
-//         .section{ padding: 60px 0; }
-//         .about-hero h1{ font-size: 36px; }
-//         .about-hero p{ font-size: 17px; }
-//         .section-title{ font-size: 22px; }
-//         .big-title{ font-size: 28px; }
-//         .projects-grid{ grid-template-columns: 1fr; }
-//         .hero-cta{ flex-direction: column; align-items: center; }
-//         .cta-primary, .cta-ghost{ width: 100%; justify-content: center; }
-//         .cta-row{ flex-direction: column; }
-//         .pbody{ padding: 18px; }
-//         .ptitle{ font-size: 18px; }
-//         .pdesc{ font-size: 14px; }
-//         .details-btn{ padding: 12px; }
-//       }
-
-//       @media (max-width: 480px){
-//         .brand{ min-width: 200px; }
-//         .brand-title{ font-size: 16px; }
-//         .brand-sub{ font-size: 10px; }
-//         .about-hero h1{ font-size: 32px; }
-//         .about-hero p{ font-size: 16px; }
-//         .f-bottom{ flex-direction: column; text-align: center; gap: 12px; }
-//         .card{ padding: 20px; }
-//         .about-card{ padding: 22px; }
-//       }
-//     `,
-//       }}
-//     />
-//   );
-// }
-
-
-
 'use client';
 
-import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Building2,
-  MapPin,
-  Mail,
-  ArrowRight,
-  ExternalLink,
   Menu,
   X,
-  Home as HomeIcon,
+  ArrowRight,
+  ShieldCheck,
+  Building2,
+  ClipboardCheck,
   FileText,
-  Sparkles,
+  Users,
   Phone,
-  User
+  Home as HomeIcon,
+  Sparkles,
+  User,
+  Target,
+  Handshake,
+  BarChart3,
+  Layers,
+  BriefcaseBusiness,
 } from "lucide-react";
-import API_BASE from "./Api";
 
 const THEME = {
   ink: "#0B1220",
@@ -3324,43 +39,17 @@ const HERO_IMAGES = [
   "/images/back6.jpg",
 ];
 
-const FALLBACK_PROJECT_IMG =
-  "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1400";
-
 const COMPANY = {
   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
+  shortName: "SHIVSHAKTI REAL ESTATE ADVISORY",
+  cin: "U45200MH1999PTC122379",
+  roc: "ROC Mumbai",
   email: "secretarial@systematixgroup.in",
   registeredAddress:
     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
+  phone: "+91 89560 32764",
+  whatsapp: "918956032764",
 };
-
-type Project = {
-  id: number;
-  title: string;
-  slug: string;
-  category: "residential" | "commercial" | string;
-  location: string;
-  configuration: string;
-  price_label: string;
-  short_description?: string;
-  description?: string;
-  cover_image_url?: string;
-  cover_image?: string;
-  cover_image_absolute?: string;
-};
-
-function safeAbsUrl(u?: string) {
-  if (!u) return "";
-  if (u.startsWith("http://") || u.startsWith("https://")) return u;
-  if (u.startsWith("/")) return `${API_BASE}${u}`;
-  return `${API_BASE}/${u}`;
-}
-
-function getProjectImage(p: Project) {
-  const candidates = [p.cover_image_url, p.cover_image_absolute, p.cover_image].filter(Boolean) as string[];
-  const url = candidates.length ? safeAbsUrl(candidates[0]) : "";
-  return url || FALLBACK_PROJECT_IMG;
-}
 
 function Header({
   menuOpen,
@@ -3382,48 +71,36 @@ function Header({
       <header className="topbar">
         <div className="topbar-inner">
           <Link to="/" className="brand" onClick={() => setMenuOpen(false)}>
-  <div className="brand-icon" aria-hidden="true">
-    <img
-      src="/images/shivlogo.jpeg"
-      alt="Shivshakti Real Estate Advisory Logo"
-      className="brand-logo"
-    />
-  </div>
+            <div className="brand-icon" aria-hidden="true">
+              <img
+                src="/images/shivlogo.jpeg"
+                alt="Shivshakti Real Estate Advisory Logo"
+                className="brand-logo"
+              />
+            </div>
 
-  <div className="brand-text">
-    <div className="brand-title">SHIVSHAKTI REAL ESTATE ADVISORY</div>
-    <div className="brand-sub">PVT LTD</div>
-  </div>
-</Link>
+            <div className="brand-text">
+              <div className="brand-title">{COMPANY.shortName}</div>
+              <div className="brand-sub">PVT LTD</div>
+            </div>
+          </Link>
 
-          {/* Desktop nav */}
           <nav className="nav center">
             <Link className={isActive("/") ? "nav-link active" : "nav-link"} to="/">
               HOME
             </Link>
-            <Link
-              className={isActive("/projects") ? "nav-link active" : "nav-link"}
-              to="/projects"
-            >
+            <Link className={isActive("/projects") ? "nav-link active" : "nav-link"} to="/projects">
               PROJECTS
             </Link>
             <Link className={isActive("/about") ? "nav-link active" : "nav-link"} to="/about">
               ABOUT
             </Link>
-            <Link
-              className={isActive("/services") ? "nav-link active" : "nav-link"}
-              to="/services"
-            >
+            <Link className={isActive("/services") ? "nav-link active" : "nav-link"} to="/services">
               SERVICES
             </Link>
-            <Link
-              className={isActive("/contact") ? "nav-link active" : "nav-link"}
-              to="/contact"
-            >
+            <Link className={isActive("/contact") ? "nav-link active" : "nav-link"} to="/contact">
               CONTACT
             </Link>
-
-            {/* ✅ Admin login */}
             <Link className={isActive("/login") ? "nav-link active" : "nav-link"} to="/login">
               ADMIN LOGIN
             </Link>
@@ -3434,7 +111,6 @@ function Header({
               GET QUOTE
             </Link>
 
-            {/* ✅ Mobile menu */}
             <button
               className="hamburger"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -3447,7 +123,6 @@ function Header({
         </div>
       </header>
 
-      {/* Mobile Drawer */}
       <div className={menuOpen ? "drawer-overlay show" : "drawer-overlay"} onClick={() => setMenuOpen(false)} />
       <aside className={menuOpen ? "drawer show" : "drawer"}>
         <div className="drawer-head">
@@ -3461,36 +136,19 @@ function Header({
           <Link className={isActive("/") ? "dlink active" : "dlink"} to="/" onClick={() => setMenuOpen(false)}>
             <HomeIcon size={20} /> Home
           </Link>
-          <Link
-            className={isActive("/projects") ? "dlink active" : "dlink"}
-            to="/projects"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link className={isActive("/projects") ? "dlink active" : "dlink"} to="/projects" onClick={() => setMenuOpen(false)}>
             <Building2 size={20} /> Projects
           </Link>
           <Link className={isActive("/about") ? "dlink active" : "dlink"} to="/about" onClick={() => setMenuOpen(false)}>
             <FileText size={20} /> About
           </Link>
-          <Link
-            className={isActive("/services") ? "dlink active" : "dlink"}
-            to="/services"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link className={isActive("/services") ? "dlink active" : "dlink"} to="/services" onClick={() => setMenuOpen(false)}>
             <Sparkles size={20} /> Services
           </Link>
-          <Link
-            className={isActive("/contact") ? "dlink active" : "dlink"}
-            to="/contact"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link className={isActive("/contact") ? "dlink active" : "dlink"} to="/contact" onClick={() => setMenuOpen(false)}>
             <Phone size={20} /> Contact
           </Link>
-
-          <Link
-            className={isActive("/login") ? "dlink active" : "dlink"}
-            to="/login"
-            onClick={() => setMenuOpen(false)}
-          >
+          <Link className={isActive("/login") ? "dlink active" : "dlink"} to="/login" onClick={() => setMenuOpen(false)}>
             <User size={20} /> Admin Login
           </Link>
 
@@ -3501,10 +159,10 @@ function Header({
 
         <div className="drawer-foot">
           <div className="df-muted">Quick Actions</div>
-          <a className="df-link" href="tel:+919999999999">Call Us</a>
+          <a className="df-link" href={`tel:${COMPANY.phone}`}>Call Us</a>
           <a
             className="df-link"
-            href={`https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20your%20projects`}
+            href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20to%20discuss%20a%20real%20estate%20mandate`}
             target="_blank"
             rel="noreferrer"
           >
@@ -3516,61 +174,68 @@ function Header({
   );
 }
 
-export default function AboutPage() {
-  const nav = useNavigate();
+const foundationItems = [
+  {
+    icon: <ShieldCheck size={24} />,
+    title: "Transparency & Trust",
+    desc: "Clear communication, responsible coordination, and reliable reporting across every mandate.",
+  },
+  {
+    icon: <BarChart3 size={24} />,
+    title: "Strategic Insight",
+    desc: "Market understanding, pricing study, inventory planning, and positioning guidance for better decisions.",
+  },
+  {
+    icon: <ClipboardCheck size={24} />,
+    title: "Operational Excellence",
+    desc: "Structured execution from project launch, CP outreach, lead movement, follow-ups, and closure support.",
+  },
+  {
+    icon: <Handshake size={24} />,
+    title: "Relationship Building",
+    desc: "Strong partnerships with developers, channel partners, teams, and customers for sustained growth.",
+  },
+];
 
+const whyItems = [
+  {
+    icon: <Target size={24} />,
+    title: "Result-Oriented Approach",
+    desc: "We focus on visibility, qualified enquiries, site visits, channel partner activation, and consistent sales momentum.",
+  },
+  {
+    icon: <Layers size={24} />,
+    title: "Layered Strategy",
+    desc: "Each project is handled through multiple layers: market study, brand communication, CP network, and sales process.",
+  },
+  {
+    icon: <BriefcaseBusiness size={24} />,
+    title: "Developer-Centric Focus",
+    desc: "Mandate strategies are customised according to project location, ticket size, inventory, audience, and launch stage.",
+  },
+  {
+    icon: <ShieldCheck size={24} />,
+    title: "Integrity In Execution",
+    desc: "We maintain transparent coordination, disciplined follow-ups, and professional conduct with every stakeholder.",
+  },
+];
+
+export default function AboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [heroIndex, setHeroIndex] = useState(0);
-
-  const [allProjects, setAllProjects] = useState<Project[]>([]);
-  const [pLoading, setPLoading] = useState(false);
 
   useEffect(() => {
     const t = setInterval(() => setHeroIndex((i) => (i + 1) % HERO_IMAGES.length), 3500);
     return () => clearInterval(t);
   }, []);
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, []);
-
-  const loadProjects = async () => {
-    setPLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/api/projects/`);
-      const data = await res.json().catch(() => ({} as any));
-      if (!res.ok || data?.ok === false) throw new Error(data?.error || "Failed");
-
-      const items: Project[] = Array.isArray(data.items) ? data.items : [];
-      setAllProjects(items);
-    } catch {
-      setAllProjects([]);
-    } finally {
-      setPLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadProjects();
-  }, []);
-
-  const latestTop3 = useMemo(() => {
-    const sorted = [...allProjects].sort((a, b) => (Number(b.id) || 0) - (Number(a.id) || 0));
-    return sorted.slice(0, 3);
-  }, [allProjects]);
-
-  const goProjects = () => nav("/projects");
-  const goProjectsWithHighlight = (_p: Project) => {
-    nav("/projects");
-  };
-
   return (
-    <div style={{ width: "100vw", minHeight: "100vh", background: THEME.soft, overflowX: "hidden" }}>
+    <div style={{ width: "100%", minHeight: "100vh", background: THEME.soft, overflowX: "hidden" }}>
       <GlobalStyles brand={THEME.brand} ink={THEME.ink} dark={THEME.dark} />
 
       <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
-      <section className="about-hero">
+      <section className="hero">
         <div className="hero-bg">
           <img src={HERO_IMAGES[heroIndex]} alt="about hero" />
           <div className="hero-overlay" />
@@ -3578,19 +243,19 @@ export default function AboutPage() {
 
         <div className="container hero-content">
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="badge">ABOUT THE COMPANY</span>
-            <h1>{COMPANY.name}</h1>
+            <span className="badge">ABOUT US</span>
+            <h1>Your Trusted Partner For Strategic Real Estate Solutions</h1>
             <p>
-              A trusted real estate company committed to delivering quality spaces, modern developments,
-              and a transparent experience for every customer.
+              A developer-focused real estate mandate advisory company built to support project strategy,
+              brand positioning, channel partner outreach, and seamless sales execution.
             </p>
 
             <div className="hero-cta">
-              <Link className="cta-primary" to="/projects">
-                View Projects <ArrowRight size={20} />
+              <Link className="cta-primary" to="/services">
+                View Services <ArrowRight size={20} />
               </Link>
               <Link className="cta-ghost" to="/contact">
-                Contact Us <ArrowRight size={20} />
+                Discuss Mandate <ArrowRight size={20} />
               </Link>
             </div>
 
@@ -3608,62 +273,55 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ABOUT US SECTION */}
+      <section className="stats">
+        <div className="container">
+          <div className="stats-card">
+            <StatBox icon={<ShieldCheck size={24} />} value="Mandate" label="Marketing Focus" />
+            <StatBox icon={<Building2 size={24} />} value="Developer" label="Centric Solutions" />
+            <StatBox icon={<Users size={24} />} value="CP Network" label="Outreach & Management" />
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <motion.div
-            className="card about-card"
+            className="about-panel"
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             <div className="about-grid">
-              <div>
+              <div className="about-copy">
                 <span className="mini-badge">WHO WE ARE</span>
-                <h2 className="section-title big-title">About Us</h2>
-                <p className="para">
-                  ShivShakti Real Estate Advisory Private Limited is a professionally managed real estate company
-                  focused on delivering thoughtfully planned residential and commercial developments.
-                  We believe that every property is more than just a structure — it is a space where
-                  families build their future and businesses create their identity.
+                <h2>Building Robust Foundations For Every Layer Of Real Estate</h2>
+                <p>
+                  ShivShakti Real Estate Advisory Private Limited is a mandate-led real estate advisory company
+                  created to help developers plan, position, market, and move their projects with clarity.
+                  We work across the complete project journey — from strategy and launch preparation to
+                  channel partner coordination, enquiry movement, and sustained sales support.
                 </p>
-                <p className="para">
-                  With a strong emphasis on quality construction, customer trust, and modern design,
-                  we aim to create projects that offer long-term value and a premium lifestyle experience.
-                  Our approach is rooted in transparency, timely communication, and a deep understanding
-                  of customer needs.
+                <p>
+                  Our approach is layered and practical. We study the project, understand the market, identify
+                  positioning gaps, create communication direction, activate the right network, and support the
+                  execution team with structured follow-ups and transparent coordination.
                 </p>
-                <p className="para" style={{ marginBottom: 0 }}>
-                  From project planning to final delivery, we are committed to maintaining high standards
-                  across every stage. Our goal is to build spaces that reflect comfort, convenience,
-                  and confidence for every buyer and investor.
+                <p>
+                  We do not look at real estate as a one-time transaction. We aim to create long-term value
+                  for developers, channel partners, homebuyers, and every stakeholder involved in the project.
                 </p>
               </div>
 
-              <div className="about-side-box">
-                <div className="about-point">
-                  <div className="about-icon"><Building2 size={22} /></div>
-                  <div>
-                    <h4>Quality Developments</h4>
-                    <p>Focused on creating dependable residential and commercial spaces.</p>
-                  </div>
-                </div>
-
-                <div className="about-point">
-                  <div className="about-icon"><MapPin size={22} /></div>
-                  <div>
-                    <h4>Prime Locations</h4>
-                    <p>Projects planned in well-connected areas with long-term growth potential.</p>
-                  </div>
-                </div>
-
-                <div className="about-point">
-                  <div className="about-icon"><Mail size={22} /></div>
-                  <div>
-                    <h4>Trusted Support</h4>
-                    <p>Professional assistance with clear communication and customer-first service.</p>
-                  </div>
+              <div className="about-highlight">
+                <div className="highlight-title">Our Advisory Focus</div>
+                <div className="highlight-list">
+                  <div><span>01</span> Real Estate Mandate Marketing</div>
+                  <div><span>02</span> Exclusive Agency Support</div>
+                  <div><span>03</span> Channel Partner Outreach</div>
+                  <div><span>04</span> Brand Building & Project Positioning</div>
+                  <div><span>05</span> Market Analysis & Sales Strategy</div>
+                  <div><span>06</span> Full-Service Real Estate Consultancy</div>
                 </div>
               </div>
             </div>
@@ -3673,117 +331,84 @@ export default function AboutPage() {
 
       <section className="section soft">
         <div className="container">
-          <div className="section-head row-between">
-            <div>
-              <h2 style={{ margin: 0, color: THEME.ink, fontSize: "32px", fontWeight: "1100" }}>Featured Projects</h2>
-              <p style={{ marginTop: "12px", fontSize: "18px", color: "#555" }}>Our Top Latest Projects.</p>
-            </div>
-
-            <button className="viewall-btn" onClick={goProjects}>
-              View All Projects <ExternalLink size={18} />
-            </button>
+          <div className="section-head">
+            <span className="mini-badge">OUR FOUNDATION</span>
+            <h2>What Defines ShivShakti</h2>
+            <p>
+              Our work is built on trust, insight, execution, and strong relationships — the essentials
+              required for successful real estate mandates.
+            </p>
           </div>
 
-          {pLoading ? (
-            <div className="empty">Loading projects...</div>
-          ) : latestTop3.length === 0 ? (
-            <div className="empty">No projects found yet.</div>
-          ) : (
-            <div className="projects-grid">
-              {latestTop3.map((p) => (
-                <motion.div
-                  key={p.id}
-                  className="project-card"
-                  whileHover={{ y: -8 }}
-                  onClick={() => goProjectsWithHighlight(p)}
-                >
-                  <div className="pimg">
-                    <img
-                      src={getProjectImage(p)}
-                      alt={p.title}
-                      loading="lazy"
-                      onError={(e) => {
-                        const img = e.currentTarget as HTMLImageElement;
-                        if (img.src !== FALLBACK_PROJECT_IMG) img.src = FALLBACK_PROJECT_IMG;
-                      }}
-                    />
-                    <div className="ptags">
-                      <span className="tag">{(p.location || "LOCATION").toUpperCase()}</span>
-                      <span className="tag2">{(p.category || "TYPE").toUpperCase()}</span>
-                    </div>
-                  </div>
-
-                  <div className="pbody">
-                    <div className="ptitle">{p.title}</div>
-                    <div className="pdesc">
-                      {(p.short_description || p.description || "").trim()
-                        ? (p.short_description || p.description || "").slice(0, 110) + "..."
-                        : "—"}
-                    </div>
-
-                    <div className="pmeta">
-                      <div className="mi">
-                        <span>CONFIG</span>
-                        <strong>{p.configuration || "—"}</strong>
-                      </div>
-                      <div className="mi">
-                        <span>STARTING</span>
-                        <strong className="pprice">{p.price_label || "—"}</strong>
-                      </div>
-                    </div>
-
-                    <button
-                      className="details-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        goProjectsWithHighlight(p);
-                      }}
-                    >
-                      View Details <ArrowRight size={18} />
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
+          <div className="four-grid">
+            {foundationItems.map((item) => (
+              <InfoCard key={item.title} icon={item.icon} title={item.title} desc={item.desc} />
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <div className="grid-2">
-            <div className="card">
-              <h2 className="section-title">Why Choose Us</h2>
-              <ul className="bullets">
-                <li>Transparent customer communication and project updates</li>
-                <li>Strong focus on construction quality and finishing</li>
-                <li>Professional documentation and compliance discipline</li>
-                <li>Customer-first approach for site visits and query handling</li>
-              </ul>
+          <div className="section-head">
+            <span className="mini-badge">WHY CHOOSE US</span>
+            <h2>Built For Mandate Success</h2>
+            <p>
+              We help developers create project momentum with strategy, branding, channel strength,
+              sales coordination, and execution discipline.
+            </p>
+          </div>
 
-              <div className="cta-row">
-                <Link className="cta-primary" to="/contact">
-                  Talk to Our Team <ArrowRight size={20} />
-                </Link>
-                <Link className="cta-ghost" to="/projects">
-                  Explore Projects <ArrowRight size={20} />
-                </Link>
-              </div>
-            </div>
+          <div className="four-grid">
+            {whyItems.map((item) => (
+              <InfoCard key={item.title} icon={item.icon} title={item.title} desc={item.desc} />
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="card">
-              <h2 className="section-title">Our Mission</h2>
-              <p className="para">
-                Deliver well-planned and well-built developments with an emphasis on trust, transparency,
-                and customer satisfaction — while following responsible building practices.
+      <section className="section soft">
+        <div className="container">
+          <div className="mission-grid">
+            <motion.div
+              className="mission-card"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45 }}
+            >
+              <span className="mini-badge">VISION</span>
+              <h2>Our Vision</h2>
+              <p>
+                To become a trusted real estate mandate partner known for strategic project launches,
+                strong market positioning, sustainable sales growth, and long-term value creation.
               </p>
+            </motion.div>
 
-              <h2 className="section-title" style={{ marginTop: "24px" }}>Our Vision</h2>
-              <p className="para">
-                Build a strong real estate brand known for consistent quality, timely execution and
-                customer confidence across residential and commercial segments.
+            <motion.div
+              className="mission-card"
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+            >
+              <span className="mini-badge">MISSION</span>
+              <h2>Our Mission</h2>
+              <p>
+                To provide complete real estate advisory solutions for developers — from mandate planning
+                and market strategy to channel partner outreach, brand building, sales execution, and customer conversion.
               </p>
+            </motion.div>
+          </div>
+
+          <div className="cta-strip">
+            <div>
+              <h2>Planning A Project Launch Or Mandate?</h2>
+              <p>Let our team help you build the right strategy, visibility, and sales movement.</p>
             </div>
+            <Link className="cta-main" to="/contact">
+              Start A Conversation <ArrowRight size={20} />
+            </Link>
           </div>
         </div>
       </section>
@@ -3792,6 +417,7 @@ export default function AboutPage() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">{COMPANY.name}</div>
+            <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: {COMPANY.registeredAddress}
             </div>
@@ -3813,9 +439,9 @@ export default function AboutPage() {
             <div className="f-title">Contact</div>
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
-              <a href="tel:+918956032764">+91 89560 32764</a>
+              <a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
               <a
-                href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+                href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20to%20discuss%20a%20real%20estate%20mandate`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -3838,23 +464,52 @@ export default function AboutPage() {
   );
 }
 
+function StatBox({ icon, value, label }: { icon: React.ReactNode; value: string; label: string }) {
+  return (
+    <div className="stat">
+      <div className="stat-ic">{icon}</div>
+      <div className="stat-v">{value}</div>
+      <div className="stat-l">{label}</div>
+    </div>
+  );
+}
+
+function InfoCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
+  return (
+    <motion.div
+      className="info-card"
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.35 }}
+    >
+      <div className="info-ic">{icon}</div>
+      <h3>{title}</h3>
+      <p>{desc}</p>
+    </motion.div>
+  );
+}
+
 function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
   return (
     <style
       dangerouslySetInnerHTML={{
         __html: `
-      html, body { 
-        width:100%; 
-        min-height:100%; 
-        margin:0; 
-        padding:0; 
-        overflow-x:hidden; 
+      html, body, #root {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
         font-size: 16px;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       }
-      * { box-sizing:border-box; }
-      .container { width: min(1200px, 94vw); margin: 0 auto; }
-      .row-between{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+      * { box-sizing: border-box; }
+      body { color: #172033; }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; }
+      .container { width: min(1200px, calc(100% - 40px)); margin: 0 auto; }
 
       .topbar{
         position: fixed;
@@ -3862,12 +517,11 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         height: 80px;
         z-index: 3000;
         background:#180704;
-        backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
       .topbar-inner{
         height: 80px;
-        width: min(1200px, 94vw);
+        width: min(1200px, calc(100% - 40px));
         margin: 0 auto;
         display:flex;
         align-items:center;
@@ -3877,34 +531,49 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
       .brand{
         display:flex; align-items:center; gap: 14px;
         text-decoration:none; color:white;
-        min-width: 240px;
+        min-width: 250px;
+        flex-shrink: 0;
       }
-      .brand-icon{
-        width: 48px; height: 48px; border-radius: 12px;
-        background: ${brand};
-        display:flex; align-items:center; justify-content:center;
-        box-shadow: 0 10px 26px rgba(179,89,0,0.25);
+      .brand-icon {
+        width: 76px;
+        height: 76px;
+        border-radius: 999px;
+        overflow: hidden;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background: transparent;
+        flex-shrink: 0;
       }
-      .brand-text{ line-height: 1.1; }
-      .brand-title{ 
-        font-weight: 1000; 
-        letter-spacing: 0.8px; 
-        font-size: 18px; 
+      .brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
-      .brand-sub{ 
-        font-weight: 900; 
-        font-size: 12px; 
-        letter-spacing: 2px; 
-        opacity: 0.85; 
+      .brand-text{ line-height: 1.08; min-width: 0; }
+      .brand-title{
+        font-weight: 1000;
+        letter-spacing: 0.8px;
+        font-size: 18px;
+        color:#fff;
+        max-width: 310px;
+      }
+      .brand-sub{
+        font-weight: 900;
+        font-size: 12px;
+        letter-spacing: 2px;
+        opacity: 0.85;
+        color:#fff;
       }
 
       .nav{
         display:flex;
         align-items:center;
+        justify-content:center;
         gap: 24px;
         flex: 1;
+        min-width: 0;
       }
-      .nav-center{ justify-content:center; }
       .nav-link{
         color: rgba(255,255,255,0.88);
         text-decoration:none;
@@ -3913,15 +582,15 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         letter-spacing: 1px;
         white-space: nowrap;
       }
-      .nav-link:hover{ color: white; }
+      .nav-link:hover,
       .nav-link.active{ color: white; }
 
       .right-actions{
         display:flex;
         align-items:center;
         gap: 12px;
-        min-width: 180px;
         justify-content:flex-end;
+        flex-shrink: 0;
       }
       .cta{
         background: ${brand};
@@ -3932,16 +601,15 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         padding: 14px 20px;
         letter-spacing: 0.8px;
         font-size: 14px;
-        box-shadow: 0 12px 26px rgba(179,89,0,0.25);
         white-space: nowrap;
       }
-
       .hamburger{
         display:none;
         border: 1px solid rgba(255,255,255,0.18);
-        background:#180704;
+        background: rgba(255,255,255,0.10);
         color:white;
-        width: 46px; height: 46px;
+        width: 46px;
+        height: 46px;
         border-radius: 12px;
         cursor:pointer;
         align-items:center;
@@ -3950,41 +618,31 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
       }
 
       .drawer-overlay{
-        position: fixed;
-        inset:0;
-        background:#180704;
+        position: fixed; inset:0;
+        background: rgba(0,0,0,0.5);
         z-index: 2800;
-        opacity:0;
-        pointer-events:none;
+        opacity:0; pointer-events:none;
         transition: 0.25s;
       }
-      .drawer-overlay.show{
-        opacity:1;
-        pointer-events:auto;
-      }
+      .drawer-overlay.show{ opacity:1; pointer-events:auto; }
       .drawer{
-        position: fixed;
-        top: 0; right: 0;
-        height: 100vh;
+        position: fixed; top: 0; right: 0;
+        height: 100dvh;
         width: min(380px, 86vw);
         background: #0e0e0e;
         z-index: 2900;
-        transform: translateX(110%);
+        transform: translateX(100%);
         transition: transform 0.25s;
         border-left: 1px solid rgba(255,255,255,0.08);
         padding: 20px;
         display:flex;
         flex-direction:column;
         gap: 16px;
+        overflow-y:auto;
       }
       .drawer.show{ transform: translateX(0); }
       .drawer-head{ display:flex; align-items:center; justify-content:space-between; }
-      .drawer-title{ 
-        color:white; 
-        font-weight: 1000; 
-        letter-spacing:0.7px; 
-        font-size: 18px; 
-      }
+      .drawer-title{ color:white; font-weight: 1000; letter-spacing:0.7px; font-size: 18px; }
       .drawer-close{
         border: 1px solid rgba(255,255,255,0.18);
         background: rgba(255,255,255,0.10);
@@ -3994,14 +652,9 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         cursor:pointer;
         display:flex; align-items:center; justify-content:center;
       }
-      .drawer-links{ 
-        display:flex; 
-        flex-direction:column; 
-        gap: 12px; 
-        margin-top: 8px; 
-      }
+      .drawer-links{ display:flex; flex-direction:column; gap: 12px; margin-top: 8px; }
       .dlink{
-        color: rgba(255,255,255,0.90);
+        color: rgba(255,255,255,0.92);
         text-decoration:none;
         padding: 14px 16px;
         border-radius: 12px;
@@ -4029,31 +682,16 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         margin-top:auto;
         border-top: 1px solid rgba(255,255,255,0.10);
         padding-top: 16px;
+        display:flex;
+        flex-direction:column;
+        gap: 10px;
       }
-      .df-muted{ 
-        color: rgba(255,255,255,0.55); 
-        font-weight: 900; 
-        font-size: 12px; 
-        letter-spacing:0.8px; 
-        text-transform:uppercase; 
-      }
-      .df-link{ 
-        color: white; 
-        text-decoration:none; 
-        font-weight: 900; 
-        font-size: 15px;
-      }
-      .df-text{ 
-        color: rgba(255,255,255,0.75); 
-        font-weight: 800; 
-        line-height: 1.6; 
-        font-size: 14px; 
-        margin-top: 6px; 
-      }
+      .df-muted{ color: rgba(255,255,255,0.55); font-weight: 900; font-size: 12px; letter-spacing:0.8px; text-transform:uppercase; }
+      .df-link{ color: white; text-decoration:none; font-weight: 900; font-size: 15px; }
 
-      .about-hero{
+      .hero{
         position: relative;
-        min-height: 700px;
+        min-height: 650px;
         display:flex;
         align-items:center;
         justify-content:center;
@@ -4062,111 +700,120 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         padding-top: 80px;
       }
       .hero-bg{ position:absolute; inset:0; }
-      .hero-bg img{ width:100%; height:100%; object-fit:cover; transform: scale(1.05); }
-      .hero-overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.72)); }
+      .hero-bg img{ width:100%; height:100%; object-fit:cover; transform: scale(1.04); }
+      .hero-overlay{
+        position:absolute;
+        inset:0;
+        background: linear-gradient(180deg, rgba(0,0,0,0.58), rgba(0,0,0,0.80));
+      }
       .hero-content{ position:relative; z-index:2; text-align:center; padding: 0 16px; }
-
-      .badge { 
-        background: ${brand}; 
-        padding: 8px 20px; 
-        border-radius: 999px; 
-        font-size: 13px; 
-        font-weight: 900; 
-        text-transform: uppercase; 
-        letter-spacing:1px; 
-        display:inline-block; 
-      }
-      .about-hero h1 { 
-        font-size: clamp(40px, 5vw, 68px); 
-        font-weight: 1200; 
-        margin: 24px 0; 
-        line-height: 1.2;
-      }
-      .about-hero p { 
-        color: rgba(255,255,255,0.9); 
-        max-width: 820px; 
-        margin: 0 auto; 
-        line-height: 1.7; 
-        font-size: 18px;
-      }
-
-      .hero-cta{ 
-        display:flex; 
-        gap: 16px; 
-        justify-content:center; 
-        flex-wrap:wrap; 
-        margin-top: 24px; 
-      }
-      .cta-primary{
+      .badge{
         background: ${brand};
+        padding: 8px 20px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing:1px;
+        display:inline-block;
+      }
+      .hero h1{
+        font-size: clamp(38px, 5vw, 68px);
+        font-weight: 1100;
+        line-height: 1.13;
+        margin: 18px auto 18px;
+        max-width: 980px;
+      }
+      .hero p{
+        font-size: 18px;
+        line-height: 1.75;
+        max-width: 820px;
+        margin: 0 auto;
+        color: rgba(255,255,255,0.90);
+      }
+      .hero-cta{ display:flex; gap: 16px; justify-content:center; flex-wrap:wrap; margin-top: 28px; }
+      .cta-primary,
+      .cta-ghost,
+      .cta-main{
         color: white;
         text-decoration:none;
         padding: 16px 24px;
         border-radius: 14px;
         font-weight: 1000;
-        display:flex; 
-        align-items:center; 
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
         gap: 12px;
         font-size: 16px;
-        box-shadow: 0 14px 30px rgba(179,89,0,0.25);
       }
+      .cta-primary,
+      .cta-main{ background: ${brand}; }
       .cta-ghost{
-        background: rgba(179,89,0,0.25);
-        border: 1px solid rgba(255, 255, 255, 0.94);
-        color: white;
-        text-decoration:none;
-        padding: 16px 24px;
-        border-radius: 14px;
-        font-weight: 1000;
-        display:flex; 
-        align-items:center; 
-        gap: 12px;
-        font-size: 16px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.35);
       }
+      .dots{ display:flex; gap:12px; justify-content:center; margin-top: 28px; }
+      .dot{
+        width: 50px;
+        height: 14px;
+        border-radius: 999px;
+        border:1px solid rgba(255,255,255,0.6);
+        background: rgba(255,255,255,0.16);
+        cursor:pointer;
+      }
+      .dot.active{ background: rgba(255,255,255,0.95); border-color: rgba(255,255,255,0.95); }
 
-      .dots{ 
-        display:flex; 
-        gap:12px; 
-        justify-content:center; 
-        margin-top: 24px; 
-      }
-      .dot{ 
-        width: 50px; 
-        height: 14px; 
-        border-radius: 999px; 
-        border:1px solid rgba(255,255,255,0.6); 
-        background: rgba(255,255,255,0.16); 
-        cursor:pointer; 
-      }
-      .dot.active{ 
-        background: rgba(255,255,255,0.95); 
-        border-color: rgba(255,255,255,0.95); 
-      }
-
-      .section{ padding: 72px 0; }
-      .section.soft{ background: ${THEME.soft}; }
-      .section-head{ margin-bottom: 24px; }
-      .grid-2{ 
-        display:grid; 
-        grid-template-columns: 1fr 1fr; 
-        gap: 24px; 
-      }
-      .card{
+      .stats{ padding: 32px 0 16px; }
+      .stats-card{
         background: white;
         border: 1px solid #eee;
-        border-radius: 18px;
+        border-radius: 20px;
         padding: 24px;
-        box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        display:grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.06);
       }
-      .section-title{
-        font-size: 24px;
+      .stat{
+        border: 1px solid #f0f0f0;
+        border-radius: 18px;
+        padding: 22px 18px;
+        text-align:center;
+        background: #fff;
+      }
+      .stat-ic{
+        width: 52px; height: 52px;
+        margin: 0 auto 12px;
+        border-radius: 16px;
+        background: #fff7ed;
+        border: 1px solid #ffedd5;
+        color: ${brand};
+        display:flex;
+        align-items:center;
+        justify-content:center;
+      }
+      .stat-v{ font-weight: 1100; font-size: 24px; color:${ink}; margin-bottom: 4px; }
+      .stat-l{ color:#667; font-weight: 850; font-size: 15px; }
+
+      .section{ padding: 72px 0; }
+      .section.soft{ background: #ffffff; border-top:1px solid #eee; border-bottom:1px solid #eee; }
+      .section-head{
+        max-width: 850px;
+        margin-bottom: 28px;
+      }
+      .section-head h2{
+        margin: 12px 0 12px;
+        font-size: clamp(30px, 3vw, 44px);
+        line-height: 1.25;
+        color:${ink};
         font-weight: 1100;
-        color: ${ink};
-        margin: 0 0 16px 0;
       }
-      .big-title{
-        font-size: 34px;
-        margin-bottom: 18px;
+      .section-head p{
+        margin:0;
+        font-size: 17px;
+        line-height: 1.75;
+        color:#556;
+        font-weight: 700;
       }
       .mini-badge{
         display:inline-block;
@@ -4178,231 +825,173 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         font-weight:1000;
         font-size:12px;
         letter-spacing:1px;
-        margin-bottom:16px;
+        text-transform: uppercase;
       }
-      .about-card{
-        padding: 34px;
+
+      .about-panel{
+        background:white;
+        border:1px solid #eee;
+        border-radius:24px;
+        padding:34px;
+        box-shadow: 0 18px 42px rgba(0,0,0,0.07);
       }
       .about-grid{
         display:grid;
-        grid-template-columns: 1.3fr 0.7fr;
-        gap: 28px;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 34px;
         align-items: stretch;
       }
-      .about-side-box{
-        background: #fcfcfc;
-        border: 1px solid #eee;
-        border-radius: 18px;
-        padding: 22px;
+      .about-copy h2{
+        margin: 16px 0 18px;
+        font-size: clamp(30px, 3.5vw, 46px);
+        line-height: 1.22;
+        color:${ink};
+        font-weight:1100;
+      }
+      .about-copy p{
+        color:#556;
+        line-height:1.8;
+        font-size:16px;
+        font-weight:720;
+        margin: 0 0 16px;
+      }
+      .about-highlight{
+        background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+        border:1px solid #f0e5dc;
+        border-radius:22px;
+        padding:24px;
         display:flex;
         flex-direction:column;
-        gap: 16px;
-      }
-      .about-point{
-        display:flex;
-        gap: 14px;
-        align-items:flex-start;
-        padding: 14px 0;
-        border-bottom: 1px solid #f1f1f1;
-      }
-      .about-point:last-child{
-        border-bottom: none;
-        padding-bottom: 0;
-      }
-      .about-icon{
-        width: 48px;
-        height: 48px;
-        border-radius: 14px;
-        background: #fff7ed;
-        border: 1px solid #ffedd5;
-        display:flex;
-        align-items:center;
         justify-content:center;
-        color:${brand};
-        flex: 0 0 auto;
       }
-      .about-point h4{
-        margin: 0 0 6px 0;
+      .highlight-title{
         color:${ink};
-        font-size: 17px;
-        font-weight: 1000;
+        font-size:22px;
+        font-weight:1100;
+        margin-bottom:16px;
       }
-      .about-point p{
-        margin: 0;
-        color:#667;
-        line-height: 1.7;
-        font-weight: 750;
-        font-size: 14px;
-      }
-
-      .viewall-btn{
-        border: 1px solid #eee;
-        background: white;
-        border-radius: 14px;
-        padding: 14px 18px;
-        font-weight: 1000;
-        cursor: pointer;
+      .highlight-list{
         display:flex;
-        align-items:center;
-        gap: 10px;
-        font-size: 15px;
+        flex-direction:column;
+        gap:12px;
+      }
+      .highlight-list div{
+        background:#fff;
+        border:1px solid #f2e8de;
+        border-radius:14px;
+        padding:14px;
+        color:#30384a;
+        font-weight:850;
+        line-height:1.5;
+        display:flex;
+        gap:12px;
+        align-items:flex-start;
+      }
+      .highlight-list span{
+        color:${brand};
+        font-weight:1100;
+        flex:0 0 auto;
       }
 
-      .projects-grid{
+      .four-grid{
         display:grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 24px;
-        margin-top: 24px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap:18px;
       }
-      .project-card{
-        background: white;
-        border: 1px solid #eee;
-        border-radius: 18px;
-        overflow:hidden;
-        box-shadow: 0 12px 28px rgba(0,0,0,0.06);
-        cursor: pointer;
-      }
-      .pimg{
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        background: #0b0b0b;
-        overflow:hidden;
-      }
-      .pimg img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display:block;
-        transform: scale(1.01);
-        transition: 0.5s;
-      }
-      .project-card:hover .pimg img{ transform: scale(1.06); }
-
-      .ptags{
-        position:absolute;
-        top: 16px; left: 16px; right: 16px;
-        display:flex; justify-content:space-between; gap: 12px;
-      }
-      .tag{
-        background: rgba(255,255,255,0.92);
-        padding: 8px 14px;
-        border-radius:999px;
-        font-weight:1000;
-        font-size:12px;
-      }
-      .tag2{
-        background: ${brand};
-        color:white;
-        padding: 8px 14px;
-        border-radius:999px;
-        font-weight:1000;
-        font-size:12px;
-      }
-      .pbody{ 
-        padding: 20px; 
-      }
-      .ptitle{ 
-        font-weight: 1100; 
-        color: ${ink}; 
-        font-size: 20px; 
-        line-height: 1.3;
-        margin-bottom: 8px;
-      }
-      .pdesc{ 
-        color:#667; 
-        font-weight: 750; 
-        font-size: 15px; 
-        line-height: 1.6; 
-        min-height: 50px; 
-      }
-
-      .pmeta{ 
-        display:flex; 
-        gap: 16px; 
-        border-top:1px solid #eee; 
-        padding-top: 16px; 
-        margin-top: 16px; 
-      }
-      .mi{ 
-        flex:1; 
-      }
-      .mi span{ 
-        display:block; 
-        font-size: 11px; 
-        font-weight: 1000; 
-        color:#9aa; 
-        letter-spacing:0.7px; 
-        margin-bottom: 4px;
-      }
-      .mi strong{ 
-        font-size: 15px; 
-        color:#222; 
-      }
-      .pprice{ 
-        color: ${brand}; 
-        font-size: 16px;
-      }
-
-      .details-btn{
-        width:100%;
-        margin-top: 16px;
-        border: none;
-        background: ${ink};
-        color: white;
-        border-radius: 14px;
-        padding: 14px;
-        font-weight: 1000;
-        cursor:pointer;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap: 12px;
-        font-size: 15px;
-      }
-
-      .bullets{ 
-        padding-left: 20px; 
-        margin: 0 0 20px 0; 
-        color:#445; 
-        line-height: 1.8; 
-        font-weight: 800; 
-        font-size: 15px;
-      }
-      .bullets li {
-        margin-bottom: 8px;
-      }
-      .para{ 
-        color:#556; 
-        line-height: 1.8; 
-        font-weight: 750; 
-        margin: 0 0 20px 0; 
-        font-size: 16px;
-      }
-      .cta-row{ 
-        display:flex; 
-        gap: 16px; 
-        flex-wrap:wrap; 
-        margin-top: 24px; 
-      }
-
-      .empty{
+      .info-card{
         background:white;
         border:1px solid #eee;
-        border-radius:18px;
-        padding: 40px;
-        text-align:center;
-        color:#555;
-        font-weight: 900;
-        font-size: 16px;
-        margin-top: 20px;
+        border-radius:20px;
+        padding:22px;
+        min-height:270px;
+        box-shadow:0 14px 34px rgba(0,0,0,0.06);
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+      }
+      .info-ic{
+        width:54px;
+        height:54px;
+        border-radius:16px;
+        background:#fff7ed;
+        border:1px solid #ffedd5;
+        color:${brand};
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin-bottom:16px;
+      }
+      .info-card h3{
+        margin:0 0 10px;
+        color:${ink};
+        font-size:20px;
+        line-height:1.35;
+        font-weight:1100;
+      }
+      .info-card p{
+        margin:0;
+        color:#667;
+        line-height:1.72;
+        font-size:15px;
+        font-weight:760;
+      }
+
+      .mission-grid{
+        display:grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap:20px;
+      }
+      .mission-card{
+        background:#fff;
+        border:1px solid #eee;
+        border-radius:22px;
+        padding:28px;
+        box-shadow:0 14px 34px rgba(0,0,0,0.06);
+      }
+      .mission-card h2{
+        margin:14px 0 12px;
+        color:${ink};
+        font-size:32px;
+        line-height:1.25;
+        font-weight:1100;
+      }
+      .mission-card p{
+        margin:0;
+        color:#556;
+        line-height:1.8;
+        font-size:16px;
+        font-weight:740;
+      }
+      .cta-strip{
+        margin-top:26px;
+        background:${ink};
+        color:#fff;
+        border-radius:22px;
+        padding:28px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:22px;
+        flex-wrap:wrap;
+        box-shadow:0 18px 42px rgba(0,0,0,0.16);
+      }
+      .cta-strip h2{
+        margin:0;
+        font-size:28px;
+        line-height:1.3;
+        font-weight:1100;
+      }
+      .cta-strip p{
+        margin:10px 0 0;
+        color:rgba(255,255,255,0.82);
+        font-size:16px;
+        line-height:1.7;
       }
 
       .footer{
         background:${dark};
         color:#c9c9c9;
         padding: 60px 0 30px;
-        margin-top: 20px;
       }
       .footer-grid{
         display:grid;
@@ -4411,41 +1000,30 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         padding-bottom: 30px;
         border-bottom: 1px solid rgba(255,255,255,0.10);
       }
-      .f-brand{ 
-        color:white; 
-        font-weight: 1100; 
-        font-size: 20px; 
-        letter-spacing: 0.8px; 
+      .f-brand{
+        color:white;
+        font-weight: 1100;
+        font-size: 20px;
+        letter-spacing: 0.8px;
         margin-bottom: 12px;
       }
-      .f-title{ 
-        color:white; 
-        font-weight: 1000; 
-        letter-spacing: 0.8px; 
-        font-size: 14px; 
-        text-transform:uppercase; 
+      .f-title{
+        color:white;
+        font-weight: 1000;
+        letter-spacing: 0.8px;
+        font-size: 14px;
+        text-transform:uppercase;
         margin-bottom: 12px;
       }
-      .f-muted{ 
-        color: rgba(255,255,255,0.7); 
-        font-weight: 780; 
-        line-height: 1.6; 
-        font-size: 15px; 
+      .f-muted{
+        color: rgba(255,255,255,0.7);
+        font-weight: 780;
+        line-height: 1.6;
+        font-size: 15px;
       }
-      .f-links{ 
-        display:flex; 
-        flex-direction:column; 
-        gap: 10px; 
-        margin-top: 10px; 
-      }
-      .f-links a{ 
-        color:#ddd; 
-        text-decoration:none; 
-        font-weight: 850; 
-        font-size: 15px; 
-      }
+      .f-links{ display:flex; flex-direction:column; gap: 10px; }
+      .f-links a{ color:#ddd; text-decoration:none; font-weight: 850; font-size: 15px; }
       .f-links a:hover{ color:white; }
-
       .f-bottom{
         margin-top: 24px;
         display:flex;
@@ -4457,248 +1035,119 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         font-weight: 800;
         font-size: 14px;
       }
-      .f-mini{ 
-        display:flex; 
-        gap: 12px; 
-        align-items:center; 
-      }
-      .f-mini a{ 
-        color:#ddd; 
-        text-decoration:none; 
-        font-weight: 850; 
-        font-size: 14px; 
+      .f-mini{ display:flex; gap: 12px; align-items:center; }
+      .f-mini a{ color:#ddd; text-decoration:none; font-weight: 850; font-size: 14px; }
+
+      @media (max-width: 1180px){
+        .four-grid{
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .info-card{
+          min-height:230px;
+        }
       }
 
-      @media (max-width: 1100px){
-        .grid-2{ 
-          grid-template-columns: 1fr; 
-        }
+      @media (max-width: 1024px){
+        .nav{ display:none; }
+        .hamburger{ display:flex; }
+        .cta{ display:none; }
         .about-grid{
           grid-template-columns: 1fr;
         }
-        .projects-grid{ 
-          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+        .footer-grid{
+          grid-template-columns: 1fr;
+          gap:30px;
         }
       }
 
-      @media (max-width: 980px){
-        .nav{ display:none; }
-        .hamburger{ display:flex; }
-        .about-hero{ min-height: 500px; }
-        .footer-grid{ grid-template-columns: 1fr; gap: 30px; }
-        .cta{ display:none; }
-      }
-
       @media (max-width: 768px){
-        .section{ padding: 60px 0; }
-        .about-hero h1{ font-size: 36px; }
-        .about-hero p{ font-size: 17px; }
-        .section-title{ font-size: 22px; }
-        .big-title{ font-size: 28px; }
-        .projects-grid{ grid-template-columns: 1fr; }
-        .hero-cta{ flex-direction: column; align-items: center; }
-        .cta-primary, .cta-ghost{ width: 100%; justify-content: center; }
-        .cta-row{ flex-direction: column; }
-        .pbody{ padding: 18px; }
-        .ptitle{ font-size: 18px; }
-        .pdesc{ font-size: 14px; }
-        .details-btn{ padding: 12px; }
+        .container,
+        .topbar-inner{
+          width: min(100% - 28px, 1200px);
+        }
+        .hero{
+          min-height: 590px;
+        }
+        .hero h1{
+          font-size:34px;
+        }
+        .hero p{
+          font-size:16px;
+        }
+        .hero-cta{
+          flex-direction:column;
+          align-items:stretch;
+        }
+        .cta-primary,
+        .cta-ghost,
+        .cta-main{
+          width:100%;
+        }
+        .stats-card,
+        .four-grid,
+        .mission-grid{
+          grid-template-columns: 1fr;
+        }
+        .section{
+          padding:56px 0;
+        }
+        .about-panel{
+          padding:22px;
+          border-radius:20px;
+        }
+        .info-card{
+          min-height:auto;
+        }
+        .cta-strip{
+          padding:24px;
+        }
+        .cta-strip h2{
+          font-size:24px;
+        }
       }
 
       @media (max-width: 480px){
-        .brand{ min-width: 200px; }
-        .brand-title{ font-size: 16px; }
-        .brand-sub{ font-size: 10px; }
-        .about-hero h1{ font-size: 32px; }
-        .about-hero p{ font-size: 16px; }
-        .f-bottom{ flex-direction: column; text-align: center; gap: 12px; }
-        .card{ padding: 20px; }
-        .about-card{ padding: 22px; }
+        .brand{
+          min-width:0;
+          gap:10px;
+        }
+        .brand-icon{
+          width:58px;
+          height:58px;
+        }
+        .brand-title{
+          font-size:14px;
+          max-width:190px;
+        }
+        .brand-sub{
+          font-size:10px;
+        }
+        .topbar,
+        .topbar-inner{
+          height:72px;
+        }
+        .hero{
+          padding-top:72px;
+          min-height:560px;
+        }
+        .hero h1{
+          font-size:30px;
+        }
+        .dot{
+          width:38px;
+        }
+        .drawer{
+          width:100vw;
+          max-width:100vw;
+        }
+        .highlight-list div{
+          font-size:14px;
+        }
+        .f-bottom{
+          flex-direction:column;
+          text-align:center;
+        }
       }
-
-/* HEADER */
-      .topbar{
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        height: 80px;
-        z-index: 3000;
-        background: rgba(10,10,10,0.85);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-      }
-      .topbar-inner{
-        height: 80px;
-        width: min(1200px, 94vw);
-        margin: 0 auto;
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        gap: 20px;
-      }
-      .brand{
-        display:flex; align-items:center; gap: 14px;
-        text-decoration:none; color:white;
-        min-width: 240px;
-      }
-     .brand-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 88px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  flex-shrink: 0;
-}
-
-.brand-logo {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-      .brand-text{ line-height: 1.1; }
-      .brand-title{ font-weight: 1000; letter-spacing: 0.8px; font-size: 18px; }
-      .brand-sub{ font-weight: 900; font-size: 12px; letter-spacing: 2px; opacity: 0.85; }
-
-      .nav{
-        display:flex; align-items:center; gap: 24px;
-        flex: 1;
-        justify-content:center;
-      }
-      .nav-link{
-        color: rgba(255,255,255,0.88);
-        text-decoration:none;
-        font-weight: 900;
-        font-size: 14px;
-        letter-spacing: 1px;
-        white-space: nowrap;
-      }
-      .nav-link:hover{ color: white; }
-      .nav-link.active{ color: white; }
-
-      .right-actions{
-        display:flex;
-        align-items:center;
-        gap: 12px;
-        min-width: 180px;
-        justify-content: flex-end;
-      }
-      .cta{
-        background: ${brand};
-        color: white;
-        text-decoration:none;
-        font-weight: 1000;
-        border-radius: 12px;
-        padding: 14px 20px;
-        letter-spacing: 0.8px;
-        font-size: 14px;
-        box-shadow: 0 12px 26px rgba(179,89,0,0.25);
-        white-space: nowrap;
-      }
-      .hamburger{
-        display:none;
-        border: 1px solid rgba(255,255,255,0.18);
-        background: rgba(255,255,255,0.10);
-        color:white;
-        width: 46px;
-        height: 46px;
-        border-radius: 12px;
-        cursor:pointer;
-        align-items:center;
-        justify-content:center;
-        padding: 0;
-      }
-
-      /* drawer */
-      .drawer-overlay{
-        position: fixed; inset:0;
-        background: rgba(0,0,0,0.5);
-        z-index: 2800;
-        opacity:0; pointer-events:none;
-        transition: 0.25s;
-      }
-      .drawer-overlay.show{ opacity:1; pointer-events:auto; }
-      .drawer{
-        position: fixed; top: 0; right: 0;
-        height: 100dvh;
-        max-height: 100vh;
-        overflow-y: auto;
-        width: min(380px, 86vw);
-        background: #0e0e0e;
-        z-index: 2900;
-        transform: translateX(100%);
-        transition: transform 0.25s;
-        border-left: 1px solid rgba(255,255,255,0.08);
-        padding: 20px;
-        display:flex; flex-direction:column; gap: 16px;
-      }
-      .drawer.show{ transform: translateX(0); }
-      .drawer-head{ display:flex; align-items:center; justify-content:space-between; }
-      .drawer-title{ color:white; font-weight: 1000; letter-spacing:0.7px; font-size: 18px; }
-      .drawer-close{
-        border: 1px solid rgba(255,255,255,0.18);
-        background: rgba(255,255,255,0.10);
-        color:white;
-        width: 42px; height: 42px;
-        border-radius: 12px;
-        cursor:pointer;
-        display:flex; align-items:center; justify-content:center;
-      }
-      .drawer-links{ display:flex; flex-direction:column; gap: 12px; margin-top: 8px; }
-      .dlink{
-        display:flex; align-items:center; gap: 12px;
-        color: rgba(255,255,255,0.92);
-        text-decoration:none;
-        padding: 14px 16px;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.08);
-        font-weight: 900;
-        font-size: 15px;
-      }
-      .dlink.active{ background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.16); }
-      .dcta{
-        margin-top: 10px;
-        background: ${brand};
-        color:white;
-        text-decoration:none;
-        padding: 14px 16px;
-        border-radius: 12px;
-        font-weight: 1000;
-        text-align:center;
-        font-size: 15px;
-      }
-      .drawer-foot{
-        margin-top:auto;
-        border-top: 1px solid rgba(255,255,255,0.10);
-        padding-top: 16px;
-        display:flex; flex-direction:column; gap: 10px;
-      }
-      .df-muted{ color: rgba(255,255,255,0.55); font-weight: 900; font-size: 12px; letter-spacing:0.8px; text-transform:uppercase; }
-      .df-link{ color: white; text-decoration:none; font-weight: 900; font-size: 15px; }
-
-      
-      /* SAME HOME HEADER OVERRIDE */
-      .topbar{ position:fixed; top:0; left:0; right:0; height:80px; z-index:3000; background:#180704; backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,0.08); }
-      .topbar-inner{ height:80px; width:min(1200px,94vw); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:20px; }
-      .brand{ display:flex; align-items:center; gap:14px; text-decoration:none; color:white; min-width:240px; }
-      .brand-icon{ width:80px; height:80px; border-radius:88px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:transparent; flex-shrink:0; }
-      .brand-logo{ width:100%; height:100%; object-fit:contain; display:block; }
-      .brand-text{ line-height:1.1; }
-      .brand-title{ font-weight:1000; letter-spacing:.8px; font-size:18px; color:white; }
-      .brand-sub{ font-weight:900; font-size:12px; letter-spacing:2px; opacity:.85; color:white; }
-      .nav{ display:flex; align-items:center; gap:24px; flex:1; justify-content:center; }
-      .nav-link{ color:rgba(255,255,255,.88); text-decoration:none; font-weight:900; font-size:14px; letter-spacing:1px; white-space:nowrap; }
-      .nav-link:hover,.nav-link.active{ color:white; }
-      .right-actions{ display:flex; align-items:center; gap:12px; min-width:180px; justify-content:flex-end; }
-      .cta{ background:#4A1D0D; color:white; text-decoration:none; font-weight:1000; border-radius:12px; padding:14px 20px; letter-spacing:.8px; font-size:14px; box-shadow:0 12px 26px rgba(179,89,0,.25); white-space:nowrap; border:0; }
-      .hamburger{ display:none; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.10); color:white; width:46px; height:46px; border-radius:12px; cursor:pointer; align-items:center; justify-content:center; padding:0; }
-      @media (max-width:980px){ .nav{display:none!important;} .hamburger{display:flex!important;} .cta{display:none!important;} }
-      @media (max-width:480px){ .brand{min-width:200px;} .brand-title{font-size:16px;} .brand-sub{font-size:10px;} }
-      @media (max-width:400px){ .drawer{width:100vw; max-width:100vw; padding:14px;} .dlink{font-size:14px; padding:12px 14px;} .dcta{padding:12px 14px; font-size:14px;} }
-
     `,
       }}
     />
