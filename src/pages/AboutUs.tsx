@@ -42,13 +42,13 @@ const HERO_IMAGES = [
 const COMPANY = {
   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
   shortName: "SHIVSHAKTI REAL ESTATE ADVISORY",
-  cin: "U45200MH1999PTC122379",
+  
   roc: "ROC Mumbai",
-  email: "secretarial@systematixgroup.in",
+  email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-  phone: "+91 89560 32764",
-  whatsapp: "918956032764",
+    "Sakinaka Andheri East Mumbai 400072",
+  phone: "+91 9987281075",
+  whatsapp: "91 9987281075",
 };
 
 function Header({
@@ -417,7 +417,7 @@ export default function AboutPage() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">{COMPANY.name}</div>
-            <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
+            
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: {COMPANY.registeredAddress}
             </div>

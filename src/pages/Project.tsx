@@ -169,10 +169,10 @@
 
 // //         <div className="drawer-foot">
 // //           <div className="df-muted">Quick Actions</div>
-// //           <a className="df-link" href="tel:+918956032764">Call Us</a>
+// //           <a className="df-link" href="tel:+919987281075">Call Us</a>
 // //           <a
 // //             className="df-link"
-// //             href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+// //             href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 // //             target="_blank"
 // //             rel="noreferrer"
 // //           >
@@ -490,7 +490,7 @@
 // //                       </a>
 // //                       <a
 // //                         className="btn-whatsapp"
-// //                         href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
+// //                         href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
 // //                         target="_blank"
 // //                         rel="noreferrer"
 // //                       >
@@ -534,7 +534,7 @@
 // //                   )}
 
 // //                   <div className="modal-cta">
-// //                     <a href="tel:+918956032764" className="cta-call"><Phone size={18} /> Contact Sales</a>
+// //                     <a href="tel:+919987281075" className="cta-call"><Phone size={18} /> Contact Sales</a>
 // //                     <Link to="/contact" className="cta-visit">Schedule Site Visit <ArrowRight size={18} /></Link>
 // //                   </div>
 // //                 </div>
@@ -549,7 +549,7 @@
 // //         <div className="container footer-grid">
 // //           <div>
 // //             <div className="f-brand">SHIV SHAKTI REAL ESTATE PRIVATE LIMITED</div>
-// //             <div className="f-muted">CIN: U45200MH1999PTC122379 • ROC Mumbai</div>
+// //             <div className="f-muted"></div>
 // //             <div className="f-muted" style={{ marginTop: 10 }}>
 // //               Registered Office: The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block,
 // //               Bandra Kurla Complex, Bandra East, Mumbai 400051.
@@ -571,10 +571,10 @@
 // //           <div>
 // //             <div className="f-title">Contact</div>
 // //             <div className="f-links">
-// //               <a href="tel:+918956032764">+91 89560 32764</a>
-// //               <a href="mailto:secretarial@systematixgroup.in">secretarial@systematixgroup.in</a>
+// //               <a href="tel:+919987281075">+91 9987281075</a>
+// //               <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
 // //               <a
-// //                 href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+// //                 href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 // //                 target="_blank"
 // //                 rel="noreferrer"
 // //               >
@@ -1089,10 +1089,10 @@
 
 //         <div className="drawer-foot">
 //           <div className="df-muted">Quick Actions</div>
-//           <a className="df-link" href="tel:+918956032764">Call Us</a>
+//           <a className="df-link" href="tel:+919987281075">Call Us</a>
 //           <a
 //             className="df-link"
-//             href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+//             href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 //             target="_blank"
 //             rel="noreferrer"
 //           >
@@ -1410,7 +1410,7 @@
 //                       </a>
 //                       <a
 //                         className="btn-whatsapp"
-//                         href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
+//                         href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
 //                         target="_blank"
 //                         rel="noreferrer"
 //                       >
@@ -1454,7 +1454,7 @@
 //                   )}
 
 //                   <div className="modal-cta">
-//                     <a href="tel:+918956032764" className="cta-call"><Phone size={20} /> Contact Sales</a>
+//                     <a href="tel:+919987281075" className="cta-call"><Phone size={20} /> Contact Sales</a>
 //                     <Link to="/contact" className="cta-visit">Schedule Site Visit <ArrowRight size={20} /></Link>
 //                   </div>
 //                 </div>
@@ -1469,7 +1469,7 @@
 //         <div className="container footer-grid">
 //           <div>
 //             <div className="f-brand">SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
-//             <div className="f-muted">CIN: U45200MH1999PTC122379 • ROC Mumbai</div>
+//             <div className="f-muted"></div>
 //             <div className="f-muted" style={{ marginTop: 10 }}>
 //               Registered Office: The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block,
 //               Bandra Kurla Complex, Bandra East, Mumbai 400051.
@@ -1491,10 +1491,10 @@
 //           <div>
 //             <div className="f-title">Contact</div>
 //             <div className="f-links">
-//               <a href="tel:+918956032764">+91 89560 32764</a>
-//               <a href="mailto:secretarial@systematixgroup.in">secretarial@systematixgroup.in</a>
+//               <a href="tel:+919987281075">+91 9987281075</a>
+//               <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
 //               <a
-//                 href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+//                 href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 //                 target="_blank"
 //                 rel="noreferrer"
 //               >
@@ -2491,10 +2491,10 @@ function Header({
 
         <div className="drawer-foot">
           <div className="df-muted">Quick Actions</div>
-          <a className="df-link" href="tel:+919999999999">Call Us</a>
+          <a className="df-link" href="tel:+919987281075">Call Us</a>
           <a
             className="df-link"
-            href={`https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20your%20projects`}
+            href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
             target="_blank"
             rel="noreferrer"
           >
@@ -2873,7 +2873,7 @@ export default function ProjectsPage() {
                       </a>
                       <a
                         className="btn-whatsapp"
-                        href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
+                        href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20for%20${encodeURIComponent(p.title)}`}
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -2929,7 +2929,7 @@ export default function ProjectsPage() {
                   )}
 
                   <div className="modal-cta">
-                    <a href="tel:+918956032764" className="cta-call"><Phone size={20} /> Contact Sales</a>
+                    <a href="tel:+919987281075" className="cta-call"><Phone size={20} /> Contact Sales</a>
                     <Link to="/contact" className="cta-visit">Schedule Site Visit <ArrowRight size={20} /></Link>
                   </div>
                 </div>
@@ -3000,10 +3000,9 @@ export default function ProjectsPage() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
-            <div className="f-muted">CIN: U45200MH1999PTC122379 • ROC Mumbai</div>
+            <div className="f-muted"></div>
             <div className="f-muted" style={{ marginTop: 10 }}>
-              Registered Office: The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block,
-              Bandra Kurla Complex, Bandra East, Mumbai 400051.
+              Registered Office: Sakinaka Andheri East Mumbai 400072
             </div>
           </div>
 
@@ -3022,10 +3021,10 @@ export default function ProjectsPage() {
           <div>
             <div className="f-title">Contact</div>
             <div className="f-links">
-              <a href="tel:+918956032764">+91 89560 32764</a>
-              <a href="mailto:secretarial@systematixgroup.in">secretarial@systematixgroup.in</a>
+              <a href="tel:+919987281075">+91 9987281075</a>
+              <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
               <a
-                href={`https://wa.me/918956032764?text=Hi%20I%20want%20details%20about%20your%20projects`}
+                href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
                 target="_blank"
                 rel="noreferrer"
               >

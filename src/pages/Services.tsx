@@ -36,13 +36,13 @@
 
 // // // const COMPANY = {
 // // //   name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
-// // //   cin: "U45200MH1999PTC122379",
+// // //   
 // // //   roc: "ROC Mumbai",
-// // //   email: "secretarial@systematixgroup.in",
+// // //   email: "shivshaktirealestateadvisory@gmail.com",
 // // //   registeredAddress:
 // // //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// // //   phone: "+91 99999 99999",
-// // //   whatsapp: "919999999999",
+// // //   phone: "+91 9987281075",
+// // //   whatsapp: "919987281075",
 // // // };
 
 // // // function Header({
@@ -828,13 +828,13 @@
 // // ];
 // // const COMPANY = {
 // //   name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-// //   cin: "U45200MH1999PTC122379",
+// //   
 // //   roc: "ROC Mumbai",
-// //   email: "secretarial@systematixgroup.in",
+// //   email: "shivshaktirealestateadvisory@gmail.com",
 // //   registeredAddress:
 // //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// //   phone: "+91 89560 32764",
-// //   whatsapp: "918956032764",
+// //   phone: "+91 9987281075",
+// //   whatsapp: "919987281075",
 // // };
 
 // // function Header({
@@ -1903,13 +1903,13 @@
 // ];
 // const COMPANY = {
 //   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-//   cin: "U45200MH1999PTC122379",
+//   
 //   roc: "ROC Mumbai",
-//   email: "secretarial@systematixgroup.in",
+//   email: "shivshaktirealestateadvisory@gmail.com",
 //   registeredAddress:
 //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-//   phone: "+91 89560 32764",
-//   whatsapp: "918956032764",
+//   phone: "+91 9987281075",
+//   whatsapp: "919987281075",
 // };
 
 // function Header({
@@ -2051,10 +2051,10 @@
 
 //         <div className="drawer-foot">
 //           <div className="df-muted">Quick Actions</div>
-//           <a className="df-link" href="tel:+919999999999">Call Us</a>
+//           <a className="df-link" href="tel:+919987281075">Call Us</a>
 //           <a
 //             className="df-link"
-//             href={`https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20your%20projects`}
+//             href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 //             target="_blank"
 //             rel="noreferrer"
 //           >
@@ -3167,13 +3167,13 @@ const HERO_IMAGES = [
 
 const COMPANY = {
   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-  cin: "U45200MH1999PTC122379",
+  
   roc: "ROC Mumbai",
-  email: "secretarial@systematixgroup.in",
+  email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-  phone: "+91 89560 32764",
-  whatsapp: "918956032764",
+    "Sakinaka Andheri East Mumbai 400072",
+  phone: "+91 9987281075",
+  whatsapp: "91 9987281075",
 };
 
 const SERVICES = [
@@ -3488,7 +3488,7 @@ export default function ServicesPage() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">{COMPANY.name}</div>
-            <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
+           
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: {COMPANY.registeredAddress}
             </div>

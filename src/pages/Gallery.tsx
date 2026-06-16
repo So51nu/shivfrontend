@@ -3302,10 +3302,10 @@ function Header({
 
         <div className="drawer-foot">
           <div className="df-muted">Quick Actions</div>
-          <a className="df-link" href="tel:+919999999999">Call Us</a>
+          <a className="df-link" href="tel:+919987281075">Call Us</a>
           <a
             className="df-link"
-            href={`https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20your%20projects`}
+            href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
             target="_blank"
             rel="noreferrer"
           >

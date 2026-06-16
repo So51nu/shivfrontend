@@ -360,13 +360,13 @@
 
 // const COMPANY = {
 //   name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-//   cin: "U45200MH1999PTC122379",
+//   
 //   roc: "ROC Mumbai",
-//   email: "secretarial@systematixgroup.in",
+//   email: "shivshaktirealestateadvisory@gmail.com",
 //   registeredAddress:
 //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-//   phone: "+918956032764",
-//   whatsapp: "918956032764",
+//   phone: "+919987281075",
+//   whatsapp: "919987281075",
 // };
 
 // // ───────────────────────────────────────────────────────────────────────────────
@@ -1320,13 +1320,13 @@ const THEME = {
 
 const COMPANY = {
   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-  cin: "U45200MH1999PTC122379",
+  
   roc: "ROC Mumbai",
-  email: "secretarial@systematixgroup.in",
+  email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-  phone: "+918956032764",
-  whatsapp: "918956032764",
+    "Sakinaka Andheri East Mumbai 400072",
+  phone: "+919987281075",
+  whatsapp: "919987281075",
 };
 
 // ───────────────────────────────────────────────────────────────────────────────
@@ -1597,7 +1597,7 @@ export default function Login() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">{COMPANY.name}</div>
-            <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
+            
             <div className="f-muted" style={{ marginTop: 10 }}>
               Registered Office: {COMPANY.registeredAddress}
             </div>

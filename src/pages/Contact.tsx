@@ -78,13 +78,13 @@
 
 // // // const COMPANY = {
 // // //   name: "SHIV SHAKTI REAL ESTATE PRIVATE LIMITED",
-// // //   cin: "U45200MH1999PTC122379",
+// // //   
 // // //   roc: "ROC Mumbai",
-// // //   email: "secretarial@systematixgroup.in",
+// // //   email: "shivshaktirealestateadvisory@gmail.com",
 // // //   registeredAddress:
 // // //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// // //   phone: "+918956032764",
-// // //   whatsapp: "918956032764",
+// // //   phone: "+919987281075",
+// // //   whatsapp: "919987281075",
 // // // };
 
 // // // // ───────────────────────────────────────────────────────────────────────────────
@@ -516,7 +516,7 @@
 // // //               text="6thFloor,No.603-606,PlotNo.C-70,G-Block,BandraKurlaComplex,B andra East , Mumbai, Maharashtra, India - 400051"
 // // //             />
 // // //             <AddressItem icon={<Mail color={THEME.brand} />} title="Email Support" text="shivshaktirealstatepvtlts.in@gmail.com" />
-// // //             <AddressItem icon={<Phone color={THEME.brand} />} title="Let’s Talk" text="+91 8956032764 / +91 8956062764" />
+// // //             <AddressItem icon={<Phone color={THEME.brand} />} title="Let’s Talk" text="+91 9987281075 / +91 8956062764" />
 // // //             <AddressItem icon={<Clock color={THEME.brand} />} title="Office Hour" text="Monday - Saturday: 10:00 - 17:00" />
 // // //           </div>
 // // //         </div>
@@ -1116,13 +1116,13 @@
 
 // // const COMPANY = {
 // //   name: "SHIV SHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-// //   cin: "U45200MH1999PTC122379",
+// //   
 // //   roc: "ROC Mumbai",
-// //   email: "secretarial@systematixgroup.in",
+// //   email: "shivshaktirealestateadvisory@gmail.com",
 // //   registeredAddress:
 // //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-// //   phone: "+918956032764",
-// //   whatsapp: "918956032764",
+// //   phone: "+919987281075",
+// //   whatsapp: "919987281075",
 // // };
 
 // // // ───────────────────────────────────────────────────────────────────────────────
@@ -1567,8 +1567,8 @@
 // //               title="Registered Address"
 // //               text="The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051"
 // //             />
-// //             <AddressItem icon={<Mail color={THEME.brand} />} title="Email Support" text="secretarial@systematixgroup.in" />
-// //             <AddressItem icon={<Phone color={THEME.brand} />} title="Phone Number" text="+91 89560 32764 / +91 89560 62764" />
+// //             <AddressItem icon={<Mail color={THEME.brand} />} title="Email Support" text="shivshaktirealestateadvisory@gmail.com" />
+// //             <AddressItem icon={<Phone color={THEME.brand} />} title="Phone Number" text="+91 9987281075 / +91 89560 62764" />
 // //             <AddressItem icon={<Clock color={THEME.brand} />} title="Office Hours" text="Monday - Saturday: 10:00 AM - 6:00 PM" />
 // //           </div>
 // //         </div>
@@ -2383,13 +2383,13 @@
 
 // const COMPANY = {
 //   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-//   cin: "U45200MH1999PTC122379",
+//   
 //   roc: "ROC Mumbai",
-//   email: "secretarial@systematixgroup.in",
+//   email: "shivshaktirealestateadvisory@gmail.com",
 //   registeredAddress:
 //     "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-//   phone: "+918956032764",
-//   whatsapp: "918956032764",
+//   phone: "+919987281075",
+//   whatsapp: "919987281075",
 // };
 
 // // ───────────────────────────────────────────────────────────────────────────────
@@ -2534,10 +2534,10 @@
 
 //         <div className="drawer-foot">
 //           <div className="df-muted">Quick Actions</div>
-//           <a className="df-link" href="tel:+919999999999">Call Us</a>
+//           <a className="df-link" href="tel:+919987281075">Call Us</a>
 //           <a
 //             className="df-link"
-//             href={`https://wa.me/919999999999?text=Hi%20I%20want%20details%20about%20your%20projects`}
+//             href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
 //             target="_blank"
 //             rel="noreferrer"
 //           >
@@ -2816,8 +2816,8 @@
 //               title="Registered Address"
 //               text="The Capital, A Wing, 6th Floor, No.603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051"
 //             />
-//             <AddressItem icon={<Mail color={THEME.brand} />} title="Email Support" text="secretarial@systematixgroup.in" />
-//             <AddressItem icon={<Phone color={THEME.brand} />} title="Phone Number" text="+91 89560 32764 / +91 89560 62764" />
+//             <AddressItem icon={<Mail color={THEME.brand} />} title="Email Support" text="shivshaktirealestateadvisory@gmail.com" />
+//             <AddressItem icon={<Phone color={THEME.brand} />} title="Phone Number" text="+91 9987281075 / +91 89560 62764" />
 //             <AddressItem icon={<Clock color={THEME.brand} />} title="Office Hours" text="Monday - Saturday: 10:00 AM - 6:00 PM" />
 //           </div>
 //         </div>
@@ -3811,14 +3811,14 @@ const heroImages = [
 
 const COMPANY = {
   name: "SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED",
-  cin: "U45200MH1999PTC122379",
+  
   roc: "ROC Mumbai",
-  email: "secretarial@systematixgroup.in",
+  email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "The Capital, A Wing, 6th Floor, No. 603-606, Plot No. C-70, G-Block, Bandra Kurla Complex, Bandra East, Mumbai, Maharashtra, India - 400051",
-  phone: "+918956032764",
-  phoneLabel: "+91 89560 32764 / +91 89560 62764",
-  whatsapp: "918956032764",
+    "Sakinaka Andheri East Mumbai 400072",
+  phone: "+91 9987281075",
+  phoneLabel: "+91 9987281075 ",
+  whatsapp: "919987281075",
 };
 
 const CONTACT_HIGHLIGHTS = [
@@ -4254,7 +4254,7 @@ export default function ContactUsRealEstate() {
         <div className="container footer-grid">
           <div>
             <div className="f-brand">{COMPANY.name}</div>
-            <div className="f-muted">CIN: {COMPANY.cin} • {COMPANY.roc}</div>
+            
             <div className="f-muted" style={{ marginTop: 10 }}>Registered Office: {COMPANY.registeredAddress}</div>
           </div>
 
