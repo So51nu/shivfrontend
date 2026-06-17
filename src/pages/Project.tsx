@@ -3002,7 +3002,7 @@ export default function ProjectsPage() {
             <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted"></div>
             <div className="f-muted" style={{ marginTop: 10 }}>
-              Registered Office: Sakinaka Andheri East Mumbai 400072
+              Registered Office: 202 2nd Floor Near Teli Gali Andheri East Mumbai 400072
             </div>
           </div>
 
