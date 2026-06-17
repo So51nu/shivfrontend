@@ -46,7 +46,7 @@ const COMPANY = {
   roc: "ROC Mumbai",
   email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "202 2nd Floor Near Teli Gali Andheri East Mumbai 400072",
+    "202 2nd Floor Near Teli Gali Andheri East Mumbai 400069",
   phone: "+91 9987281075",
   whatsapp: "91 9987281075",
 };
