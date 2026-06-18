@@ -658,7 +658,7 @@
 // // //               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
 // // //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
 // // //                   <MapPin size={16} color={COLORS.gold} />
-// // //                   <span>Sector 4, Industrial Area, Mumbai - 400072</span>
+// // //                   <span>Sector 4, Industrial Area, Mumbai - 400069</span>
 // // //                 </div>
 // // //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
 // // //                   <Phone size={16} color={COLORS.gold} />
@@ -1772,7 +1772,7 @@
 // //               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
 // //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
 // //                   <MapPin size={16} color={COLORS.gold} />
-// //                   <span>Sector 4, Industrial Area, Mumbai - 400072</span>
+// //                   <span>Sector 4, Industrial Area, Mumbai - 400069</span>
 // //                 </div>
 // //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
 // //                   <Phone size={16} color={COLORS.gold} />
@@ -3001,7 +3001,7 @@
 //             <div>
 //               <h4 style={{ color: 'white', fontSize: '16px', marginBottom: '20px', fontWeight: '700' }}>Contact Info</h4>
 //               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-//                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={16} color={COLORS.gold} /><span>Sector 4, Industrial Area, Mumbai - 400072</span></div>
+//                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={16} color={COLORS.gold} /><span>Sector 4, Industrial Area, Mumbai - 400069</span></div>
 //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Phone size={16} color={COLORS.gold} /><span>+91 98765 43210</span></div>
 //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Mail size={16} color={COLORS.gold} /><span>info@devplastics.com</span></div>
 //                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Maximize2 size={16} color={COLORS.gold} /><span>Gallery Updated Monthly</span></div>
@@ -4364,7 +4364,7 @@ export default function Gallery() {
             <div>
               <h4 style={{ color: 'white', fontSize: '16px', marginBottom: '20px', fontWeight: '700' }}>Contact Info</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={16} color={COLORS.gold} /><span>Sector 4, Industrial Area, Mumbai - 400072</span></div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><MapPin size={16} color={COLORS.gold} /><span>Sector 4, Industrial Area, Mumbai - 400069</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Phone size={16} color={COLORS.gold} /><span>+91 98765 43210</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Mail size={16} color={COLORS.gold} /><span>info@devplastics.com</span></div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}><Maximize2 size={16} color={COLORS.gold} /><span>Gallery Updated Monthly</span></div>

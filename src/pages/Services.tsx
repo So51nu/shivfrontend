@@ -3171,7 +3171,7 @@ const COMPANY = {
   roc: "ROC Mumbai",
   email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "Sakinaka Andheri East Mumbai 400072",
+    "Sakinaka Andheri East Mumbai 400069",
   phone: "+91 9987281075",
   whatsapp: "91 9987281075",
 };
