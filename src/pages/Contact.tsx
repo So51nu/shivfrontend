@@ -4275,6 +4275,7 @@ export default function ContactUsRealEstate() {
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
               <a href={`tel:${COMPANY.phone}`}>{COMPANY.phoneLabel}</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20to%20discuss%20real%20estate%20advisory%20services`} target="_blank" rel="noreferrer">WhatsApp Chat</a>
               <a href="#lead-form">Get Quote</a>
             </div>
@@ -4420,7 +4421,11 @@ function GlobalFixStyles() {
           .map-link img { width: 100%; height: 100%; object-fit: cover; }
           .map-overlay { position: absolute; left: 18px; bottom: 18px; background: rgba(0,0,0,0.68); color: white; padding: 10px 14px; border-radius: 10px; font-size: 14px; font-weight: 900; }
 
-          .footer { background: ${THEME.dark}; color: #c9c9c9; padding: 60px 0 30px; }
+            .footer{
+            background: #4F200D;
+            color: #180704;
+            padding: 60px 0 30px;
+          }
           .footer-grid { display: grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 24px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.10); }
           .f-brand { color: white; font-weight: 1100; font-size: 20px; letter-spacing: 0.8px; margin-bottom: 12px; }
           .f-title { color: white; font-weight: 1000; letter-spacing: 0.8px; font-size: 14px; text-transform: uppercase; margin-bottom: 12px; }

@@ -3171,7 +3171,7 @@ const COMPANY = {
   roc: "ROC Mumbai",
   email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "202 2nd Floor Near Teli Gali Andheri East Mumbai 400069",
+    "Sakinaka Andheri East Mumbai 400072",
   phone: "+91 9987281075",
   whatsapp: "91 9987281075",
 };
@@ -3418,7 +3418,7 @@ export default function ServicesPage() {
             <span className="section-kicker">FEATURED SERVICES</span>
             <h2>Complete Services For Real Estate Growth</h2>
             <p>
-              Inspired by Stratum’s service structure, this section is replaced with mandate marketing,
+              Inspired by ShivShakti Real Estate Advisory Pvt Ltd.’s service , mandate marketing,
               agency agreements, channel partner management, brand building, market strategy and full-service consultancy.
             </p>
           </div>
@@ -3511,6 +3511,7 @@ export default function ServicesPage() {
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
               <a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a
                 href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20details%20about%20your%20services`}
                 target="_blank"
@@ -3578,7 +3579,7 @@ function ServiceCard({
   );
 }
 
-function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
+function GlobalStyles({ brand, ink }: { brand: string; ink: string; dark: string }) {
   return (
     <style
       dangerouslySetInnerHTML={{
@@ -3708,7 +3709,11 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
       .cta-mini.green{ background: #00c853; border-color: #00c853; }
       .cta-main{ background: ${brand}; padding: 16px 24px; font-size: 16px; }
 
-      .footer{ background:${dark}; color:#c9c9c9; padding: 60px 0 30px; margin-top: 20px; }
+        .footer{
+  background: #4F200D;
+  color: #180704;
+  padding: 60px 0 30px;
+}
       .footer-grid{ display:grid; grid-template-columns: 1.4fr 0.8fr 0.8fr; gap: 24px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.10); }
       .f-brand{ color:white; font-weight: 1000; font-size: 20px; letter-spacing: 0.8px; margin-bottom: 12px; }
       .f-title{ color:white; font-weight: 1000; letter-spacing: 0.8px; font-size: 14px; text-transform:uppercase; margin-bottom: 12px; }

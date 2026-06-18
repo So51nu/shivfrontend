@@ -1324,7 +1324,7 @@ const COMPANY = {
   roc: "ROC Mumbai",
   email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "202 2nd Floor Near Teli Gali Andheri East Mumbai 400069",
+    "Sakinaka Andheri East Mumbai 400072",
   phone: "+919987281075",
   whatsapp: "919987281075",
 };
@@ -1619,7 +1619,9 @@ export default function Login() {
             <div className="f-title">Contact</div>
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+        
               <a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a
                 href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20details%20about%20your%20projects`}
                 target="_blank"
@@ -1647,7 +1649,7 @@ export default function Login() {
 // ───────────────────────────────────────────────────────────────────────────────
 // GLOBAL STYLES
 // ───────────────────────────────────────────────────────────────────────────────
-function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
+function GlobalStyles({ brand, ink }: { brand: string; ink: string; dark: string }) {
   return (
     <style dangerouslySetInnerHTML={{ __html: `
       html, body { 
@@ -2111,11 +2113,10 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
       }
 
       /* ✅ footer (Consistent with other pages) */
-      .footer{
-        background:${dark};
-        color:#c9c9c9;
+        .footer{
+        background: #4F200D;
+        color: #180704;
         padding: 60px 0 30px;
-        margin-top: 20px;
       }
       .footer-grid{
         display:grid;

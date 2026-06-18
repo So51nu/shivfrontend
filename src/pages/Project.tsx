@@ -3002,7 +3002,7 @@ export default function ProjectsPage() {
             <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted"></div>
             <div className="f-muted" style={{ marginTop: 10 }}>
-              Registered Office: 202 2nd Floor Near Teli Gali Andheri East Mumbai 400069
+              Registered Office: Sakinaka Andheri East Mumbai 400072
             </div>
           </div>
 
@@ -3023,6 +3023,7 @@ export default function ProjectsPage() {
             <div className="f-links">
               <a href="tel:+919987281075">+91 9987281075</a>
               <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a
                 href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
                 target="_blank"
@@ -3047,7 +3048,7 @@ export default function ProjectsPage() {
   );
 }
 
-function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
+function GlobalStyles({ brand, ink }: { brand: string; ink: string; dark: string }) {
   return (
     <style dangerouslySetInnerHTML={{ __html: `
       html, body { width:100%; min-height:100%; margin:0; padding:0; overflow-x:hidden; font-size: 16px; }
@@ -3887,12 +3888,11 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
       .image-lightbox-nav.next{ right: 24px; }
 
       /* ✅ footer (same as home) */
-      .footer{ 
-        background:${dark}; 
-        color:#c9c9c9; 
-        padding: 60px 0 30px; 
-        margin-top: 20px; 
-      }
+        .footer{
+  background: #4F200D;
+  color: #180704;
+  padding: 60px 0 30px;
+}
       .footer-grid{
         display:grid;
         grid-template-columns: 1.4fr 0.8fr 0.8fr;

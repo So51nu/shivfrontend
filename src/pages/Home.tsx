@@ -4730,7 +4730,7 @@ export default function HomePage() {
             <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted"></div>
             <div className="f-muted" style={{ marginTop: 10 }}>
-              Registered Office: 202 2nd Floor Near Teli Gali Andheri East Mumbai 400069
+              Registered Office: Sakinaka Andheri East Mumbai 400072
             </div>
           </div>
 
@@ -4750,7 +4750,9 @@ export default function HomePage() {
             <div className="f-title">Contact</div>
             <div className="f-links">
               <a href="tel:+919987281075">+91 9987281075</a>
+
               <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a
                 href="https://wa.me/919987281075?text=Hi%20I%20want%20to%20discuss%20a%20real%20estate%20mandate"
                 target="_blank"
@@ -4758,6 +4760,7 @@ export default function HomePage() {
               >
                 WhatsApp Chat
               </a>
+              
             </div>
           </div>
         </div>
@@ -4805,7 +4808,6 @@ function GlobalStyles({
   brand,
   brand2,
   ink,
-  dark,
 }: {
   brand: string;
   brand2: string;
@@ -5396,7 +5398,11 @@ function GlobalStyles({
         color: white;
       }
 
-      .footer{ background:${dark}; color:#c9c9c9; padding: 60px 0 30px; }
+      .footer{
+  background: #4F200D;
+  color: #180704;
+  padding: 60px 0 30px;
+}
       .footer-grid{
         display:grid;
         grid-template-columns: 1.4fr 0.8fr 0.8fr;

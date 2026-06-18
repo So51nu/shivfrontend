@@ -46,7 +46,7 @@ const COMPANY = {
   roc: "ROC Mumbai",
   email: "shivshaktirealestateadvisory@gmail.com",
   registeredAddress:
-    "202 2nd Floor Near Teli Gali Andheri East Mumbai 400069",
+    "Sakinaka Andheri East Mumbai 400072",
   phone: "+91 9987281075",
   whatsapp: "91 9987281075",
 };
@@ -440,6 +440,7 @@ export default function AboutPage() {
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
               <a href={`tel:${COMPANY.phone}`}>{COMPANY.phone}</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
               <a
                 href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20to%20discuss%20a%20real%20estate%20mandate`}
                 target="_blank"
@@ -490,7 +491,7 @@ function InfoCard({ icon, title, desc }: { icon: React.ReactNode; title: string;
   );
 }
 
-function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: string }) {
+function GlobalStyles({ brand, ink }: { brand: string; ink: string; dark: string }) {
   return (
     <style
       dangerouslySetInnerHTML={{
@@ -988,11 +989,11 @@ function GlobalStyles({ brand, ink, dark }: { brand: string; ink: string; dark: 
         line-height:1.7;
       }
 
-      .footer{
-        background:${dark};
-        color:#c9c9c9;
-        padding: 60px 0 30px;
-      }
+        .footer{
+  background: #4F200D;
+  color: #180704;
+  padding: 60px 0 30px;
+}
       .footer-grid{
         display:grid;
         grid-template-columns: 1.4fr 0.8fr 0.8fr;
