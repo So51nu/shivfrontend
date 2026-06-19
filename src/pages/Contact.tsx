@@ -4275,7 +4275,7 @@ export default function ContactUsRealEstate() {
             <div className="f-links">
               <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
               <a href={`tel:${COMPANY.phone}`}>{COMPANY.phoneLabel}</a>
-              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website : https://shivshaktirealestateadvisory.com</a>
               <a href={`https://wa.me/${COMPANY.whatsapp}?text=Hi%20I%20want%20to%20discuss%20real%20estate%20advisory%20services`} target="_blank" rel="noreferrer">WhatsApp Chat</a>
               <a href="#lead-form">Get Quote</a>
             </div>

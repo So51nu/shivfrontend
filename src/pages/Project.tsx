@@ -3002,7 +3002,7 @@ export default function ProjectsPage() {
             <div className="f-brand">SHIVSHAKTI REAL ESTATE ADVISORY PRIVATE LIMITED</div>
             <div className="f-muted"></div>
             <div className="f-muted" style={{ marginTop: 10 }}>
-              Registered Office: Sakinaka Andheri East Mumbai 400069
+              Registered Office: 202 2nd Floor Near Teli Gali Andheri East Mumbai 400069
             </div>
           </div>
 
@@ -3023,7 +3023,7 @@ export default function ProjectsPage() {
             <div className="f-links">
               <a href="tel:+919987281075">+91 9987281075</a>
               <a href="mailto:shivshaktirealestateadvisory@gmail.com">shivshaktirealestateadvisory@gmail.com</a>
-              <a href="https://shivshaktirealestateadvisory.com/">Website</a>
+              <a href="https://shivshaktirealestateadvisory.com/">Website : https://shivshaktirealestateadvisory.com</a>
               <a
                 href={`https://wa.me/919987281075?text=Hi%20I%20want%20details%20about%20your%20projects`}
                 target="_blank"
