@@ -4533,7 +4533,7 @@ export default function HomePage() {
           <div className="section-head">
             <div>
               <div className="section-kicker">ABOUT US</div>
-              <h2 className="section-title">Building Robust Foundations For Real Estate Growth</h2>
+              <h2 className="section-title">Building ShivShakti Real Estate Advisory Private Limited For Real Estate Growth</h2>
               <p className="section-p">
                 Shivshakti Real Estate Advisory is positioned as a mandate-focused real estate advisory company for developers who need strategic thinking, strong market reach and seamless execution support.
               </p>

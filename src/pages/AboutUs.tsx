@@ -295,7 +295,7 @@ export default function AboutPage() {
             <div className="about-grid">
               <div className="about-copy">
                 <span className="mini-badge">WHO WE ARE</span>
-                <h2>Building Robust Foundations For Every Layer Of Real Estate</h2>
+                <h2>Building ShivShakti Real Estate Advisory Private Limited For Every Layer Of Real Estate</h2>
                 <p>
                   ShivShakti Real Estate Advisory Private Limited is a mandate-led real estate advisory company
                   created to help developers plan, position, market, and move their projects with clarity.
